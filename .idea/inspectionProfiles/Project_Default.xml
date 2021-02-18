@@ -1,0 +1,19 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="PyUnresolvedReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredIdentifiers">
+        <list>
+          <option value="main.ortools" />
+          <option value="Card.*" />
+          <option value="first_project.first_project.urls.first_app" />
+          <option value="first_project.first_project.urls.AppTwo" />
+          <option value="first_project.first_app.admin.*" />
+          <option value="first_project.populate_first_app.first_app" />
+          <option value="first_project.first_app.views.*" />
+          <option value="first_project.first_project.urls.*" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>
