@@ -1,3 +1,4 @@
+{% load static %}
 <!doctype html>
 <html lang="en">
 <head>
@@ -5,9 +6,34 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <!-- Font Awesome -->
+<!--    The next href will look the static folder that we defined in our settings and will look for css/all.css-->
+    <link rel="stylesheet" href="{% static 'css/all.css' %}">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <!-- Custom -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!--    Light Box-->
+    <link rel="stylesheet" href="{% static 'css/lightbox.min.css' %}">
     <title>E-Market</title>
 </head>
 <body>
+  <!--Top Bar-->
+  {% include 'partials/_topbar.html' %}
+  <!--Navbar-->
+  {% include 'partials/_navbar.html' %}
+  <!--Footer-->
+  {% include 'partials/_footer.html' %}
+
+
+
 {% block content %} {% endblock %}
+
+
+
+    <script src="{% static 'jquery-3.3.1.min.js' %} "></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/lightbox.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
 </body>
 </html>
