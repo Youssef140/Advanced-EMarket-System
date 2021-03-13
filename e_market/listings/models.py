@@ -1,6 +1,6 @@
 from django.db import models
 from datetime import datetime
-from admins.model import Admin
+from e_market.admins.models import Admin
 
 class Product(models.Model):
     admin = models.ForeignKey(Admin,on_delete=models.DO_NOTHING())
