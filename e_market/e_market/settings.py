@@ -33,7 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'pages.apps.PagesConfig',
     'listings.apps.ListingsConfig',
-    'realtors.apps.RealtorsConfig',
+    'admins.apps.RealtorsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -79,10 +79,17 @@ WSGI_APPLICATION = 'e_market.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
+<<<<<<< HEAD
         'NAME': 'e_market_db',
         'USER': 'postgres',
         'PASSWORD': 'chrisB12.',
         'HOST': 'localhost'
+=======
+        'NAME': 'e_marketdb',
+        'PASSWORD':'76748255MBM..',
+        'USER':'postgres',
+        'HOST':'localhost'
+>>>>>>> 62517f1382864643e99d1cf60bd2f3bf9445eba3
     }
 }
 
@@ -128,3 +135,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR,'e_market/static')
 ]
+
+# Media folder Settings
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+MEDIA_URL = '/media/'
