@@ -11,6 +11,8 @@ local_settings.py
 db.sqlite3
 db.sqlite3-journal
 media
+settings.py
+/static
 .idea/vcs.xml
 venv
 # If your build process includes running collectstatic, then you probably don't need or want to include staticfiles/
