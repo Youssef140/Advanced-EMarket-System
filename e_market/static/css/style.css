@@ -1,7 +1,9 @@
 .btn-secondary {
-  color: #fff !important; }
+  color: #ffff00 !important; }
 
-img {
+
+
+.img {
   width: 100%; }
 
 .logo {
@@ -13,6 +15,9 @@ img {
 
 .social a {
   margin-right: 0.4rem; }
+
+.marginLeftt{
+  margin-left: 0.4rem; }
 
 #showcase {
   background: url(../img/showcase.jpg) no-repeat top center fixed/cover;
@@ -94,3 +99,4 @@ img {
     font-size: 30px; }
   #showcase-inner h1 {
     font-size: 40px; } }
+
