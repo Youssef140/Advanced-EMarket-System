@@ -3,191 +3,170 @@
 {% block content %}
 
  <!-- Showcase -->
-  <section id="showcase">
-    <div class="container text-center">
-      <div class="home-search p-5">
-        <div class="overlay p-5">
-          <h1 class="display-4 mb-4">
-          Welcome to our Supermarket!
-          </h1>
-          <p class="lead">We provide the highest quality products to the best customers :)</p>
-          <div class="search">
 
-            <form action="search.html">
-              <!-- Form Row 1 -->
-              <div class="form-row">
-                <div class="col-md-12 mb-3">
-                  <label class="sr-only">Keywords</label>
-                  <input type="text" name="Search" class="form-control" placeholder="Search Items..">
-                </div>
-              </div>
-              <!-- Form Row 2 -->
-              <div class="form-row">
-                <div class="col-md-12 mb-3">
-                  <label class="sr-only">Categories</label>
-                  <select name="Categories" class="form-control">
-                    <option selected="true" disabled="disabled">Categories (All)</option>
-                    <option value="Bakery">Bakery</option>
-                    <option value="Fruits & Vegetables">Fruits & Vegetables</option>
-                    <option value="Meat Poultry & Fish">Meat Poultry & Fish</option>
-                    <option value="Frozen">Frozen</option>
-                    <option value="Beverages">Beverages</option>
-                    <option value="Snacks & Candy">Snacks & Candy</option>
-                    <option value="Food Cupboard">Food Cupboard</option>
-                    <option value="Baby & Child">Baby & Child</option>
-                    <option value="Tobacco">Tobacco</option>
-                    <option value="Home & Outdoor">Home & Outdoor</option>
-                    <option value="Electronics & Appliances">Electronics & Appliances</option>
-                  </select>
-                </div>
-              </div>
-              <button class="btn btn-secondary btn-block mt-4" type="submit">Search</button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- Offers -->
+  <!-- Categories -->
   <section id="listings" class="py-5">
     <div class="container">
-      <h3 class="text-center mb-3">Hottest Offers</h3>
+      <h3 class="text-center mb-3">Categories</h3>
       <div class="row">
-        <!-- Offer 1 -->
+        <!-- Category 1 -->
         <div class="col-md-6 col-lg-4 mb-4">
           <div class="card listing-preview">
-            <img class="card-img-top" src="static/img/home/homepage.jpg" alt="">
+            <img class="card-img-top" src="static/img/bakery_Categ.jpeg" alt="">
             <div class="card-img-overlay">
-              <h4>
-                <span class="badge badge-secondary text-white">$5</span>
-              </h4>
+
             </div>
             <div class="card-body">
               <div class="listing-heading text-center">
-                <h4 class="text-primary"> Pepsi 750ml Bottle</h4>
-                <p>
-                  <i class="fas fa-map-marker text-secondary"></i> Hazmieh</p>
+                <h4 style="color: #000000;">Bakery</h4>
               </div>
+
               <hr>
-              <div class="row py-2 text-secondary">
-                <div class="col-6">
-                  <i class="fas fa-beer"></i> Drinks</div>
-                <div class="col-6">
-                  <i class="fas fa-car"></i> Garage: 2</div>
-              </div>
-              <div class="row py-2 text-secondary">
-                <div class="col-6">
-                  <i class="fas fa-bed"></i> Bedrooms: 3</div>
-                <div class="col-6">
-                  <i class="fas fa-bath"></i> Bathrooms: 2</div>
-              </div>
-              <hr>
-              <div class="row py-2 text-secondary">
-                <div class="col-6">
-                  <i class="fas fa-user"></i> Kyle Brown</div>
-              </div>
-              <div class="row text-secondary pb-2">
-                <div class="col-6">
-                  <i class="fas fa-clock"></i> 5 days ago</div>
-              </div>
-              <hr>
-              <a href="listing.html" class="btn btn-primary btn-block">View Item</a>
+              <a href="listing.html" class="btn btn-light btn-block" style="background-color: #ffff00;  color : #000000; border-width: 2px;">View Category</a>
             </div>
           </div>
         </div>
 
-        <!-- Offer 2 -->
+        <!-- Category 2 -->
         <div class="col-md-6 col-lg-4 mb-4">
           <div class="card listing-preview">
-            <img class="card-img-top" src="assets/img/homes/home-2.jpg" alt="">
+            <img class="card-img-top" src="static/img/fruits_vegetabs_categ.jpeg" alt="">
             <div class="card-img-overlay">
-              <h2>
-                <span class="badge badge-secondary text-white">$550,000</span>
-              </h2>
+
             </div>
             <div class="card-body">
               <div class="listing-heading text-center">
-                <h4 class="text-primary">18 Jefferson Lane</h4>
-                <p>
-                  <i class="fas fa-map-marker text-secondary"></i> Woburn MA, 01801</p>
+                <h4 style="color: #000000;">Fruits and Vegetables</h4>
+
               </div>
+
               <hr>
-              <div class="row py-2 text-secondary">
-                <div class="col-6">
-                  <i class="fas fa-th-large"></i> Sqft: 3200</div>
-                <div class="col-6">
-                  <i class="fas fa-car"></i> Garage: 1</div>
-              </div>
-              <div class="row py-2 text-secondary">
-                <div class="col-6">
-                  <i class="fas fa-bed"></i> Bedrooms: 4</div>
-                <div class="col-6">
-                  <i class="fas fa-bath"></i> Bathrooms: 2.5</div>
-              </div>
-              <hr>
-              <div class="row py-2 text-secondary">
-                <div class="col-6">
-                  <i class="fas fa-user"></i> Mark Hudson</div>
-              </div>
-              <div class="row text-secondary pb-2">
-                <div class="col-6">
-                  <i class="fas fa-clock"></i> 5 days ago</div>
-              </div>
-              <hr>
-              <a href="listing.html" class="btn btn-primary btn-block">More Info</a>
+              <a href="listing.html" class="btn btn-light btn-block" style="background-color: #ffff00;  color : #000000; border-width: 2px;">View Category</a>
             </div>
           </div>
         </div>
 
-        <!-- Offer 3 -->
+        <!-- Category 3 -->
         <div class="col-md-6 col-lg-4 mb-4">
           <div class="card listing-preview">
-            <img class="card-img-top" src="assets/img/homes/home-3.jpg" alt="">
+            <img class="card-img-top" src="static/img/meat_fish_categ.jpeg" alt="">
             <div class="card-img-overlay">
-              <h2>
-                <span class="badge badge-secondary text-white">$580,000</span>
-              </h2>
             </div>
             <div class="card-body">
               <div class="listing-heading text-center">
-                <h4 class="text-primary">187 Woodrow Street</h4>
-                <p>
-                  <i class="fas fa-map-marker text-secondary"></i> Salem MA, 01915</p>
+                <h4 style="color: #000000">Meat Poultry and Fish</h4>
               </div>
               <hr>
-              <div class="row py-2 text-secondary">
-                <div class="col-6">
-                  <i class="fas fa-th-large"></i> Sqft: 3107</div>
-                <div class="col-6">
-                  <i class="fas fa-car"></i> Garage: 0</div>
-              </div>
-              <div class="row py-2 text-secondary">
-                <div class="col-6">
-                  <i class="fas fa-bed"></i> Bedrooms: 4</div>
-                <div class="col-6">
-                  <i class="fas fa-bath"></i> Bathrooms: 3</div>
-              </div>
-              <hr>
-              <div class="row py-2 text-secondary">
-                <div class="col-6">
-                  <i class="fas fa-user"></i> Mark Hudson</div>
-              </div>
-              <div class="row text-secondary pb-2">
-                <div class="col-6">
-                  <i class="fas fa-clock"></i> 5 days ago</div>
-              </div>
-              <hr>
-              <a href="listing.html" class="btn btn-primary btn-block">More Info</a>
+              <a href="listing.html" class="btn btn-light btn-block" style="background-color: #ffff00;  color : #000000; border-width: 2px;">View Category</a>
             </div>
           </div>
         </div>
+
+        <!--Category 4-->
+        <div class="col-md-6 col-lg-4 mb-4">
+          <div class="card listing-preview">
+            <img class="card-img-top" src="static/img/frozen_categ.jpeg" alt="">
+            <div class="card-img-overlay">
+            </div>
+            <div class="card-body">
+              <div class="listing-heading text-center">
+                <h4 style="color: #000000">Frozen Food</h4>
+              </div>
+              <hr>
+              <a href="listing.html" class="btn btn-light btn-block" style="background-color: #ffff00;  color : #000000; border-width: 2px;">View Category</a>
+            </div>
+          </div>
+        </div>
+
+
+        <!--Category 5-->
+        <div class="col-md-6 col-lg-4 mb-4">
+          <div class="card listing-preview">
+            <img class="card-img-top" src="static/img/alcohol_categ.jpg" alt="">
+            <div class="card-img-overlay">
+            </div>
+            <div class="card-body">
+              <div class="listing-heading text-center">
+                <h4 style="color: #000000">Alcohol</h4>
+              </div>
+              <hr>
+              <a href="listing.html" class="btn btn-light btn-block" style="background-color: #ffff00;  color : #000000; border-width: 2px;">View Category</a>
+            </div>
+          </div>
+        </div>
+
+
+
+        <div class="col-md-6 col-lg-4 mb-4">
+          <div class="card listing-preview">
+            <img class="card-img-top" src="static/img/beverages.png" alt="">
+            <div class="card-img-overlay">
+            </div>
+            <div class="card-body">
+              <div class="listing-heading text-center">
+                <h4 style="color: #000000">Beverages</h4>
+              </div>
+              <hr>
+              <a href="listing.html" class="btn btn-light btn-block" style="background-color: #ffff00;  color : #000000; border-width: 2px;">View Category</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4 mb-4">
+          <div class="card listing-preview">
+            <img class="card-img-top" src="static/img/candy_logo.png" alt="">
+            <div class="card-img-overlay">
+            </div>
+            <div class="card-body">
+              <div class="listing-heading text-center">
+                <h4 style="color: #000000">Snacks and Candy</h4>
+              </div>
+              <hr>
+              <a href="listing.html" class="btn btn-light btn-block" style="background-color: #ffff00;  color : #000000; border-width: 2px;">View Category</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4 mb-4">
+          <div class="card listing-preview">
+            <img class="card-img-top" src="static/img/electronics_logo.jpeg" alt="">
+            <div class="card-img-overlay">
+            </div>
+            <div class="card-body">
+              <div class="listing-heading text-center">
+                <h4 style="color: #000000">Electronics and Appliances</h4>
+              </div>
+              <hr>
+              <a href="listing.html" class="btn btn-light btn-block" style="background-color: #ffff00;  color : #000000; border-width: 2px;">View Category</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4 mb-4">
+          <div class="card listing-preview">
+            <img class="card-img-top" src="static/img/home_logo.jpeg" alt="">
+            <div class="card-img-overlay">
+            </div>
+            <div class="card-body">
+              <div class="listing-heading text-center">
+                <h4 style="color: #000000">Home and Outdoor</h4>
+              </div>
+              <hr>
+              <a href="listing.html" class="btn btn-light btn-block" style="background-color: #ffff00;  color : #000000; border-width: 2px;">View Category</a>
+            </div>
+          </div>
+        </div>
+
 
       </div>
     </div>
   </section>
 
-  <section id="services" class="py-5 bg-secondary text-white">
+
+
+
+  <section class="py-5 text-white" style= "color:#000000; background-color : #000000;">
     <div class="container">
       <div class="row text-center">
         <div class="col-md-4">
@@ -197,7 +176,7 @@
           <p>Our support team will be happy to help you!</p>
         </div>
         <div class="col-md-4">
-          <i class="fas fa-truck fa-4x mr-0"></i>
+          <i class="fas fa-truck fa-4x mr-0" ></i>
           <hr>
           <h3>Delivery</h3>
           <p>We deliver to your place!</p>

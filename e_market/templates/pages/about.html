@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 {%load static%}
 {% block content %}
-<section id="showcase-inner" class="py-5 text-white">
+<section style="background-color : #000000" class="py-5 text-white">
     <div class="container">
       <div class="row text-center">
         <div class="col-md-12">
-          <h1 class="display-4">About BT Real Estate</h1>
-          <p class="lead">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, pariatur!</p>
+          <h1 class="display-4">About our Supermarket</h1>
+          <p class="lead">We are located everywhere in Lebanon thanks to our online delivery system! </p>
         </div>
       </div>
     </div>
@@ -19,8 +19,8 @@
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
 <!--            The name index come from where we named it in urls.py-->
-            <a href="{% url 'index' %}">
-              <i class="fas fa-home"></i> Home</a>
+            <a href="{% url 'index' %}" style="color:#000000;">
+              <i class="fas fa-home" style="color:#000000;"></i> Home</a>
           </li>
           <li class="breadcrumb-item active"> About</li>
         </ol>
@@ -43,8 +43,8 @@
           <div class="card">
             <img class="card-img-top" src="{%static 'img/kyle.jpg'%}" alt="Seller of the month">
             <div class="card-body">
-              <h5 class="card-title">Seller Of The Month</h5>
-              <h6 class="text-secondary">Kyle Brown</h6>
+              <h5 class="card-title" style="color:#000000;">Seller Of The Month</h5>
+              <h6 style="color: #000000;">Kyle Brown</h6>
               <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis nesciunt amet, illo itaque similique repellat.
                 content.
               </p>
@@ -56,11 +56,11 @@
   </section>
 
   <!-- Work -->
-  <section id="work" class="bg-dark text-white text-center">
+  <section id="work" class="text-white text-center" style="background-color: #000000;">
     <h2 class="display-4">We Work For You</h2>
     <h4>Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem velit aperiam, unde aliquid at similique!</h4>
     <hr>
-    <a href="listings.html" class="btn btn-secondary text-white btn-lg">View Our Featured Listings</a>
+    <a href="listings.html" class="btn btn-light btn-lg" style="background-color: #000000; border-color: #ffff00; color : #ffff00;">View Our Featured Listings</a>
   </section>
 
   <!-- Team -->

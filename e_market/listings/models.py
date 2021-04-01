@@ -22,6 +22,7 @@ class Category(models.Model):
 
 
 
+
 class Product(models.Model):
     admin = models.ForeignKey(Admin,on_delete=models.DO_NOTHING)
     title = models.CharField(max_length=200)
@@ -41,5 +42,6 @@ class Product(models.Model):
     rating = models.IntegerField(null=True,blank=True)
     def __str__(self):
         return self.title
+
 
 

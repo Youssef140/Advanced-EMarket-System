@@ -7,16 +7,21 @@
       <div class="row">
         <div class="col-md-6 mx-auto">
           <div class="card">
-            <div class="card-header bg-primary text-white">
+            <div class="card-header " style="background-color : #000000; color : #ffffff">
               <h4>
                 <i class="fas fa-user-plus"></i> Register</h4>
             </div>
             <div class="card-body">
-                <form action="{% url 'index' %}">
+                <form action="{% url 'index' %}" id = "form">
                   <div class="form-group">
                   <label for="first_name">First Name</label>
                   <input type="text" name="first_name" id = "first_name"class="form-control" required>
                 </div>
+                    <div class="form-group">
+                  <label for="middle_name">Middle Name</label>
+                  <input type="text" name="middle_name" id = "middle_name" class="form-control" required>
+                </div>
+
                 <div class="form-group">
                   <label for="last_name">Last Name</label>
                   <input type="text" name="last_name" id = "last_name" class="form-control" required>
@@ -37,8 +42,26 @@
                   <label for="pwd2">Confirm Password</label>
                   <input type="password" name="password2" id = "pwd2" class="form-control" required>
                 </div>
-                <input type="submit" value="Register" class="btn btn-secondary btn-block">
+                <input type="submit" value="Register" class="btn  btn-block"style="background-color : #ffff00; color : #000000" onclick="return Validate()" />
               </form>
+                <script type="text/javascript">
+        function Validate() {
+        var password = document.getElementById("pwd").value;
+        var confirmPassword = document.getElementById("pwd2").value;
+        if(password.length < 5){
+        alert("Password length should be greater than 5 characters.");
+            return false;
+        } else if(password.length > 10){
+        //Check if password contains letter + digits - ignore condition
+
+        }else if (password != confirmPassword){
+            alert("Passwords do not match.");
+            return false;
+    }
+        return true;
+    }
+</script>
+
             </div>
           </div>
         </div>
