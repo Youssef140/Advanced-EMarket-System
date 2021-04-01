@@ -12,7 +12,7 @@ settings.py
 db.sqlite3
 db.sqlite3-journal
 media
-settings.py
+.e_market/e_market/settings.py
 /static
 .idea/vcs.xml
 venv
