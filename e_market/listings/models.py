@@ -14,7 +14,7 @@ class Category(models.Model):
     name = models.CharField(max_length=200)
     parent_categ_id = models.ForeignKey('Category',default='Category',on_delete=models.DO_NOTHING,blank=True,null=True)
     # cat_id=cat_id+1
-    is_child = models.BooleanField()
+    is_child = models.BooleanField(default=False)
     is_parent = models.BooleanField(default=True)
     description = models.TextField(blank=True)
     def __str__(self):
@@ -26,7 +26,7 @@ class Category(models.Model):
 class Product(models.Model):
     admin = models.ForeignKey(Admin,on_delete=models.DO_NOTHING)
     title = models.CharField(max_length=200)
-    category = models.ForeignKey(Category,on_delete=models.DO_NOTHING)
+    category = models.ForeignKey(Category,on_delete=models.CASCADE)
     price = models.DecimalField(decimal_places=2,max_digits=5)
     currency = models.CharField(max_length=10,choices=currency_choices,default='usd')
     brand_name = models.CharField(max_length=200)
