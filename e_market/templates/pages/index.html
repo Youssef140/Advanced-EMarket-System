@@ -5,6 +5,63 @@
  <!-- Showcase -->
 
 
+  <section id="slider" class="py-5">
+    <div class="container">
+      <h3 class="text-center mb-3">Hot Offers</h3>
+    <div class="slider">
+      <div class="slides">
+
+         <input type="radio" name="radio-btn" id="radio1">
+         <input type="radio" name="radio-btn" id="radio2">
+         <input type="radio" name="radio-btn" id="radio3">
+         <input type="radio" name="radio-btn" id="radio4">
+
+        <div class="slide first" >
+          <img src="static/img/bakery_Categ.jpeg" alt="" >
+        </div>
+        <div class="slide">
+          <img src="static/img/about.jpg" alt="">
+        </div>
+        <div class="slide">
+          <img src="static/img/home-2.jpg" alt="">
+        </div>
+        <div class="slide">
+          <img src="static/img/home-1.jpg" alt="">
+        </div>
+
+        <div class="navigation-auto">
+            <div class="auto-btn1"></div>
+            <div class="auto-btn2"></div>
+            <div class="auto-btn3"></div>
+            <div class="auto-btn4"></div>
+        </div>
+
+        <div class="navigation-manual">
+          <label for="radio1" class="manual-btn"></label>
+          <label for="radio2" class="manual-btn"></label>
+          <label for="radio3" class="manual-btn"></label>
+          <label for="radio4" class="manual-btn"></label>
+        </div>
+
+
+      </div>
+
+    </div>
+</div>
+  </section>
+
+<script type="text/javascript">
+var counter = 1;
+setInterval(function(){
+document.getElementById('radio' + counter).checked=true;
+counter ++;
+if(counter>4){
+counter=1;
+}
+},5000);
+</script>
+
+
   <!-- Categories -->
   <section id="listings" class="py-5">
     <div class="container">
@@ -28,137 +85,6 @@
           </div>
         </div>
 
-        <!-- Category 2 -->
-        <div class="col-md-6 col-lg-4 mb-4">
-          <div class="card listing-preview">
-            <img class="card-img-top" src="static/img/fruits_vegetabs_categ.jpeg" alt="">
-            <div class="card-img-overlay">
-
-            </div>
-            <div class="card-body">
-              <div class="listing-heading text-center">
-                <h4 style="color: #000000;">Fruits and Vegetables</h4>
-
-              </div>
-
-              <hr>
-              <a href="listing.html" class="btn btn-light btn-block" style="background-color: #ffff00;  color : #000000; border-width: 2px;">View Category</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Category 3 -->
-        <div class="col-md-6 col-lg-4 mb-4">
-          <div class="card listing-preview">
-            <img class="card-img-top" src="static/img/meat_fish_categ.jpeg" alt="">
-            <div class="card-img-overlay">
-            </div>
-            <div class="card-body">
-              <div class="listing-heading text-center">
-                <h4 style="color: #000000">Meat Poultry and Fish</h4>
-              </div>
-              <hr>
-              <a href="listing.html" class="btn btn-light btn-block" style="background-color: #ffff00;  color : #000000; border-width: 2px;">View Category</a>
-            </div>
-          </div>
-        </div>
-
-        <!--Category 4-->
-        <div class="col-md-6 col-lg-4 mb-4">
-          <div class="card listing-preview">
-            <img class="card-img-top" src="static/img/frozen_categ.jpeg" alt="">
-            <div class="card-img-overlay">
-            </div>
-            <div class="card-body">
-              <div class="listing-heading text-center">
-                <h4 style="color: #000000">Frozen Food</h4>
-              </div>
-              <hr>
-              <a href="listing.html" class="btn btn-light btn-block" style="background-color: #ffff00;  color : #000000; border-width: 2px;">View Category</a>
-            </div>
-          </div>
-        </div>
-
-
-        <!--Category 5-->
-        <div class="col-md-6 col-lg-4 mb-4">
-          <div class="card listing-preview">
-            <img class="card-img-top" src="static/img/alcohol_categ.jpg" alt="">
-            <div class="card-img-overlay">
-            </div>
-            <div class="card-body">
-              <div class="listing-heading text-center">
-                <h4 style="color: #000000">Alcohol</h4>
-              </div>
-              <hr>
-              <a href="listing.html" class="btn btn-light btn-block" style="background-color: #ffff00;  color : #000000; border-width: 2px;">View Category</a>
-            </div>
-          </div>
-        </div>
-
-
-
-        <div class="col-md-6 col-lg-4 mb-4">
-          <div class="card listing-preview">
-            <img class="card-img-top" src="static/img/beverages.png" alt="">
-            <div class="card-img-overlay">
-            </div>
-            <div class="card-body">
-              <div class="listing-heading text-center">
-                <h4 style="color: #000000">Beverages</h4>
-              </div>
-              <hr>
-              <a href="listing.html" class="btn btn-light btn-block" style="background-color: #ffff00;  color : #000000; border-width: 2px;">View Category</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-6 col-lg-4 mb-4">
-          <div class="card listing-preview">
-            <img class="card-img-top" src="static/img/candy_logo.png" alt="">
-            <div class="card-img-overlay">
-            </div>
-            <div class="card-body">
-              <div class="listing-heading text-center">
-                <h4 style="color: #000000">Snacks and Candy</h4>
-              </div>
-              <hr>
-              <a href="listing.html" class="btn btn-light btn-block" style="background-color: #ffff00;  color : #000000; border-width: 2px;">View Category</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-6 col-lg-4 mb-4">
-          <div class="card listing-preview">
-            <img class="card-img-top" src="static/img/electronics_logo.jpeg" alt="">
-            <div class="card-img-overlay">
-            </div>
-            <div class="card-body">
-              <div class="listing-heading text-center">
-                <h4 style="color: #000000">Electronics and Appliances</h4>
-              </div>
-              <hr>
-              <a href="listing.html" class="btn btn-light btn-block" style="background-color: #ffff00;  color : #000000; border-width: 2px;">View Category</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-6 col-lg-4 mb-4">
-          <div class="card listing-preview">
-            <img class="card-img-top" src="static/img/home_logo.jpeg" alt="">
-            <div class="card-img-overlay">
-            </div>
-            <div class="card-body">
-              <div class="listing-heading text-center">
-                <h4 style="color: #000000">Home and Outdoor</h4>
-              </div>
-              <hr>
-              <a href="listing.html" class="btn btn-light btn-block" style="background-color: #ffff00;  color : #000000; border-width: 2px;">View Category</a>
-            </div>
-          </div>
-        </div>
-
-
       </div>
     </div>
   </section>
@@ -166,7 +92,7 @@
 
 
 
-  <section class="py-5 text-white" style= "color:#000000; background-color : #000000;">
+  <section class="py-5 text-white" style= "color:#000000; background-color : #222222;">
     <div class="container">
       <div class="row text-center">
         <div class="col-md-4">

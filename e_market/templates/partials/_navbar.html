@@ -1,15 +1,16 @@
 {% load static %}
+
 <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style= "opacity:1; background-color: #000000;">
     <div class="container">
-      <a class="navbar-brand" href="{% url 'index'%}">
-        <img src="{% static 'img/market-logo.jpeg' %}" class="logo" alt="">
-      </a>
+<!--      <a class="navbar-brand ml-auto" href="{% url 'index'%}">-->
+<!--        <img src="{% static 'img/market-logo.jpeg' %}" class="logo" alt="">-->
+<!--      </a>-->
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <ul class="navbar-nav">
+        <ul class="navbar-nav" style="size:10px">
           <li
           {% if '/' == request.path %}
             class="nav-item active mr-3"
@@ -37,26 +38,166 @@
           >
             <a class="nav-link" href="{% url 'listings' %}">Offers</a>
           </li>
+
+
+<div class=" dropdown active mr-3" data-toggle="dropdown">
+    <button class="btn dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color:#000000; border:none; color:white">
+          Categories
+    </button>
+    <ul class="dropdown-menu multi-level" aria-labelledby="navbarDropdownMenuLink" role="menu">
+        <li class="dropdown-item">Bakery</li>
+        <li class="dropdown-item">CSS</li>
+        <li class="dropdown-submenu">
+            <a  class="dropdown-item" tabindex="-1" href="#">Hover me for more options</a>
+            <ul class="dropdown-menu">
+                 <li class="dropdown-item"><a tabindex="-1" href="#">Second level</a></li>
+                <li class="dropdown-submenu">
+                      <a class="dropdown-item" style="text-decoration:none" href="#">Even More..</a>
+                      <ul class="dropdown-menu">
+                          <li class="dropdown-item"><a href="#">3rd level</a></li>
+                            <li class="dropdown-item"><a href="#">Another level</a>
+<!--                            <ul class="dropdown-menu">-->
+<!--                                <li class="dropdown-item"><a href="#">4th level</a></li>-->
+<!--                                <li class="dropdown-item"><a href="#">4th level</a></li>-->
+<!--                                <li class="dropdown-item"><a href="#">4th level</a></li>-->
+<!--                            </ul>-->
+                          </li>
+                            <li class="dropdown-item"><a href="#">3rd level</a></li>
+                      </ul>
+                    </li>
+                <li class="dropdown-item"><a style="text-decoration:none" href="#">Second level</a></li>
+                    <li class="dropdown-item"><a style="text-decoration:none" href="#">Second level</a></li>
+                  </ul>
+                </li>
+
+        </li>
+    </ul>
+</div>
+
+            <script language="JavaScript" type="text/javascript" src="static/js/jquery-3.3.1.min.js"></script>
+            <script language="JavaScript" type="text/javascript" src="static/js/bootstrap.bundle.min.js">
+            $(document).ready(function(){
+            $(".dropdown-toggle").dropdown();
+            });
+            </script>
+
         </ul>
 
-      <!--The form below is the searchbox in the navbar-->
-        <form class="form-inline ml-sm-5">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-light my-2 my-sm-0" style="background-color: #000000; border-color: #ffff00; color : #ffff00" type="submit">Search</button>
-        </form>
 
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item mr-3">
-            <a class="nav-link" href="{% url 'register' %}">
-              <i class="fas fa-user-plus"></i> Register</a>
+        <!--      The form below is the searchbox in the navbar-->
+        <div class="container mr-lm-2" style="width:200%;padding-right: 0px;padding-left: 0px; margin-right: 0px; margin-left: 0px;">
+    <div class="row height align-items-center"
+    >
+        <div class="col-md-9">
+            <div class="form">
+              <form class="form" action="https://www.google.com/search" method = "get" id="search-form" target="_blank" >
+              <i class="fa fa-search" ></i>
+              <input name="q" id="searchBar" size ="10" type="text" class="form-control form-input mr-sm-2" placeholder="Search anything..." autocomplete="off" aria-label="Search">
+              <span class="left-pan" >
+                <button style="background-color:#ffffff; border:none; " type="button"><i id="mic-logo" class="fas fa-microphone"></i></button>
+              </span>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!--        <label class="form-label" for="customFile"></label>-->
+<div class="container" style="padding-right: 0px;padding-left: 0px; margin-right: 0px; margin-left: 0px;">
+        <input type="file" class=" " id="real-file" hidden="hidden" />
+        <button class = "btn btn-light " style="background-color: #000000; border-color: #ffff00; color : #ffff00" type="button" id="custom-button">Upload Image</button>
+</div>
+              <!--        <span class=" mr-sm-2" id="custom-text" style="color: #ffffff; font-size: 12px;">No file chosen yet</span>-->
+
+    <div class="container" style="padding-right: 0px;padding-left: 0px; margin-right: 5px; margin-left: 5px;">
+
+        <ul class="navbar-nav ml-2 ">
+          <li class="nav-item " style="color:white">
+              <i class="fas fa-user-plus"></i> Register </a>
           </li>
-          <li class="nav-item mr-3">
-            <a class="nav-link" href="{% url 'login' %}">
-              <i class="fas fa-sign-in-alt"></i>
-
-              Login</a>
+          <li class="nav-item " style="color:white">
+              <i class="fas fa-sign-in-alt"></i> Login</a>
           </li>
         </ul>
+    </div>
       </div>
     </div>
   </nav>
+
+<script>
+          const searchForm = document.querySelector("#search-form");
+          const searchFormInput = searchForm.querySelector("#search-form input");
+          const micBtn = searchForm.querySelector("#search-form button");
+          const micIcon = document.getElementById("mic-logo");
+
+          var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
+          if(SpeechRecognition){
+          const recognition = new SpeechRecognition();
+
+          recognition.continuous = false;
+          micBtn.addEventListener("click",micBtnClick);
+
+          function micBtnClick(){
+            if(micIcon.classList.contains("fa-microphone")){ //Start speech recog
+            recognition.start();
+
+            } else { //Stop speech recog
+
+            recognition.stop();
+
+            }
+          }
+          recognition.addEventListener("start",startSpeechRecognition);
+          function startSpeechRecognition(){
+          micIcon.classList.remove("fa-microphone");
+            micIcon.classList.add("fa-microphone-slash");
+          console.log("Speech Recognition Active");
+          }
+          recognition.addEventListener("end",endSpeechRecognition);
+          function endSpeechRecognition(){
+          micIcon.classList.remove("fa-microphone-slash");
+          micIcon.classList.add("fa-microphone");
+          searchFormInput.focus();
+          console.log("Speech Recognition Disconnected");
+          }
+
+          recognition.addEventListener("result",resultOfSpeechRecognition);
+          function resultOfSpeechRecognition(event){
+          const transcript = event.results[0][0].transcript;
+          searchFormInput.value = transcript;
+          /*setTimeout(() => {
+          searchForm.submit();
+          },750);*/
+          console.log(event);
+          }
+
+          } else { console.log("Browser does not support Speech recog");
+          }
+
+        </script>
+
+
+
+
+<script>
+
+          const realFileBtn = document.getElementById("real-file");
+          const customBtn = document.getElementById("custom-button");
+          const customTxt = document.getElementById("custom-text");
+
+          customBtn.addEventListener("click", function() {
+            realFileBtn.click();
+          });
+
+          /*
+          realFileBtn.addEventListener("change",function(){
+          if(realFileBtn.value){
+          customTxt.innerHTML = realFileBtn.value.match(/[\/\\]([\w\d\s\.\-\(\)]+)$/)[1];
+          }else{
+          customTxt.innerHTML = "No file chosen yet";
+          }
+          }); */
+
+        </script>
