@@ -114,10 +114,25 @@
     <div class="container" style="padding-right: 0px;padding-left: 0px; margin-right: 5px; margin-left: 5px;">
 
         <ul class="navbar-nav ml-2 ">
-          <li class="nav-item " style="color:white">
+          <li class="nav-item mr-3"
+              {% if 'register' in request.path %}
+              class="nav-item active mr-3"
+              {% else %}
+              class="nav-item mr-3"
+              {%endif%}
+            >
+            <a class="nav-link" href="{% url 'register' %}">
               <i class="fas fa-user-plus"></i> Register </a>
           </li>
-          <li class="nav-item " style="color:white">
+
+          <li class="nav-item mr-3"
+              {% if 'login' in request.path %}
+                class="nav-item active mr-3"
+              {% else %}
+                class="nav-item mr-3"
+              {%endif%}
+            >
+            <a class="nav-link" href="{% url 'login' %}">
               <i class="fas fa-sign-in-alt"></i> Login</a>
           </li>
         </ul>

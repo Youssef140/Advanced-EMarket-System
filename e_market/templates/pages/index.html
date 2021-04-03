@@ -4,7 +4,6 @@
 
  <!-- Showcase -->
 
-
   <section id="slider" class="py-5">
     <div class="container">
       <h3 class="text-center mb-3">Hot Offers</h3>
@@ -61,29 +60,41 @@ counter=1;
 },5000);
 </script>
 
-
   <!-- Categories -->
   <section id="listings" class="py-5">
     <div class="container">
       <h3 class="text-center mb-3">Categories</h3>
       <div class="row">
-        <!-- Category 1 -->
-        <div class="col-md-6 col-lg-4 mb-4">
-          <div class="card listing-preview">
-            <img class="card-img-top" src="static/img/bakery_Categ.jpeg" alt="">
-            <div class="card-img-overlay">
+        {% if categories  %}
+          {% for category in categories%}
+            {% if category.is_child == False  %}
+              <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card listing-preview">
+                  <img class="card-img-top" src="static/img/bakery_Categ.jpeg" alt="">
+                  <div class="card-img-overlay">
 
-            </div>
-            <div class="card-body">
-              <div class="listing-heading text-center">
-                <h4 style="color: #000000;">Bakery</h4>
+                  </div>
+                  <div class="card-body">
+                    <div class="listing-heading text-center">
+
+                      <h4 style="color: #000000;">{{ category.name }}</h4>
+
+                    </div>
+                    <hr>
+                    <a href="listing.html" class="btn btn-light btn-block" style="background-color: #ffff00;  color : #000000; border-width: 2px;">View Category</a>
+
+                  </div>
+
+                </div>
+
               </div>
-
-              <hr>
-              <a href="listing.html" class="btn btn-light btn-block" style="background-color: #ffff00;  color : #000000; border-width: 2px;">View Category</a>
-            </div>
+            {% endif %}
+          {% endfor %}
+        {% else %}
+          <div class="cpl-md-12">
+            <p>No Listings Available </p>
           </div>
-        </div>
+        {% endif %}
 
       </div>
     </div>
@@ -92,7 +103,7 @@ counter=1;
 
 
 
-  <section class="py-5 text-white" style= "color:#000000; background-color : #222222;">
+  <section class="py-5 text-white" style= "color:#000000; background-color : #000000;">
     <div class="container">
       <div class="row text-center">
         <div class="col-md-4">
