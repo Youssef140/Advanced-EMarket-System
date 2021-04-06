@@ -20,7 +20,16 @@ def index(request):
 
 
 def listing(request, product_id):
-    return render(request, 'listings/listing.html')
+    products = Product.objects.all()
+
+    for prd in products:
+        if prd.id == product_id:
+            product = prd
+
+    context = {
+        'product': product
+    }
+    return render(request, 'listings/listing.html',context)
 
 
 def search(request):

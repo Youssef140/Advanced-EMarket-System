@@ -1,7 +1,7 @@
 {% load static %}
 
 <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style= "opacity:1; background-color: #000000;">
+  <nav class="navbar navbar-inverse navbar-expand-lg navbar-dark sticky-top" style= "opacity:0.95; background-color: #333;">
     <div class="container">
 <!--      <a class="navbar-brand ml-auto" href="{% url 'index'%}">-->
 <!--        <img src="{% static 'img/market-logo.jpeg' %}" class="logo" alt="">-->
@@ -39,60 +39,17 @@
             <a class="nav-link" href="{% url 'listings' %}">Offers</a>
           </li>
 
-
-<div class=" dropdown active mr-3" data-toggle="dropdown">
-    <button class="btn dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color:#000000; border:none; color:white">
-          Categories
-    </button>
-    <ul class="dropdown-menu multi-level" aria-labelledby="navbarDropdownMenuLink" role="menu">
-        <li class="dropdown-item">Bakery</li>
-        <li class="dropdown-item">CSS</li>
-        <li class="dropdown-submenu">
-            <a  class="dropdown-item" tabindex="-1" href="#">Hover me for more options</a>
-            <ul class="dropdown-menu">
-                 <li class="dropdown-item"><a tabindex="-1" href="#">Second level</a></li>
-                <li class="dropdown-submenu">
-                      <a class="dropdown-item" style="text-decoration:none" href="#">Even More..</a>
-                      <ul class="dropdown-menu">
-                          <li class="dropdown-item"><a href="#">3rd level</a></li>
-                            <li class="dropdown-item"><a href="#">Another level</a>
-<!--                            <ul class="dropdown-menu">-->
-<!--                                <li class="dropdown-item"><a href="#">4th level</a></li>-->
-<!--                                <li class="dropdown-item"><a href="#">4th level</a></li>-->
-<!--                                <li class="dropdown-item"><a href="#">4th level</a></li>-->
-<!--                            </ul>-->
-                          </li>
-                            <li class="dropdown-item"><a href="#">3rd level</a></li>
-                      </ul>
-                    </li>
-                <li class="dropdown-item"><a style="text-decoration:none" href="#">Second level</a></li>
-                    <li class="dropdown-item"><a style="text-decoration:none" href="#">Second level</a></li>
-                  </ul>
-                </li>
-
-        </li>
-    </ul>
-</div>
-
-            <script language="JavaScript" type="text/javascript" src="static/js/jquery-3.3.1.min.js"></script>
-            <script language="JavaScript" type="text/javascript" src="static/js/bootstrap.bundle.min.js">
-            $(document).ready(function(){
-            $(".dropdown-toggle").dropdown();
-            });
-            </script>
-
         </ul>
 
 
         <!--      The form below is the searchbox in the navbar-->
-        <div class="container mr-lm-2" style="width:200%;padding-right: 0px;padding-left: 0px; margin-right: 0px; margin-left: 0px;">
-    <div class="row height align-items-center"
-    >
-        <div class="col-md-9">
-            <div class="form">
-              <form class="form" action="https://www.google.com/search" method = "get" id="search-form" target="_blank" >
+        <div class="container" style="width:200%;padding-right: 0px;padding-left: 0px; margin-right: 0px; margin-left: 0px;">
+    <div class="row align-items-center" >
+        <div class="col-md-9" >
+            <div class="form" >
+              <form class="form" action="https://www.google.com/search" method = "get" id="search-form" target="_blank"  >
               <i class="fa fa-search" ></i>
-              <input name="q" id="searchBar" size ="10" type="text" class="form-control form-input mr-sm-2" placeholder="Search anything..." autocomplete="off" aria-label="Search">
+              <input  name="q" id="searchBar" size ="10" type="text" class="form-control form-input mr-sm-2" placeholder="Search anything..." autocomplete="off" aria-label="Search">
               <span class="left-pan" >
                 <button style="background-color:#ffffff; border:none; " type="button"><i id="mic-logo" class="fas fa-microphone"></i></button>
               </span>
@@ -105,41 +62,53 @@
 
 
 <!--        <label class="form-label" for="customFile"></label>-->
-<div class="container" style="padding-right: 0px;padding-left: 0px; margin-right: 0px; margin-left: 0px;">
+<div class="container" style="padding-right: 0px;padding-left: 0px;">
         <input type="file" class=" " id="real-file" hidden="hidden" />
-        <button class = "btn btn-light " style="background-color: #000000; border-color: #ffff00; color : #ffff00" type="button" id="custom-button">Upload Image</button>
+        <button class = "btn btn-light " style="background-color: grey; border-color: grey; color : #ffffff" type="button" id="custom-button">Upload Image</button>
 </div>
               <!--        <span class=" mr-sm-2" id="custom-text" style="color: #ffffff; font-size: 12px;">No file chosen yet</span>-->
+    <div class="container">
 
-    <div class="container" style="padding-right: 0px;padding-left: 0px; margin-right: 5px; margin-left: 5px;">
-
-        <ul class="navbar-nav ml-2 ">
-          <li class="nav-item mr-3"
+        <ul class="navbar-nav ">
+          <li class="nav-item mr-3 "
               {% if 'register' in request.path %}
               class="nav-item active mr-3"
               {% else %}
               class="nav-item mr-3"
               {%endif%}
             >
-            <a class="nav-link" href="{% url 'register' %}">
-              <i class="fas fa-user-plus"></i> Register </a>
+            <a class="nav-link navbar-right"  href="{% url 'register' %}">
+               Register </a>
           </li>
 
-          <li class="nav-item mr-3"
+          <li class="nav-item mr-3 "
               {% if 'login' in request.path %}
                 class="nav-item active mr-3"
               {% else %}
                 class="nav-item mr-3"
               {%endif%}
             >
-            <a class="nav-link" href="{% url 'login' %}">
-              <i class="fas fa-sign-in-alt"></i> Login</a>
+            <a class="nav-link navbar-right" href="{% url 'login' %}">
+             Login</a>
           </li>
+
+            <li class="nav-item mr-3">
+                <a class="nav-link navbar-right" href="{% url 'login' %}"><i class="fas fa-shopping-cart"></i></a>
+
+            </li>
         </ul>
     </div>
+
       </div>
     </div>
   </nav>
+
+
+
+
+
+
+
 
 <script>
           const searchForm = document.querySelector("#search-form");

@@ -1,15 +1,15 @@
 {% extends 'base.html' %}
 
-<!--{% load humanize %}-->
+{% load humanize %}
 
 {% block content %}
-<section id="showcase-inner" class="py-5 text-white">
+<section style="background-color : #222222" class="py-5 text-white">
     <div class="container">
       <div class="row text-center">
         <div class="col-md-12">
-          <h1 class="display-4">45 Drivewood Circle</h1>
-          <p class="lead">
-            <i class="fas fa-map-marker"></i> Norwood MA, 02062</p>
+          <h1 class="display-4">Pepsi</h1>
+<!--          <p class="lead">-->
+<!--            <i class="fas fa-map-marker"></i></p>-->
         </div>
       </div>
     </div>
@@ -21,12 +21,12 @@
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
-            <a href="index.html">Home</a>
+            <a href="{%url 'index' %}" style="color:black;">Home</a>
           </li>
           <li class="breadcrumb-item">
-            <a href="listings.html">Listings</a>
+            <a href="{%url 'listings' %}" style="color:black;">Products</a>
           </li>
-          <li class="breadcrumb-item active">42 Drivewood Circle</li>
+          <li class="breadcrumb-item active">Pepsi</li>
         </ol>
       </nav>
     </div>
@@ -35,154 +35,194 @@
   <!-- Listing -->
   <section id="listing" class="py-4">
     <div class="container">
-      <a href="listings.html" class="btn btn-light mb-4">Back To Listings</a>
       <div class="row">
-        <div class="col-md-9">
+        <div style="width:75%; margin:auto">
           <!-- Home Main Image -->
-          <img src="assets/img/homes/home-1.jpg" alt="" class="img-main img-fluid mb-3">
+          <img src="{{product.photo_main.url}}" alt="" class="img-main img-fluid mb-3">
           <!-- Thumbnails -->
           <div class="row mb-5 thumbs">
             <div class="col-md-2">
-              <a href="assets/img/homes/home-inside-1.jpg" data-lightbox="home-images">
-                <img src="assets/img/homes/home-inside-1.jpg" alt="" class="img-fluid">
+              <a href="{{product.photo_2.url}}" data-lightbox="home-images">
+                <img src="{{product.photo_2.url}}" alt="" class="img-fluid">
               </a>
             </div>
             <div class="col-md-2">
-              <a href="assets/img/homes/home-inside-2.jpg" data-lightbox="home-images">
-                <img src="assets/img/homes/home-inside-2.jpg" alt="" class="img-fluid">
+              <a href="{{product.photo_3.url}}" data-lightbox="home-images">
+                <img src="{{product.photo_3.url}}" alt="" class="img-fluid">
               </a>
             </div>
             <div class="col-md-2">
-              <a href="assets/img/homes/home-inside-3.jpg" data-lightbox="home-images">
-                <img src="assets/img/homes/home-inside-3.jpg" alt="" class="img-fluid">
+              <a href="{{product.photo_3.url}}" data-lightbox="home-images">
+                <img src="{{product.photo_3.url}}" alt="" class="img-fluid">
               </a>
             </div>
             <div class="col-md-2">
-              <a href="assets/img/homes/home-inside-4.jpg" data-lightbox="home-images">
-                <img src="assets/img/homes/home-inside-4.jpg" alt="" class="img-fluid">
+              <a href="{{product.photo_main.url}}" data-lightbox="home-images">
+                <img src="{{product.photo_main.url}}" alt="" class="img-fluid">
               </a>
             </div>
             <div class="col-md-2">
-              <a href="assets/img/homes/home-inside-5.jpg" data-lightbox="home-images">
-                <img src="assets/img/homes/home-inside-5.jpg" alt="" class="img-fluid">
+              <a href="{{product.photo_main.url}}" data-lightbox="home-images">
+                <img src="{{product.photo_main.url}}" alt="" class="img-fluid">
               </a>
             </div>
             <div class="col-md-2">
-              <a href="assets/img/homes/home-inside-6.jpg" data-lightbox="home-images">
-                <img src="assets/img/homes/home-inside-6.jpg" alt="" class="img-fluid">
+              <a href="{%url 'listings' %}" data-lightbox="home-images">
+                <img src="{{product.photo_main.url}}" alt="" class="img-fluid">
               </a>
             </div>
           </div>
+
+
+
           <!-- Fields -->
-          <div class="row mb-5 fields">
-            <div class="col-md-6">
+          <div class="row mb-5 fields" style="width:100%">
+            <div style="width:100%">
               <ul class="list-group list-group-flush">
-                <li class="list-group-item text-secondary">
-                  <i class="fas fa-money-bill-alt"></i> Asking Price:
-                  <span class="float-right">$490,000</span>
+                <li class="list-group-item ">
+                  <i class="fas fa-list-alt"></i> Category:
+                  <span class="float-right">{{ product.category }}</span>
                 </li>
-                <li class="list-group-item text-secondary">
-                  <i class="fas fa-bed"></i> Bedrooms:
-                  <span class="float-right">3</span>
+                <li class="list-group-item ">
+                  <i class="fa fa-money-bill-alt"></i> Price:
+                  <span class="float-right">{{ product.price }} {{ product.currency }}</span>
                 </li>
-                <li class="list-group-item text-secondary">
-                  <i class="fas fa-bath"></i> Bathrooms:
-                  <span class="float-right">2</span>
+                <li class="list-group-item">
+                  <i class="fa fa-sort-amount-asc"></i> Brand:
+                  <span class="float-right">{{ product.brand_name }}</span>
                 </li>
-                <li class="list-group-item text-secondary">
-                  <i class="fas fa-car"></i> Garage:
-                  <span class="float-right">2
+                <li class="list-group-item ">
+                  <i class="fas fa-store-alt"></i> In Stock:
+                  <span class="float-right">{{ product.in_stock }}
                   </span>
                 </li>
               </ul>
             </div>
-            <div class="col-md-6">
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item text-secondary">
-                  <i class="fas fa-th-large"></i> Square Feet:
-                  <span class="float-right">3200</span>
-                </li>
-                <li class="list-group-item text-secondary">
-                  <i class="fas fa-square"></i> Lot Size:
-                  <span class="float-right">2.5 Acres
-                  </span>
-                </li>
-                <li class="list-group-item text-secondary">
-                  <i class="fas fa-calendar"></i> Listing Date:
-                  <span class="float-right">8/30/2018</span>
-                </li>
-                <li class="list-group-item text-secondary">
-                  <i class="fas fa-bed"></i> Realtor:
-                  <span class="float-right">Kyle Brown
-                  </span>
-                </li>
 
-
-              </ul>
-            </div>
           </div>
+
+
 
           <!-- Description -->
           <div class="row mb-5">
             <div class="col-md-12">
+              <h3>Product Description</h3>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia recusandae esse reiciendis officia omnis non rerum dicta
               cupiditate nostrum molestias deserunt aut minus inventore animi atque, consequuntur ad fugit. Possimus culpa
               blanditiis repellendus ipsa similique ullam, natus error dolor harum.
             </div>
           </div>
-        </div>
-        <div class="col-md-3">
-          <div class="card mb-3">
-            <img class="card-img-top" src="assets/img/realtors/kyle.jpg" alt="Seller of the month">
-            <div class="card-body">
-              <h5 class="card-title">Property Realtor</h5>
-              <h6 class="text-secondary">Kyle Brown</h6>
+
+          <!--Review-->
+          <div class="row mb-5">
+            <div class="col-md-12">
+              <h3>Review</h3>
+              <form>
+                <textarea style="background-color:white"></textarea>
+                <ul class="rating">
+                <li class="rating-item" data-rate="1"></li>
+                <li class="rating-item active" data-rate="2"></li>
+                <li class="rating-item" data-rate="3"></li>
+                <li class="rating-item" data-rate="4"></li>
+                <li class="rating-item" data-rate="5"></li>
+              </ul>
+                <button class = "btn btn-light " style="background-color: #2a2a2a; color:white; margin-top:5px;" type="button" id="custom-button">Submit</button>
+
+              </form>
+
+
+
             </div>
+
           </div>
-          <button class="btn-primary btn-block btn-lg" data-toggle="modal" data-target="#inquiryModal">Make An Inquiry</button>
         </div>
       </div>
     </div>
+
+
   </section>
 
-  <!-- Inquiry Modal -->
-  <div class="modal fade" id="inquiryModal" role="dialog">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="inquiryModalLabel">Make An Inquiry</h5>
-          <button type="button" class="close" data-dismiss="modal">
-            <span>&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form>
-            <div class="form-group">
-              <label for="property_name" class="col-form-label">Property:</label>
-              <input id = "property_name" type="text" name="listing" class="form-control" value="45 Drivewood Cirlce" disabled>
-            </div>
-            <div class="form-group">
-              <label for="name" class="col-form-label">Name:</label>
-              <input id = "name" type="text" name="name" class="form-control" required>
-            </div>
-            <div class="form-group">
-              <label for="email" class="col-form-label">Email:</label>
-              <input id = "email" type="email" name="email" class="form-control" required>
-            </div>
-            <div class="form-group">
-              <label for="phone" class="col-form-label">Phone:</label>
-              <input id = "phone" type="text" name="phone" class="form-control">
-            </div>
-            <div class="form-group">
-              <label for="message" class="col-form-label">Message:</label>
-              <textarea id = "message" name="message" class="form-control"></textarea>
-            </div>
-            <hr>
-            <input type="submit" value="Send" class="btn btn-block btn-secondary">
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
+
+<script>
+const container = document.querySelector('.rating');
+const items = container.querySelectorAll('.rating-item')
+container.onclick = e => {
+const elClass = e.target.classList;
+// change the rating if the user clicks on a different star
+if (!elClass.contains('active')) {
+items.forEach( // reset the active class on the star
+item => item.classList.remove('active')
+);
+console.log(e.target.getAttribute("data-rate"));
+elClass.add('active'); // add active class to the clicked star
+}
+};
+</script>
+
+
+
+
+
+<style>
+.rating {
+display: flex;
+padding: 0;
+margin: 0;
+}
+
+.rating li {
+list-style-type: none
+}
+
+.rating-item {
+border: 1px solid #fff;
+cursor: pointer;
+font-size:2em;
+color: yellow;
+}
+
+/* initial: make all stars full */
+.rating-item::before {
+content: "\2605";
+}
+
+/* make until the clicked star (the rest) empty */
+.rating-item.active ~ .rating-item::before {
+content: "\2606";
+}
+
+/* on hover make all full */
+.rating:hover .rating-item::before {
+content: "\2605";
+}
+
+/* make until the hovered (the rest) empty */
+.rating-item:hover ~ .rating-item::before {
+content: "\2606";
+}
+
+textarea {
+  width: 100%;
+  height: 150px;
+  padding: 5px 10px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  resize: none;
+}
+.show-cart li {
+  display: flex;
+}
+.card {
+  margin-bottom: 20px;
+}
+.card-img-top {
+  width: 200px;
+  height: 200px;
+  align-self: center;
+}
+
+</style>
 
 {% endblock %}

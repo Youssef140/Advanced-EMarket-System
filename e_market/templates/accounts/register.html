@@ -3,11 +3,12 @@
 {% block content %}
 
   <section id="register" class="bg-light py-5">
+
     <div class="container">
       <div class="row">
         <div class="col-md-6 mx-auto">
           <div class="card">
-            <div class="card-header " style="background-color : #000000; color : #ffffff">
+            <div class="card-header " style="background-color : #2a2a2a; color : #ffffff">
               <h4>
                 <i class="fas fa-user-plus"></i> Register</h4>
             </div>
@@ -43,9 +44,20 @@
                   <label for="pwd2">Confirm Password</label>
                   <input type="password" name="password2" id = "pwd2" class="form-control" required>
                 </div>
-                <input type="submit" value="Register" class="btn  btn-block"style="background-color : #ffff00; color : #000000" onclick="return Validate()" />
+                <input type="submit" value="Register" class="btn  btn-block"style="margin-top:10px; background-color : #2a2a2a; color : #ffffff"  onclick="return Validate()" />
               </form>
-                <script type="text/javascript">
+
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+<script type="text/javascript">
         function Validate() {
         var password = document.getElementById("pwd").value;
         var confirmPassword = document.getElementById("pwd2").value;
@@ -63,11 +75,6 @@
     }
 </script>
 
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
 {% endblock %}
+
+
