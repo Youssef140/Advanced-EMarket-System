@@ -19,7 +19,7 @@ def index(request):
     return render(request, 'listings/listings.html', context)
 
 
-def listing(request, product_id):
+def listing(request, product_id,):
     return render(request, 'listings/listing.html')
 
 
