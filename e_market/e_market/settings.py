@@ -68,6 +68,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'listings.context_processors.get_categories',
             ],
         },
     },
@@ -82,8 +83,8 @@ WSGI_APPLICATION = 'e_market.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'e_market_db',
-        'PASSWORD':'chrisB12.',
+        'NAME': 'emarketdb',
+        'PASSWORD':'76748255MBM..',
         'USER':'postgres',
         'HOST':'localhost'
     }
@@ -121,6 +122,7 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
 
 
 # Static files (CSS, JavaScript, Images)
