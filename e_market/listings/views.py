@@ -34,3 +34,9 @@ def listing(request, product_id):
 
 def search(request):
     return render(request, 'listings/search.html')
+
+def categories(request):
+    return render(request, 'listings/categories.html')
+
+def bestSellers(request):
+    return render(request, 'listings/bestSellers.html')
