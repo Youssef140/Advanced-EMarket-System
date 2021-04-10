@@ -19,6 +19,7 @@ def index(request):
     return render(request, 'listings/listings.html', context)
 
 
+
 def listing(request, product_id):
     products = Product.objects.all()
 

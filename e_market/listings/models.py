@@ -15,7 +15,7 @@ class Category(models.Model):
     parent_categ_id = models.ForeignKey('Category',default='Category',on_delete=models.DO_NOTHING,blank=True,null=True)
     # cat_id=cat_id+1
     is_child = models.BooleanField(default=False)
-    is_parent = models.BooleanField(default=True)
+    is_parent = models.BooleanField(default=False)
     description = models.TextField(blank=True)
     def __str__(self):
         return self.name
