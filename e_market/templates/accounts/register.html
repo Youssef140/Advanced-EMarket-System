@@ -57,23 +57,77 @@
   </section>
 
 
-<script type="text/javascript">
-        function Validate() {
-        var password = document.getElementById("pwd").value;
-        var confirmPassword = document.getElementById("pwd2").value;
-        if(password.length < 5){
-        alert("Password length should be greater than 5 characters.");
-            return false;
-        } else if(password.length > 10){
-        //Check if password contains letter + digits - ignore condition
+<script>
+    function Validate() {
+        var fname = document.forms["form"]["first_name"];
+        var mname = document.forms["form"]["middle_name"];
+        var lname = document.forms["form"]["last_name"];
+        var userName = document.forms["form"]["username"];
+        var email = document.forms["form"]["email"];
+        var password = document.forms["form"]["pwd"];
+        var confPassword = document.forms["form"]["pwd2"];
+        const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-        }else if (password != confirmPassword){
-            alert("Passwords do not match.");
+        //password must start with "^"
+        //password must contain 1 lowercase, uppercase, numeric, and special character
+        //password must be at least 5 characters long
+
+        var strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{5,})");
+
+
+        if (fname.value == "") {
+            window.alert("Please enter your name.");
+            fname.focus();
             return false;
-    }
+        }
+
+        if (mname.value == "") {
+            window.alert("Please enter your middle name.");
+            mname.focus();
+            return false;
+        }
+
+        if (lname.value == "") {
+            window.alert("Please enter your last name.");
+            lname.focus();
+            return false;
+        }
+
+        if (username.value == "") {
+            window.alert("Please enter your name.");
+            username.focus();
+            return false;
+        }
+
+
+
+        if (!re.test(email.value)) {
+            window.alert(
+              "Please enter a valid e-mail address.");
+            email.focus();
+            return false;
+        }
+
+
+
+        if (!strongRegex.test(pwd.value)) {
+            window.alert("Password must start with ^, contain 1 special, 1 numeric, 1 lowercase, and 1 uppercase characters.");
+            pwd.focus();
+            return false;
+        }
+
+        if (pwd.value != pwd2.value) {
+            window.alert("Passwords do not match.");
+            pwd2.focus();
+            return false;
+        }
+
         return true;
     }
+
+
 </script>
+
 
 {% endblock %}
 
