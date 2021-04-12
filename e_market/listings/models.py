@@ -13,7 +13,7 @@ cat_id = 1
 class Category(models.Model):
     name = models.CharField(max_length=200)
     parent_categ_id = models.ForeignKey('Category',default='Category',on_delete=models.DO_NOTHING,blank=True,null=True)
-    # cat_id=cat_id+1
+    photo_main = models.ImageField(upload_to='photos/%Y/%m/%d/',blank=True)
     is_child = models.BooleanField(default=False)
     is_parent = models.BooleanField(default=False)
     description = models.TextField(blank=True)

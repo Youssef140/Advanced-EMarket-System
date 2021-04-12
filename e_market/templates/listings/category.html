@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% load humanize %}
+
+
+{% block content %}
+
+
+  <!-- Categories -->
+  <section id="listings" class="py-5">
+    <div class="container">
+      <h4 class=" mb-3">Categories <hr></h4>
+      <div class="row" >
+        {% if categories  %}
+          {% for category in categories%}
+              <div class="col-md-6 col-lg-4 mb-4" style="margin-top:10px;">
+                <div class="card listing-preview">
+                  <img class="card-img-top" src="static/img/bakery_Categ.jpeg" alt="">
+                  <div class="card-img-overlay">
+
+                  </div>
+                  <div class="card-body">
+                    <div class="listing-heading text-center">
+
+                      <h4 style="color: #000000;">{{ category.name }}</h4>
+
+                    </div>
+                    <hr>
+                    {% if category.is_parent == True  %}
+                    <a href="{% url 'category' category.id %}" class="btn btn-light btn-block" style="background-color: #2a2a2a;  color : #ffffff; border-width: 2px;">View Category</a>
+                    {% else  %}
+                    <a href="{% url 'listings' category.id %}" class="btn btn-light btn-block" style="background-color: #2a2a2a;  color : #ffffff; border-width: 2px;">View Category</a>
+                    {% endif %}
+                  </div>
+
+                </div>
+
+              </div>
+
+          {% endfor %}
+        {% else %}
+          <div class="cpl-md-12">
+            <p>No Listings Available </p>
+          </div>
+        {% endif %}
+
+      </div>
+    </div>
+  </section>
+
+{% endblock %}

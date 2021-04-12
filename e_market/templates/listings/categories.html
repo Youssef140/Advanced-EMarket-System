@@ -38,49 +38,47 @@
 
 
   <!-- Listings -->
+<section class="py-5">
 <div class="container">
-  <div class="row">
+      <h4 class=" mb-3">All Categories <hr></h4>
+      <div class="row" >
+{% if categories %}
+    {% for category in categories %}
+        {% if category.is_child == False %}
+            <div class="col-md-6 col-lg-4 mb-4" style="margin-top:10px;">
+                <div class="card listing-preview">
+                  <img class="card-img-top" src="{{category.photo_main.url}}" alt="">
+                  <div class="card-img-overlay">
 
+                  </div>
+                  <div class="card-body">
+                    <div class="listing-heading text-center">
 
+                      <h4 style="color: #000000;">{{ category.name }}</h4>
+
+                    </div>
+                    <hr>
+
+                    <a href="{% url 'category' category.id %}" class="btn btn-light btn-block" style="background-color: #2a2a2a;  color : #ffffff; border-width: 2px;">View Category</a>
+
+                  </div>
+
+                </div>
+
+              </div>
+        {% else %}
+
+        {% endif %}
+    {% endfor %}
+{% endif %}
       </div>
 
-
-
-    <!-- Listing 1 -->
-    <div class="col-md-6 col-lg-4 mb-4">
-      <div class="card listing-preview">
-        <img class="card-img-top" src={{product.photo_main.url}} alt="">
-        <div class="card-img-overlay">
-          <h2>
-<!--            <span class="badge badge-secondary text-white">${{ product.price }}</span>-->
-          </h2>
-        </div>
-        <div class="card-body">
-          <div class="listing-heading text-center">
-            <h4>Bakery</h4>
-          </div>
-            <hr>
-<!--          <div class="row py-2 ">-->
-<!--            <div class="col-6">-->
-<!--              <i class="fas fa-list-alt"></i> Category: Pepsi</div>-->
-<!--            <div class="col-6">-->
-<!--              <i class="fa fa-money-bill-alt"></i> Price: 2$</div>-->
-<!--          </div>-->
-<!--          <div class="row py-2">-->
-<!--            <div class="col-6">-->
-<!--              <i class="fa fa-sort-amount-asc"></i> Brand: Pepsi-Cola</div>-->
-<!--            <div class="col-6">-->
-<!--              <i class="fas fa-store-alt"></i> In stock: Yes</div>-->
-<!--          </div>-->
-
-
-          <a href="#" class="btn btn-light btn-block" style="background-color: #2a2a2a;  color : #ffffff; border-width: 2px;">View Category</a>
-        </div>
-      </div>
     </div>
 
+</section>
 
-<!--    <div class="cpl-md-12">-->
+
+    <!--    <div class="cpl-md-12">-->
 <!--      <p>No Products Available </p>-->
 <!--    </div>-->
 
