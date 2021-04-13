@@ -28,7 +28,7 @@
             <a href="{%url 'index' %}" style="color:black;">Home</a>
           </li>
           <li class="breadcrumb-item">
-            <a href="{%url 'listings' %}" style="color:black;">Categories</a>
+            <a href="" style="color:black;">Categories</a>
           </li>
           <li class="breadcrumb-item active">Category Name</li>
         </ol>
@@ -47,7 +47,7 @@
         {% if category.is_child == False %}
             <div class="col-md-6 col-lg-4 mb-4" style="margin-top:10px;">
                 <div class="card listing-preview">
-                  <img class="card-img-top" src="{{category.photo_main.url}}" alt="">
+                  <img class="card-img-top" src="" alt="">
                   <div class="card-img-overlay">
 
                   </div>
@@ -66,7 +66,6 @@
                 </div>
 
               </div>
-        {% else %}
 
         {% endif %}
     {% endfor %}
