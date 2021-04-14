@@ -123,9 +123,9 @@
    function resultOfSpeechRecognition(event){
    const transcript = event.results[0][0].transcript;
    searchFormInput.value = transcript;
-   /*setTimeout(() => {
+   setTimeout(() => {
    searchForm.submit();
-   },750);*/
+   });
    console.log(event);
    }
 
