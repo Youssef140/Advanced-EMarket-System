@@ -45,8 +45,19 @@ def bestSellers(request):
 
 def category(request, category_id):
     categories = Category.objects.all().filter(parent_categ_id = category_id)
+    current_cat = Category.objects.all().filter(id = category_id)
 
     context = {
-        'categories': categories
+        'categories': categories,
+        'current_cat': current_cat
     }
+    print(context.get('current_cat'))
     return render(request,'listings/category.html',context)
+
+
+def offers(request):
+    return render(request, 'listings/offers.html')
+
+
+def offer(request):
+    return render(request, 'listings/offer.html')

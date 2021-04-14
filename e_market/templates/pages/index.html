@@ -2,6 +2,17 @@
 
 {% block content %}
 
+
+<section style="background-color : #222222" class="py-5 text-white">
+    <div class="container">
+      <div class="row text-center">
+        <div class="col-md-12">
+          <h1 class="display-4">Home</h1>
+        </div>
+      </div>
+    </div>
+  </section>
+
  <!-- Showcase -->
 
   <section id="slider" class="py-5">
@@ -160,7 +171,7 @@ counter=1;
 
     </div>
     <div class="col-sm">
-      <a class="btn btn-light btn-block" href="{% url 'bestSellers' %}" style="position:relative; background-color:#2a2a2a; color:#ffffff; margin-bottom:25px; " >View All</a>
+      <a class="btn btn-light btn-block" href="{% url 'offers' %}" style="position:relative; background-color:#2a2a2a; color:#ffffff; margin-bottom:25px; " >View All</a>
     </div>
     <div class="col-sm">
     </div>
@@ -237,7 +248,7 @@ h4 {
         <div class="col-md-4">
           <i class="fas fa-info-circle fa-3x mr-0"></i>
           <hr>
-          <h4 class="text-white">About Us</h4>
+          <h4><a href="{% url 'about' %}" class="text-white">About Us</a></h4>
           <p>We are a young team of engineers developing our first website for a Lebanese Supermarket!</p>
         </div>
       </div>

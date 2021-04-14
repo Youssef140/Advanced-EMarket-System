@@ -5,7 +5,7 @@
    <div class="container">
       <div class="row text-center">
          <div class="col-md-12">
-            <h1 class="display-4">Category Name</h1>
+            <h1 class="display-4">Offers</h1>
          </div>
       </div>
    </div>
@@ -19,46 +19,36 @@
                <a href="{%url 'index' %}" style="color:black;">Home</a>
             </li>
             <li class="breadcrumb-item">
-               <a href="{%url 'categories' %}" style="color:black;">Categories</a>
-            </li>
-            <li class="breadcrumb-item" style="color:black;">
-               <!--category name should be loaded dynamically here-->
-               {{ current_cat.name }}
+               Offers
             </li>
          </ol>
       </nav>
    </div>
 </section>
-<!-- Categories -->
-<section id="listings" class="py-5">
+<!-- Listings -->
+<section class="py-5">
    <div class="container">
-      <div class="row" >
-         {% if categories  %}
-         {% for category in categories%}
+      <div class="row">
+
          <div class="col-md-6 col-lg-4 mb-4" style="margin-top:10px;">
             <div class="card listing-preview">
-               <img class="card-img-top" src="{{category.photo_main.url}}" style="max-height:300px;" alt="">
+               <h4>
+               <span class="badge badge-pill" style="margin-left:15px; margin-top:10px; background-color:#ffff00">Offer</span>
+               </h4>
+               <img class="card-img-top" src="" style="max-height:300px;">
+
                <div class="card-img-overlay">
                </div>
                <div class="card-body">
                   <div class="listing-heading text-center">
-                     <h4 style="color: #000000;">{{ category.name }}</h4>
+                     <h4 style="color: #000000;"></h4>
                   </div>
                   <hr>
-                  {% if category.is_parent == True  %}
-                  <a href="{% url 'category' category.id %}" class="btn btn-light btn-block" style="background-color: #2a2a2a;  color : #ffffff; border-width: 2px;">View Category</a>
-                  {% else  %}
-                  <a href="{% url 'listings' category.id %}" class="btn btn-light btn-block" style="background-color: #2a2a2a;  color : #ffffff; border-width: 2px;">View Category</a>
-                  {% endif %}
+                  <a href="{% url 'offer' %}" class="btn btn-light btn-block" style="background-color: #2a2a2a;  color : #ffffff; border-width: 2px;">View Offer</a>
                </div>
             </div>
          </div>
-         {% endfor %}
-         {% else %}
-         <div class="col-md-12">
-            <p>No Products Available </p>
-         </div>
-         {% endif %}
+
       </div>
       <div class="row">
          <div class="col-md-12">
@@ -83,4 +73,6 @@
       </div>
    </div>
 </section>
+
+</div>
 {% endblock %}
