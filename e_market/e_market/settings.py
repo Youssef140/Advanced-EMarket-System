@@ -85,8 +85,8 @@ WSGI_APPLICATION = 'e_market.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'e_market_db',
-        'PASSWORD':'chrisB12.',
+        'NAME': 'emarketdb',
+        'PASSWORD':'76748255MBM..',
         'USER':'postgres',
         'HOST':'localhost'
     }
