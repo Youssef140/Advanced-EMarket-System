@@ -61,3 +61,9 @@ def offers(request):
 
 def offer(request):
     return render(request, 'listings/offer.html')
+
+def cart(request):
+    return render(request, 'listings/cart.html')
+
+def checkout(request):
+    return render(request, 'listings/checkout.html')
