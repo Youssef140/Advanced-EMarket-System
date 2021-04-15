@@ -102,6 +102,7 @@
                      <img  id="cart-icon" src="{% static 'img/cart.png' %}">
                   </a>
                </li>
+
                <li class="nav-item mr-3" >
                   <p id="cart-total">0</p>
                </li>
@@ -151,9 +152,9 @@
    function resultOfSpeechRecognition(event){
    const transcript = event.results[0][0].transcript;
    searchFormInput.value = transcript;
-   /*setTimeout(() => {
+   setTimeout(() => {
    searchForm.submit();
-   },750);*/
+   });
    console.log(event);
    }
 
