@@ -29,15 +29,16 @@
             >
             <a class="nav-link" href="{% url 'categories' %}">Categories</a>
             </li>
+
          </ul>
          <!--      The form below is the searchbox in the navbar-->
          <div class="container" style=" width:200%;padding-right: 0px;padding-left: 0px; margin-right: 0px; margin-left: 0px;">
             <div class="row align-items-center">
                <div class="col-md-9">
                   <div class="form">
-                     <form class="form" action="https://www.google.com/search" method = "get" id="search-form" target="_blank"  >
+                     <form class="form" action="{% url 'search' %}" method = "get" id="search-form">
                         <i class="fa fa-search" ></i>
-                        <input  name="q" id="searchBar" size ="10" type="text" class="form-control form-input mr-sm-2" placeholder="Search anything..." autocomplete="off" aria-label="Search">
+                        <input  name="keywords" id="searchBar" size ="10" type="text" class="form-control form-input mr-sm-2" placeholder="Search anything..." autocomplete="off" aria-label="Search" value="{{ values.keywords }}">
                         <span class="left-pan" >
                         <button style="background-color:#ffffff; border:none; " type="button"><i id="mic-logo" class="fas fa-microphone"></i></button>
                         </span>
@@ -54,28 +55,55 @@
          <!--        <span class=" mr-sm-2" id="custom-text" style="color: #ffffff; font-size: 12px;">No file chosen yet</span>-->
          <div class="container">
             <ul class="navbar-nav ">
-               <li
-               {% if 'register' in request.path %}
-               class="nav-item active mr-3"
-               {% else %}
-               class="nav-item mr-3"
-               {%endif%}
-               >
-               <a class="nav-link navbar-right"  href="{% url 'register' %}">
-               Register </a>
-               </li>
-               <li
-               {% if 'login' in request.path %}
-               class="nav-item active mr-3"
-               {% else %}
-               class="nav-item mr-3"
-               {%endif%}
-               >
-               <a class="nav-link navbar-right" href="{% url 'login' %}">
-               Login</a>
-               </li>
+               {% if user.is_authenticated %}
+                   <li
+                  {% if 'dashboard' in request.path %}
+                     class="nav-item active mr-3"
+                  {% else %}
+                     class="nav-item mr-3"
+                  {%endif%}
+                  >
+                  <a class="nav-link navbar-right"  href="{% url 'dashboard' %}">
+                  Welcome {{ user.username }}  </a>
+                  </li>
                <li class="nav-item mr-3">
-                  <a class="nav-link navbar-right" href="{% url 'login' %}"><i class="fas fa-shopping-cart"></i></a>
+                  <a href="javascript:{document.getElementById('logout').submit()}" class="nav-link">
+                     <i class="fas fa-sign-out-alt"></i> Logout
+                  </a>
+                  <form action="{% url 'logout' %}" method="POST" id="logout">
+                     {% csrf_token %}
+                     <input type="hidden">
+                  </form>
+               </li>
+               {% else %}
+                  <li
+                  {% if 'register' in request.path %}
+                     class="nav-item active mr-3"
+                  {% else %}
+                     class="nav-item mr-3"
+                  {%endif%}
+                  >
+                  <a class="nav-link navbar-right"  href="{% url 'register' %}">
+                  Register </a>
+                  </li>
+                  <li
+                  {% if 'login' in request.path %}
+                  class="nav-item active mr-3"
+                  {% else %}
+                  class="nav-item mr-3"
+                  {%endif%}
+                  >
+                  <a class="nav-link navbar-right" href="{% url 'login' %}">
+                  Login</a>
+                  </li>
+               {% endif %}
+               <li class="nav-item mr-3" style="margin-top:10px;">
+                  <a href="{% url 'index' %}">
+                     <img  id="cart-icon" src="{% static 'img/cart.png' %}">
+                  </a>
+               </li>
+               <li class="nav-item mr-3" >
+                  <p id="cart-total">0</p>
                </li>
             </ul>
          </div>
@@ -142,3 +170,101 @@
      realFileBtn.click();
    });
 </script>
+
+<style>
+
+
+
+.box-element{
+	box-shadow:hsl(0, 0%, 80%) 0 0 16px;
+	background-color: #fff;
+	border-radius: 4px;
+	padding: 10px;
+}
+
+.thumbnail{
+	width: 100%;
+	height: 200px;
+	-webkit-box-shadow: -1px -3px 5px -2px rgba(214,214,214,1);
+    -moz-box-shadow: -1px -3px 5px -2px rgba(214,214,214,1);
+    box-shadow: -1px -3px 5px -2px rgba(214,214,214,1);
+}
+
+.product{
+	border-radius: 0 0 4px 4px;
+}
+
+.bg-dark{
+	background-color: #4f868c!important;
+}
+
+#cart-icon{
+	width:25px;
+	display: inline-block;
+	margin-left: 15px;
+}
+
+#cart-total{
+	display: block;
+	text-align: center;
+	color:#fff;
+	background-color: red;
+	width: 20px;
+	height: 25px;
+	border-radius: 50%;
+	font-size: 14px;
+}
+
+.col-lg-4, .col-lg-6, .col-lg-8, .col-lg-12{
+	margin-top: 10px;
+}
+
+.btn{
+	border-radius: 0;
+}
+
+.row-image{
+	width: 100px;
+}
+
+.form-field{
+	width:250px;
+	display: inline-block;
+	padding: 5px;
+}
+
+.cart-row{
+	display: flex;
+    align-items: flex-stretch;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ececec;
+
+}
+
+.quantity{
+	display: inline-block;
+	font-weight: 700;
+	padding-right:10px;
+
+
+}
+
+.chg-quantity{
+	width: 12px;
+	cursor: pointer;
+	display: block;
+	margin-top: 5px;
+	transition:.1s;
+}
+
+.chg-quantity:hover{
+	opacity: .6;
+}
+
+
+.hidden{
+	display: none!important;
+}
+
+</style>

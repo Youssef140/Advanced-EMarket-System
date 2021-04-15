@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.core.paginator import Paginator
 from django.shortcuts import render
 from .models import Product, Category
@@ -28,7 +29,22 @@ def listing(request, product_id):
 
 
 def search(request):
-    return render(request, 'listings/search.html')
+    queryset_list = Product.objects.order_by('-list_date')
+
+    if('keywords' in request.GET):
+        keywords = request.GET['keywords']
+        if(keywords):
+            # queryset_list = queryset_list.filter(title__icontains = keywords)
+            queryset_list = queryset_list.filter(Q(brand_name__icontains=keywords)
+                                                 | Q(title__icontains=keywords)
+                                                 | Q(category__name__icontains=keywords)).distinct()
+
+    context = {
+        'products' : queryset_list,
+        'values' : request.GET
+    }
+
+    return render(request, 'listings/search.html',context)
 
 
 def categories(request):
@@ -50,3 +66,9 @@ def category(request, category_id):
         'categories': categories
     }
     return render(request,'listings/category.html',context)
+
+def cart(request):
+    return render(request, 'listings/cart.html')
+
+def checkout(request):
+    return render(request, 'listings/checkout.html')
