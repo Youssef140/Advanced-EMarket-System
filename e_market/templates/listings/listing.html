@@ -81,7 +81,7 @@
               <ul class="list-group list-group-flush">
                 <li class="list-group-item ">
                   <i class="fas fa-list-alt"></i> Category:
-                  <span class="float-right">{{ product.category }}</span>
+                  <span class="float-right" style="color:black;">{{ product.category }}</span>
                 </li>
                 <li class="list-group-item ">
                   <i class="fa fa-money-bill-alt"></i> Price:
@@ -120,17 +120,15 @@
               <form>
                 <textarea style="background-color:white"></textarea>
                 <ul class="rating">
-                <li class="rating-item" data-rate="1"></li>
-                <li class="rating-item active" data-rate="2"></li>
-                <li class="rating-item" data-rate="3"></li>
-                <li class="rating-item" data-rate="4"></li>
+                <li class="rating-item" data-rate="1" ></li>
+                <li class="rating-item active" data-rate="2" ></li>
+                <li class="rating-item" data-rate="3" ></li>
+                <li class="rating-item" data-rate="4" ></li>
                 <li class="rating-item" data-rate="5"></li>
               </ul>
                 <button class = "btn btn-light " style="background-color: #2a2a2a; color:white; margin-top:5px;" type="button" id="custom-button">Submit</button>
 
               </form>
-
-
 
             </div>
 
@@ -153,7 +151,7 @@ if (!elClass.contains('active')) {
 items.forEach( // reset the active class on the star
 item => item.classList.remove('active')
 );
-console.log(e.target.getAttribute("data-rate"));
+console.log(element.getAttribute("data-rate"));
 elClass.add('active'); // add active class to the clicked star
 }
 };
