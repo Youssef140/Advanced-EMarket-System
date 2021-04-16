@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from listings.models import Category
+from orders.models import Order, OrderItem
 
 def index(request):
     categories = Category.objects.all()
