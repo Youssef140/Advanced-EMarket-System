@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% load humanize %}
 {% block content %}
+<link href="https://cdn.lineicons.com/2.0/LineIcons.css" rel="stylesheet">
+
 <section style="background-color : #222222" class="py-5 text-white">
    <div class="container">
       <div class="row text-center">
@@ -46,20 +48,33 @@
                   <hr>
                      <div class="row py-2 ">
                         <div class="col-6">
-                           <i class="fas fa-list-alt"></i> Category:
+                           <i class="lni lni-tag"></i> Name:
                         </div>
                         <div class="col-6">
-                           <i class="fa fa-money-bill-alt"></i> Price:
+                           <i class="lni lni-radio-button"></i> Brand:
                         </div>
                      </div>
                      <div class="row py-2">
                         <div class="col-6">
-                           <i class="fa fa-sort-amount-asc"></i> Brand:
-                        </div>
-                        <div class="col-6">
-                           <i class="fas fa-store-alt"></i> In stock:
+                           <i class="lni lni-offer"></i> Price:
                         </div>
                      </div>
+
+
+
+                     <div class="row py-2">
+                        <div class="col-6">
+                           <i class="far fa-calendar-check"></i> Valid Until:
+                        </div>
+                     </div>
+
+                     <div class="row py-2">
+                      <div class="col-6">
+                           <i class=""></i> Description:
+                        </div>
+                     </div>
+
+
                   <hr>
                   <a href="{% url 'offer' %}" class="btn btn-light btn-block" style="background-color: #2a2a2a;  color : #ffffff; border-width: 2px;">View Offer</a>
                </div>
