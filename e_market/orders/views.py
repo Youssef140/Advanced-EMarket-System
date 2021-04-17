@@ -5,6 +5,7 @@ from django.http import JsonResponse
 import json
 # Create your views here.
 from listings.models import Product
+import datetime
 
 
 def cart(request):
@@ -63,3 +64,31 @@ def update_item(request):
 
     print(f'Action: {action}, productId: {productId}')
     return JsonResponse('Item was added',safe=False)
+
+
+def processOrder(request):
+    transaction_id = datetime.datetime.now().timestamp()
+    data = json.loads(request.body)
+
+    if(request.user.is_authenticated):
+        current_user = request.user
+        order, created = Order.objects.get_or_create(user=current_user, complete=False)
+        total = float(data['form']['total'])
+        order.transaction_id = transaction_id
+
+        if(total==order.get_cart_total):
+            order.complete = True
+        order.save()
+
+        ShippingAddress.objects.create(
+            user = current_user,
+            order = order,
+            address = data['shipping']['address'],
+            city=data['shipping']['city'],
+            state=data['shipping']['state'],
+            zipcode=data['shipping']['zipcode'],
+        )
+
+    else:
+        print('User is nor logged in')
+    return JsonResponse('Payment complete!',safe=False)
