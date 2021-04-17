@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load humanize %}
 {% block content %}
+{% load static %}
 <section class="py-5 text-white" style="background-color : #222222">
    <div class="container">
       <div class="row text-center">
@@ -66,8 +67,8 @@
                      </div>
                      <hr>
                      <div>
-                        <a class="btn btn-outline-dark" href="#">Add to Cart</a>
-                        <a class="btn btn-outline-dark" href="#">View</a>
+                        <a data-product= "{{product.id}}" data-action="add" class="btn btn-outline-dark update-cart" href="#">Add to Cart</a>
+                        <a class="btn btn-outline-dark" href="{% url 'listing' product.id %}">View</a>
                         <h4 style="display:inline-block; float:right;">20$</h4>
                      </div>
                   </div>
@@ -110,3 +111,5 @@
 
 
 {% endblock %}
+
+<script type="text/javascript" src="{% static 'js/cart.js' %}"></script>

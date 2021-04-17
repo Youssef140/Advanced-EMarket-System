@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'admins.apps.RealtorsConfig',
     'accounts.apps.AccountsConfig',
     'contacts.apps.ContactsConfig',
+    'orders.apps.OrdersConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -71,6 +72,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'listings.context_processors.get_categories',
+                'listings.context_processors.get_order_items',
             ],
         },
     },
@@ -85,8 +87,8 @@ WSGI_APPLICATION = 'e_market.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'e_market_db',
-        'PASSWORD':'chrisB12.',
+        'NAME': 'emarketdb',
+        'PASSWORD':'76748255MBM..',
         'USER':'postgres',
         'HOST':'localhost'
     }

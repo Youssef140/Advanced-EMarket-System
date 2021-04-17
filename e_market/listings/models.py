@@ -44,4 +44,11 @@ class Product(models.Model):
         return self.title
 
 
+    @property
+    def imageURL(self):
+        try:
+            url = self.photo_main.url
+        except:
+            url = ''
+            return url
 

@@ -1,7 +1,11 @@
+import json
+
 from django.db.models import Q
 from django.core.paginator import Paginator
 from django.shortcuts import render
 from .models import Product, Category
+from django.http import JsonResponse
+from orders.models import Order,OrderItem
 
 
 def index(request,category_id):
@@ -20,11 +24,12 @@ def index(request,category_id):
 
 
 def listing(request, product_id):
-    product = Product.objects.all().filter(id = product_id)
+    product = Product.objects.all().filter(id=product_id)
 
     context = {
         'product': product
     }
+
     return render(request, 'listings/listing.html', context)
 
 
@@ -79,3 +84,25 @@ def offers(request):
 def offer(request):
     return render(request, 'listings/offer.html')
 
+def update_item(request):
+    data = json.loads(request.body)
+    productId = data['productId']
+    action = data['action']
+
+    current_user = request.user
+    product = Product.objects.get(id=productId)
+    order, created = Order.objects.get_or_create(user=current_user, complete=False)
+    orderItem, created = OrderItem.objects.get_or_create(order=order, product=product)
+
+    if (action == 'add'):
+        orderItem.quantity = (orderItem.quantity + 1)
+    elif (action == 'remove'):
+        orderItem.quantity = (orderItem.quantity - 1)
+
+    orderItem.save()
+
+    if (orderItem.quantity <= 0):
+        orderItem.delete()
+
+    print(f'Action: {action}, productId: {productId}')
+    return JsonResponse('Item was added',safe=False)
