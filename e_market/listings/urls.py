@@ -1,5 +1,7 @@
 from django.urls import path
 from . import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('<int:category_id>',views.index,name='listings'),#root path,name is a name that will allow us to reference this path through it
@@ -11,5 +13,6 @@ urlpatterns = [
     path('offers', views.offers, name='offers'),
     path('offer', views.offer, name='offer'),
     path('update_item', views.update_item, name='update_item'),
+    path('searchimage', views.search_image, name='search_image'),
 
-]
+] + static(settings.MEDIA_URL,document_root= settings.MEDIA_ROOT)

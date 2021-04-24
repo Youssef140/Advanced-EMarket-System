@@ -42,8 +42,10 @@
                <div class="card-img-overlay">
                </div>
                <div class="card-body">
-                  <div class="listing-heading text-center">
-                     <h4 style="color: #000000;"></h4>
+                  <div class="listing-heading text-center" >
+                     <a href="{% url 'offer' %}">
+                        <h4 style="color:black;">View Offer</h4>
+                     </a>
                   </div>
                   <hr>
                      <div class="row py-2 ">
@@ -60,23 +62,20 @@
                         </div>
                      </div>
 
-
-
                      <div class="row py-2">
                         <div class="col-6">
                            <i class="far fa-calendar-check"></i> Valid Until:
                         </div>
                      </div>
 
-                     <div class="row py-2">
-                      <div class="col-6">
-                           <i class=""></i> Description:
-                        </div>
-                     </div>
-
-
                   <hr>
-                  <a href="{% url 'offer' %}" class="btn btn-light btn-block" style="background-color: #2a2a2a;  color : #ffffff; border-width: 2px;">View Offer</a>
+                  <div class=" row" style="margin-top:0px;">
+                     <a data-product="" data-action="remove" class="fas fa-minus chg-quantity update-cart btn" style="margin-left:75px;background-color:#333; color:white; width:40px; height:30px;"></a>
+                     <p>
+                        <input class="input-group-field quantity" type="number" name="quantity"  style="height:30px; margin-top:5px; margin-right:3px; margin-left:3px; width:100px;">
+                     </p>
+                     <a data-product= "" data-action="add" class="fas fa-plus chg-quantity update-cart btn" style="margin-right:75px; background-color:#333; color:white; width:40px; height:30px;"></a>
+                  </div>
                </div>
             </div>
          </div>

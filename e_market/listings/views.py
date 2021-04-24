@@ -1,17 +1,20 @@
 import json
 
 from django.db.models import Q
-from django.core.paginator import Paginator
+from django.core.paginator import EmptyPage, PageNotAnInteger,Paginator
 from django.shortcuts import render
 from .models import Product, Category
 from django.http import JsonResponse
 from orders.models import Order,OrderItem
+from django.http import HttpResponse
+from django.shortcuts import render, redirect
+from .forms import *
 
 
 def index(request,category_id):
     products = Product.objects.all().filter(category=category_id)
 
-    paginator = Paginator(products, 3)
+    paginator = Paginator(products, 6)
     page = request.GET.get('page')
 
     paged_products = paginator.get_page(page)
@@ -54,8 +57,16 @@ def search(request):
 
 def categories(request):
     categories = Category.objects.all()
+
+    paginator = Paginator(categories, 2)
+    page = request.GET.get('page')
+
+    paged_categories = paginator.get_page(page)
+
+    print(categories)
+
     context = {
-        'categories' : categories
+        'categories' : paged_categories
     }
 
     return render(request, 'listings/categories.html',context)
@@ -68,8 +79,13 @@ def category(request, category_id):
     categories = Category.objects.all().filter(parent_categ_id = category_id)
     current_cat = Category.objects.all().filter(id = category_id)
 
+    paginator = Paginator(categories, 6)
+    page = request.GET.get('page')
+
+    paged_category = paginator.get_page(page)
+
     context = {
-        'categories': categories,
+        'categories': paged_category,
         'current_cat': current_cat
     }
     print(context.get('current_cat'))
@@ -106,3 +122,13 @@ def update_item(request):
 
     print(f'Action: {action}, productId: {productId}')
     return JsonResponse('Item was added',safe=False)
+
+def search_image(request):
+    print(request.FILES)
+    print(request.GET)
+    print(request.POST)
+    return render(request,'listings/searchImage.html')
+
+
+
+

@@ -1,6 +1,7 @@
 from django.db import models
 from datetime import datetime
 from admins.models import Admin
+from django.contrib.auth.models import User
 
 #tuples of the dropdown options
 currency_choices = (
@@ -51,4 +52,10 @@ class Product(models.Model):
         except:
             url = ''
             return url
+
+
+class SearchImage(models.Model):
+    user = models.ForeignKey(User, on_delete=models.SET_NULL,null=True,blank=True)
+    search_image = models.ImageField(null=True,blank=True,upload_to="images/")
+
 

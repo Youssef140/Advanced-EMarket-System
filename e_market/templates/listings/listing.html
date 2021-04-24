@@ -86,7 +86,13 @@
                   </li>
                   <li class="list-group-item ">
                     <i class="fa fa-money-bill-alt"></i> Price:
-                    <span class="float-right">{{ p.price }} {{ p.currency }}</span>
+                    <span class="float-right">
+                      {% if p.currency == 'usd' %}
+                           ${{ p.price }}
+                           {% else %}
+                           L.L{{ p.price }}
+                           {% endif%}
+                    </span>
                   </li>
                   <li class="list-group-item">
                     <i class="fa fa-sort-amount-asc"></i> Brand:
@@ -94,34 +100,52 @@
                   </li>
                   <li class="list-group-item ">
                     <i class="fas fa-store-alt"></i> In Stock:
-                    <span class="float-right">{{ p.in_stock }}
+                    <span class="float-right">
+                      {% if p.in_stock %}
+                           Yes
+                           {% else %}
+                           No
+                           {% endif %}
                     </span>
                   </li>
                 </ul>
               </div>
 
+              <div class="row" style="margin-left:15px; margin-top:20px;">
+                     <a data-product="{{product.id}}" data-action="remove" class="fas fa-minus chg-quantity update-cart btn" style="background-color:#333; color:white; width:40px; height:30px;"></a>
+                     <p>
+                        <input class="input-group-field quantity" type="number" name="quantity"  style="height:30px; margin-top:5px; margin-right:0px; margin-left:0px; width:50px;">
+                     </p>
+                     <a data-product= "{{product.id}}" data-action="add" class="fas fa-plus chg-quantity update-cart btn" style=" background-color:#333; color:white; width:40px; height:30px;"></a>
+                  </div>
+
+
             <!-- Description -->
+
+        <div class="container">
             <div class="row mb-5">
               <div class="col-md-12">
                 <h3>Product Description</h3>
                 {{ p.description }}
               </div>
             </div>
+        </div>
 
 
             <!--Review-->
+            <div class="container">
             <div class="row mb-5">
               <div class="col-md-12">
                 <h3>Review</h3>
                 <form>
                   <textarea style="background-color:white"></textarea>
                   <ul class="rating">
-                  <li class="rating-item" data-rate="1"></li>
-                  <li class="rating-item active" data-rate="2"></li>
-                  <li class="rating-item" data-rate="3"></li>
-                  <li class="rating-item" data-rate="4"></li>
-                  <li class="rating-item" data-rate="5"></li>
-                </ul>
+                    <li class="rating-item active" data-rate="1"></li>
+                    <li class="rating-item" data-rate="2"></li>
+                    <li class="rating-item" data-rate="3"></li>
+                    <li class="rating-item" data-rate="4"></li>
+                    <li class="rating-item" data-rate="5"></li>
+                  </ul>
                   <button class = "btn btn-light " style="background-color: #2a2a2a; color:white; margin-top:5px;" type="button" id="custom-button">Submit</button>
 
 
@@ -130,29 +154,31 @@
               </div>
 
             </div>
+              </div>
           </div>
         </div>
       </div>
 
     </div>
-    </section>
+      </section>
+
 {% endfor %}
 {% endif %}
 
 <script>
-const container = document.querySelector('.rating');
-const items = container.querySelectorAll('.rating-item')
-container.onclick = e => {
-const elClass = e.target.classList;
-// change the rating if the user clicks on a different star
-if (!elClass.contains('active')) {
-items.forEach( // reset the active class on the star
-item => item.classList.remove('active')
-);
-console.log(element.getAttribute("data-rate"));
-elClass.add('active'); // add active class to the clicked star
-}
-};
+  const container = document.querySelector('.rating');
+   const items = container.querySelectorAll('.rating-item')
+   container.onclick = e => {
+   const elClass = e.target.classList;
+   // change the rating if the user clicks on a different star
+   if (!elClass.contains('active')) {
+   items.forEach( // reset the active class on the star
+   item => item.classList.remove('active')
+   );
+   console.log(e.target.getAttribute("data-rate"));
+   elClass.add('active'); // add active class to the clicked star
+   }
+   };
 </script>
 
 
@@ -160,6 +186,10 @@ elClass.add('active'); // add active class to the clicked star
 
 
 <style>
+.checked {
+  color: orange;
+}
+
 .rating {
 display: flex;
 padding: 0;
@@ -174,7 +204,7 @@ list-style-type: none
 border: 1px solid #fff;
 cursor: pointer;
 font-size:2em;
-color: yellow;
+color: orange;
 }
 
 /* initial: make all stars full */

@@ -92,6 +92,15 @@
                   </ul>
                </div>
             </div>
+
+            <div class="row" style="margin-left:3px;">
+                     <a data-product="{{product.id}}" data-action="remove" class="fas fa-minus chg-quantity update-cart btn" style="background-color:#333; color:white; width:40px; height:30px;"></a>
+                     <p>
+                        <input class="input-group-field quantity" type="number" name="quantity"  style="height:30px; margin-top:5px; margin-right:0px; margin-left:0px; width:50px;">
+                     </p>
+                     <a data-product= "{{product.id}}" data-action="add" class="fas fa-plus chg-quantity update-cart btn" style=" background-color:#333; color:white; width:40px; height:30px;"></a>
+                  </div>
+
             <!-- Description -->
             <div class="row mb-5">
                <div class="col-md-12">
@@ -108,8 +117,8 @@
                   <form>
                      <textarea style="background-color:white"></textarea>
                      <ul class="rating">
-                        <li class="rating-item" data-rate="1"></li>
-                        <li class="rating-item active" data-rate="2"></li>
+                        <li class="rating-item active" data-rate="1"></li>
+                        <li class="rating-item" data-rate="2"></li>
                         <li class="rating-item" data-rate="3"></li>
                         <li class="rating-item" data-rate="4"></li>
                         <li class="rating-item" data-rate="5"></li>
@@ -150,7 +159,7 @@
    border: 1px solid #fff;
    cursor: pointer;
    font-size:2em;
-   color: yellow;
+   color: orange;
    }
    /* initial: make all stars full */
    .rating-item::before {

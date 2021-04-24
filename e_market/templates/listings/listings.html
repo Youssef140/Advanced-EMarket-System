@@ -34,46 +34,59 @@
          {% for product in products%}
          <!-- Listing 1 -->
          <div class="col-md-6 col-lg-4 mb-4">
-
-               <div class="card listing-preview" >
-                  <img class="card-img-top" src="{{product.photo_main.url}}">
-                  <div class="card-img-overlay">
-                     <h2>
-                        <!--            <span class="badge badge-secondary text-white">${{ product.price }}</span>-->
-                     </h2>
+            <div class="card listing-preview">
+               <img class="card-img-top" src="{{product.photo_main.url}}" style="max-height:300px;">
+               <div class="card-img-overlay" >
+                  <h2>
+                     <!--            <span class="badge badge-secondary text-white">${{ product.price }}</span>-->
+                  </h2>
+               </div>
+               <div class="card-body" >
+                  <div class="listing-heading text-center" >
+                     <a href="{% url 'listing' product.id %}">
+                        <h4 style="color:black;">{{ product.title }}</h4>
+                     </a>
                   </div>
-                  <div class="card-body">
-                     <div class="listing-heading text-center">
-                        <a href="{% url 'listing' product.id %}">
-                        <h4>{{ product.title }}</h4>
-                        </a>
+                  <hr>
+                  <div class="row py-2 ">
+                     <div class="col-6" >
+                        <i class="fas fa-list-alt"></i> {{product.category}}
                      </div>
-                     <hr>
-                     <div class="row py-2 ">
-                        <div class="col-6">
-                           <i class="fas fa-list-alt"></i> Category: {{product.category}}
-                        </div>
-                        <div class="col-6">
-                           <i class="fa fa-money-bill-alt"></i> Price: {{product.price}}
-                        </div>
+                     <div class="col-6">
+                        <i class="fa fa-money-bill-alt"></i> Price:
+                        {% if product.currency == 'usd' %}
+                        ${{product.price}}
+                        {% else %}
+                        L.L{{product.price}}
+                        {% endif%}
                      </div>
-                     <div class="row py-2">
-                        <div class="col-6">
-                           <i class="fa fa-sort-amount-asc"></i> Brand: {{ product.brand_name }}
-                        </div>
-                        <div class="col-6">
-                           <i class="fas fa-store-alt"></i> In stock: {{product.in_stock}}
-                        </div>
+                  </div>
+                  <div class="row py-2" >
+                     <div class="col-6">
+                        <i class="fa fa-sort-amount-asc"></i> {{ product.brand_name }}
                      </div>
-                     <hr>
-                     <div>
-                        <a data-product= "{{product.id}}" data-action="add" class="btn btn-outline-dark update-cart" href="#">Add to Cart</a>
-                        <a class="btn btn-outline-dark" href="{% url 'listing' product.id %}">View</a>
-                        <h4 style="display:inline-block; float:right;">20$</h4>
+                     <div class="col-6">
+                        <i class="fas fa-store-alt"></i>
+                        {% if product.in_stock %}
+                        In Stock
+                        {% else %}
+                        Out of Stock
+                        {% endif %}
                      </div>
+                  </div>
+                  <hr>
+                  <a style="margin-bottom:15px; width:150px;" data-product= "{{product.id}}" data-action="add" class="btn btn-outline-dark update-cart" href="#">Add to Cart</a>
+                  <a style="margin-bottom:15px; float:right; width:150px;" class="btn btn-outline-dark" href="{% url 'listing' product.id %}">View</a>
+                  <hr>
+                  <div class=" row" style="margin-top:0px;">
+                     <a data-product="{{product.id}}" data-action="remove" class="fas fa-minus chg-quantity update-cart btn" style="margin-left:75px;background-color:#333; color:white; width:40px; height:30px;"></a>
+                     <p>
+                        <input class="input-group-field quantity" type="number" name="quantity"  style="height:30px; margin-top:5px; margin-right:3px; margin-left:3px; width:100px;">
+                     </p>
+                     <a data-product= "{{product.id}}" data-action="add" class="fas fa-plus chg-quantity update-cart btn" style="margin-right:75px; background-color:#333; color:white; width:40px; height:30px;"></a>
                   </div>
                </div>
-
+            </div>
          </div>
          {% endfor %}
          {% else %}
@@ -82,34 +95,46 @@
          </div>
          {% endif %}
       </div>
+
       <div class="row">
          <div class="col-md-12">
+            {% if products.has_other_pages %}
             <ul class="pagination">
+               {% if products.has_previous %}
+               <li class="page-item enabled">
+                  <a class="page-link " href="?page={{products.previous_page_number}}" style="color:black;">&laquo;</a>
+               </li>
+               {% else %}
                <li class="page-item disabled">
-                  <a class="page-link " href="#" style="color:black;">&laquo;</a>
+                  <a class="btn btn-light btn-block" style="color:black;">&laquo;</a>
                </li>
-               <li class="page-item active">
-                  <a class="btn btn-light btn-block" href="#" style="background-color: #2a2a2a;  color : #ffffff; border-width: 2px;">1</a>
-               </li>
+               {% endif %}
+               {% for i in products.paginator.page_range %}
+               {% if products.number == i %}
+                  <li class="page-item active">
+                     <a class="btn btn-light btn-block" style="background-color: #2a2a2a;  color : #ffffff; border-width: 2px;">{{i}}</a>
+                  </li>
+               {% else %}
                <li class="page-item">
-                  <a class="btn btn-light btn-block" href="#" style="background-color: #2a2a2a;  color : #ffffff; border-width: 2px;">2</a>
+                  <a href="?page={{i}}" class="btn btn-light btn-block" >{{i}}</a>
                </li>
-               <li class="page-item">
-                  <a class="btn btn-light btn-block" href="#" style="background-color: #2a2a2a;  color : #ffffff; border-width: 2px;">3</a>
+               {% endif %}
+               {% endfor %}
+               {% if products.has_next %}
+               <li class="page-item enabled">
+                  <a class="btn btn-light btn-block " href="?page={{products.next_page_number}}" style="color:black;">&raquo;</a>
                </li>
-               <li class="page-item">
-                  <a class="btn btn-light btn-block" href="#">&raquo;</a>
+               {% else %}
+               <li class="page-item disabled">
+                  <a class="page-link" style="color:black;">&raquo;</a>
                </li>
+               {% endif %}
             </ul>
+            {% endif %}
          </div>
       </div>
+
    </div>
 </section>
-
-
-
-
-
 {% endblock %}
-
 <script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
