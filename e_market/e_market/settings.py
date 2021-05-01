@@ -32,7 +32,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'offer.apps.OfferConfig',
     'pages.apps.PagesConfig',
     'listings.apps.ListingsConfig',
     'admins.apps.RealtorsConfig',
