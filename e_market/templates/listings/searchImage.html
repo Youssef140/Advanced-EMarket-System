@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% load humanize %}
+
+{% block content %}
+{% load static %}
+
+
+<html>
+    <head></head>
+
+
+    <body>
+        <H1>Try our new feature and search any image you'd like!</H1>
+
+        {% if user.is_authenticated == True %}
+
+        <form method ="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{form.media}}
+            {{form.as_p}}
+            <input type="submit" value='Save'/>
+        </form>
+
+        {% else %}
+            <H1>Please log in or sign up in order to use this feature</H1>
+        {% endif %}
+
+    </body>
+
+</html>
+<script type="text/javascript">
+
+    const FileBtn = document.getElementById("real-file");
+    const uploadFileBtn = document.getElementById("custom-button");
+    var path = ""
+
+    uploadFileBtn.addEventListener("click",function(){
+        FileBtn.click()
+    });
+
+    FileBtn.addEventListener("change",function(){
+        if(FileBtn.value){
+            console.log(FileBtn.value);
+        }else{
+            console.log("no file chosen");
+        }
+    });
+
+
+</script>
+<script src="{% static 'js/jquery-3.6.0.min.js'%}"></script>
+<script>
+
+    $(function(){
+        $("#real-file").change(function(event){
+            var x = URL.createObjectURL(event.target.files[0]);
+
+            console.log(event)
+        });
+    })
+
+</script>
+{% endblock %}

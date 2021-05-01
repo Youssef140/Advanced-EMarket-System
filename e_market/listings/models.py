@@ -1,6 +1,12 @@
 from django.db import models
 from datetime import datetime
 from admins.models import Admin
+from django.contrib.auth.models import User
+import os
+from uuid import uuid4
+from datetime import datetime
+from django.db import models
+
 
 #tuples of the dropdown options
 currency_choices = (
@@ -27,7 +33,7 @@ class Product(models.Model):
     admin = models.ForeignKey(Admin,on_delete=models.DO_NOTHING)
     title = models.CharField(max_length=200)
     category = models.ForeignKey(Category,on_delete=models.CASCADE)
-    price = models.DecimalField(decimal_places=2,max_digits=5)
+    price = models.DecimalField(max_digits=10,decimal_places=2)
     currency = models.CharField(max_length=10,choices=currency_choices,default='usd')
     brand_name = models.CharField(max_length=200)
     description = models.TextField(blank=True)
@@ -40,6 +46,8 @@ class Product(models.Model):
     photo_3 = models.ImageField(upload_to='photos/%Y/%m/%d/',blank=True)
     list_date = models.DateTimeField(default=datetime.now,blank=True)
     rating = models.IntegerField(null=True,blank=True)
+    is_offer = models.BooleanField(default=False)
+    # valid_until = models.DateTimeField(default=datetime.now,blank=True)
     def __str__(self):
         return self.title
 
@@ -52,3 +60,51 @@ class Product(models.Model):
             url = ''
             return url
 
+
+class UserSearchedImage(models.Model):
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+    searched_image = models.ImageField(null=True,blank=True,upload_to='searched_images/')
+
+
+
+
+def path_and_rename(path):
+    def wrapper(instance, filename):
+        ext = filename.split('.')[-1]
+        # get filename
+        if instance.pk:
+            filename = '{}.{}'.format(instance.pk, ext)
+        else:
+            # set filename as random string
+            filename = '{}.{}'.format(uuid4().hex, ext)
+        # return the whole path to the file
+        return os.path.join(path, filename)
+    return wrapper
+
+
+
+
+currency_choices = (
+    ('usd', 'USD'),
+    ('lbp', 'LBP')
+)
+
+
+class Offer(models.Model):
+    name = models.CharField(max_length=200)
+    description = models.CharField(max_length=500)
+    price = models.DecimalField(decimal_places=2, max_digits=25)
+    currency = models.CharField(max_length=10, choices=currency_choices, default='lbp')
+    from_date = models.DateTimeField(default=datetime.now,blank=True)
+    to_date = models.DateTimeField(blank=True)
+    is_displayed = models.BooleanField(default=True)
+    photo = models.ImageField(upload_to='offers',blank=True)
+    brands = models.CharField(max_length=500,blank=True)
+
+    def __str__(self):
+        return self.name
+
+
+class Offer_Product(models.Model):
+    offer = models.ForeignKey(Offer, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)

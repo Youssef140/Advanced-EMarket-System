@@ -2,6 +2,7 @@ from django.db import models
 from datetime import datetime
 from django.contrib.auth.models import User
 from listings.models import Product
+from listings.models import Offer
 
 
 class Order(models.Model):
@@ -22,14 +23,15 @@ class Order(models.Model):
     @property
     def get_cart_items(self):
         orderitems = self.orderitem_set.all()
-        total = sum([item.quantity for item in orderitems])
+        orderoffers = self.orderoffer_set.all()
+        total = sum([item.quantity for item in orderitems]) + sum([item.quantity for item in orderoffers])
         return total
 
 
 
 class OrderItem(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
-    order = models.ForeignKey(Order,on_delete=models.SET_NULL,null=True)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, null=True)
+    order = models.ForeignKey(Order,on_delete=models.CASCADE,null=True)
     quantity = models.IntegerField(default=0, null=True, blank=True)
     date_added = models.DateTimeField(auto_now_add=True)
 
@@ -37,6 +39,18 @@ class OrderItem(models.Model):
     def get_total(self):
         total = self.product.price * self.quantity
         return total
+
+class OrderOffer(models.Model):
+    offer = models.ForeignKey(Offer, on_delete=models.CASCADE, null=True)
+    order = models.ForeignKey(Order,on_delete=models.CASCADE,null=True)
+    quantity = models.IntegerField(default=0, null=True, blank=True)
+    date_added = models.DateTimeField(auto_now_add=True)
+
+    @property
+    def get_total(self):
+        total = self.offer.price * self.quantity
+        return total
+
 
 
 class ShippingAddress(models.Model):

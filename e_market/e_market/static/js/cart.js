@@ -1,6 +1,28 @@
 console.log('first one')
+var updateOfferBtns = document.getElementsByClassName('update-offer')
+
+for(var i=0;i<updateOfferBtns.length; i++){
+    updateOfferBtns[i].addEventListener('click',function(){
+        var offerId = this.dataset.offer
+        var action = this.dataset.action
+        console.log('offerId: ',offerId,' Action: ',action)
+
+        console.log('USER',user)
+        if(user == 'AnonymousUser'){
+            addCookieItem(productId, action)
+        }
+        else{
+            updateUserOfferOrder(offerId,action)
+        }
+    })
+
+
+}
+
+
 var updateBtns = document.getElementsByClassName('update-cart')
 for(var i=0;i<updateBtns.length; i++){
+    console.log('prod')
     updateBtns[i].addEventListener('click',function(){
         var productId = this.dataset.product
         var action = this.dataset.action
@@ -8,7 +30,7 @@ for(var i=0;i<updateBtns.length; i++){
 
         console.log('USER',user)
         if(user == 'AnonymousUser'){
-            console.log('Not loged in')
+            addCookieItem(productId, action)
         }
         else{
             updateUserOrder(productId,action)
@@ -16,6 +38,33 @@ for(var i=0;i<updateBtns.length; i++){
     })
 
 
+}
+
+
+
+
+function addCookieItem(productId, action){
+    console.log('Not logged in')
+
+    if(action == 'add'){
+        if(cart[productId]==undefined){
+            cart[productId] = {'quantity':1}
+        }else{
+            cart[productId]['quantity']+=1
+        }
+    }
+
+    if(action == 'remove'){
+        cart[productId]['quantity'] -= 1
+
+        if(cart[productId]['quantity']<=0){
+            console.log('Remove item')
+            delete cart[productId]
+        }
+    }
+    console.log('Cart:',cart)
+    document.cookie = 'cart='+JSON.stringify(cart)+";domain=;path=/"
+    location.reload()
 }
 
 function updateUserOrder(productId, action){
@@ -42,4 +91,30 @@ function updateUserOrder(productId, action){
     })
 
 }
+
+function updateUserOfferOrder(offerId, action){
+    console.log('User is logged in, sending data..')
+
+    var url ='update_offer'
+
+    fetch(url, {
+        method:'POST',
+        headers:{
+            'Content-Type':'application/json',
+            'X-CSRFToken':csrftoken,
+        },
+        body:JSON.stringify({'offerId':offerId, 'action':action})
+    })
+
+    .then((response) =>{
+        return response.json()
+    })
+
+    .then((data) =>{
+        console.log('data',data)
+        location.reload()
+    })
+
+}
+
 
