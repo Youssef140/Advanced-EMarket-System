@@ -1,8 +1,11 @@
 from django import forms
-from .models import *
+from .models import UserSearchedImage
 
-
-class PostForm(forms.ModelForm):
+class SearchImageForm(forms.ModelForm):
     class Meta:
-        model = SearchImage
-        fields = ['user', 'search_image']
+        model = UserSearchedImage
+        fields = [
+            'user',
+            'searched_image'
+        ]
+

@@ -1,3 +1,4 @@
+
 {% extends 'base.html' %}
 
 {% load humanize %}
@@ -6,25 +7,29 @@
 {% load static %}
 
 
-<div class="container">
+<html>
+    <head></head>
 
-        <h1>Try our new feature and search any image you'd like!</h1>
 
+    <body>
+        <H1>Try our new feature and search any image you'd like!</H1>
 
-        <form action = "" method = "POST" enctype="multipart/form-data">
+        {% if user.is_authenticated == True %}
+
+        <form method ="POST" enctype="multipart/form-data">
             {% csrf_token %}
-            {{ form.media }}
-            {{ form.as_p }}
-            <label for="real-file" class = "btn btn-light " style="background-color: grey; border-color: grey; color : #ffffff" type="button" id="custom-button">Attach</label>
-<!--            <label for="real-file">Attach</label>-->
-            <input type="file"  id="real-file" accept="image/*" />
-            <input type="submit" value="search">
+            {{form.media}}
+            {{form.as_p}}
+            <input type="submit" value='Save'/>
         </form>
 
-</div>
+        {% else %}
+            <H1>Please log in or sign up in order to use this feature</H1>
+        {% endif %}
 
+    </body>
 
-
+</html>
 <script type="text/javascript">
 
     const FileBtn = document.getElementById("real-file");
@@ -34,7 +39,6 @@
     uploadFileBtn.addEventListener("click",function(){
         FileBtn.click()
     });
-
 
     FileBtn.addEventListener("change",function(){
         if(FileBtn.value){
@@ -46,16 +50,17 @@
 
 
 </script>
-<script src="{% static 'js/jquery-3.3.1.min.js'%}"></script>
+<script src="{% static 'js/jquery-3.6.0.min.js'%}"></script>
 <script>
 
     $(function(){
         $("#real-file").change(function(event){
             var x = URL.createObjectURL(event.target.files[0]);
 
-            console.log(x)
+            console.log(event)
         });
     })
 
 </script>
+
 {% endblock %}

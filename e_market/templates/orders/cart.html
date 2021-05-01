@@ -52,6 +52,22 @@
 				</div>
 
         {% endfor %}
+         {% for items in offers_items %}
+            <div class="cart-row">
+					<div style="flex:2"><img class="row-image" src=""></div>
+					<div style="flex:2"></div>
+					<div style="flex:1"></div>
+					<div style="flex:1; margin-bottom:20px;">
+                        <p class="quantity" ></p>
+                        <div class="quantity">
+                            <i data-product= "" data-action="add" class="fas fa-caret-up chg-quantity update-cart-offer"></i>
+                            <i data-product="" data-action="remove" class="fas fa-caret-down chg-quantity update-cart-offer"></i>
+                        </div>
+                    </div>
+					<div style="flex:1">${{item.get_total}}</div>
+				</div>
+
+        {% endfor %}
         {% endif %}
 
         </div>
