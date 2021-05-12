@@ -5,7 +5,6 @@ from django.http import JsonResponse
 import json
 # Create your views here.
 from listings.models import Product
-from orders.models import OrderOffer
 import datetime
 from django.contrib.auth.models import User
 from .utils import cookieCart, cartData,guestOrder
@@ -17,13 +16,13 @@ def cart(request):
     data = cartData(request)
     order = data['order']
     items = data['items']
-    offers = data['offers']
+
     print(items)
 
     context = {
         'items':items,
         'order':order,
-        'offers':offers,
+
     }
     return render(request, 'orders/cart.html',context)
 
@@ -72,28 +71,28 @@ def update_item(request):
     print(f'Action: {action}, productId: {productId}')
     return JsonResponse('Item was added',safe=False)
 
-def update_offer(request):
-    data = json.loads(request.body)
-    offerId = data['offerId']
-    action = data['action']
-
-    current_user = request.user
-    offer = Product.objects.get(id=offerId)
-    order, created = Order.objects.get_or_create(user=current_user, complete=False)
-    orderOffer, created = OrderOffer.objects.get_or_create(order=order, offer=offer)
-
-    if(action == 'add'):
-        orderOffer.quantity = (orderOffer.quantity+1)
-    elif(action=='remove'):
-        orderOffer.quantity = (orderOffer.quantity - 1)
-
-    orderOffer.save()
-
-    if(orderOffer.quantity<=0):
-        orderOffer.delete()
-
-    print(f'Action: {action}, productId: {offerId}')
-    return JsonResponse('Item was added',safe=False)
+# def update_offer(request):
+#     data = json.loads(request.body)
+#     offerId = data['offerId']
+#     action = data['action']
+#
+#     current_user = request.user
+#     offer = Product.objects.get(id=offerId)
+#     order, created = Order.objects.get_or_create(user=current_user, complete=False)
+#     orderOffer, created = OrderOffer.objects.get_or_create(order=order, offer=offer)
+#
+#     if(action == 'add'):
+#         orderOffer.quantity = (orderOffer.quantity+1)
+#     elif(action=='remove'):
+#         orderOffer.quantity = (orderOffer.quantity - 1)
+#
+#     orderOffer.save()
+#
+#     if(orderOffer.quantity<=0):
+#         orderOffer.delete()
+#
+#     print(f'Action: {action}, productId: {offerId}')
+#     return JsonResponse('Item was added',safe=False)
 
 
 def processOrder(request):

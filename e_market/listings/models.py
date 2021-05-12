@@ -23,8 +23,8 @@ class Category(models.Model):
     photo_main = models.ImageField(upload_to='photos/%Y/%m/%d/',blank=True)
     is_child = models.BooleanField(default=False)
     is_parent = models.BooleanField(default=False)
-    description = models.TextField(blank=True)
-    def __str__(self):
+    description = models.TextField(blank=True,null=True)
+    def _str_(self):
         return self.name
 
 
@@ -47,9 +47,9 @@ class Product(models.Model):
     photo_3 = models.ImageField(upload_to='photos/%Y/%m/%d/',blank=True)
     list_date = models.DateTimeField(default=datetime.now,blank=True)
     rating = models.IntegerField(null=True,blank=True)
-    is_offer = models.BooleanField(default=False)
+    is_offer = models.BooleanField(default=False,blank=True,null=True)
     # valid_until = models.DateTimeField(default=datetime.now,blank=True)
-    def __str__(self):
+    def _str_(self):
         return self.title
 
 
@@ -97,23 +97,4 @@ currency_choices = (
     ('lbp', 'LBP')
 )
 
-
-class Offer(models.Model):
-    name = models.CharField(max_length=200)
-    description = models.CharField(max_length=500)
-    price = models.DecimalField(decimal_places=2, max_digits=25)
-    currency = models.CharField(max_length=10, choices=currency_choices, default='lbp')
-    from_date = models.DateTimeField(default=datetime.now,blank=True)
-    to_date = models.DateTimeField(blank=True)
-    is_displayed = models.BooleanField(default=True)
-    photo = models.ImageField(upload_to='offers',blank=True)
-    brands = models.CharField(max_length=500,blank=True)
-
-    def __str__(self):
-        return self.name
-
-
-class Offer_Product(models.Model):
-    offer = models.ForeignKey(Offer, on_delete=models.CASCADE)
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
 

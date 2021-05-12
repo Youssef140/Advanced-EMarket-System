@@ -3,7 +3,7 @@ import json
 from django.db.models import Q
 from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
-from .models import Product, Category, Offer
+from .models import Product, Category
 from django.http import JsonResponse
 from orders.models import Order,OrderItem
 from .forms import SearchImageForm
@@ -69,15 +69,8 @@ def search(request):
 def categories(request):
     categories = Category.objects.all().filter(is_parent=True)
 
-    paginator = Paginator(categories, 2)
-    page = request.GET.get('page')
-
-    paged_categories = paginator.get_page(page)
-
-    print(categories)
-
     context = {
-        'categories' : paged_categories
+        'categories' : categories
     }
 
     return render(request, 'listings/categories.html',context)
@@ -105,7 +98,7 @@ def category(request, category_id):
 
 
 def offers(request):
-    offers = Offer.objects.all().filter(is_displayed = True)
+    offers = Product.objects.all().filter(is_offer = True)
     context = {
         'offers':offers
     }
@@ -113,7 +106,7 @@ def offers(request):
 
 
 def offer(request,offer_id):
-    offer = Offer.objects.all().filter(id=offer_id)
+    offer = Product.objects.all().filter(id = offer_id,is_offer=True)
     context = {
         'offer':offer,
     }
@@ -138,10 +131,10 @@ def update_item(request):
         # r = AddPurchase(current_user.id,product.id,cascade_create=True)
         # client.send(r)
         orderItem.quantity = (orderItem.quantity + 1)
-        product.quantity = (product.quantity -1)
+        # product.quantity = (product.quantity -1)
     elif (action == 'remove'):
         orderItem.quantity = (orderItem.quantity - 1)
-        product.quantity = (product.quantity + 1)
+        # product.quantity = (product.quantity + 1)
 
     orderItem.save()
 

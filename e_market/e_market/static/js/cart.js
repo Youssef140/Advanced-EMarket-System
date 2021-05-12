@@ -1,26 +1,7 @@
 console.log('first one')
-var updateOfferBtns = document.getElementsByClassName('update-offer')
-
-for(var i=0;i<updateOfferBtns.length; i++){
-    updateOfferBtns[i].addEventListener('click',function(){
-        var offerId = this.dataset.offer
-        var action = this.dataset.action
-        console.log('offerId: ',offerId,' Action: ',action)
-
-        console.log('USER',user)
-        if(user == 'AnonymousUser'){
-            addCookieItem(productId, action)
-        }
-        else{
-            updateUserOfferOrder(offerId,action)
-        }
-    })
 
 
-}
-
-
-var updateBtns = document.getElementsByClassName('update-cart')
+var updateBtns = document.getElementsByClassName('update-cart btn')
 for(var i=0;i<updateBtns.length; i++){
     console.log('prod')
     updateBtns[i].addEventListener('click',function(){
@@ -30,11 +11,7 @@ for(var i=0;i<updateBtns.length; i++){
 
         console.log('USER',user)
         if(user == 'AnonymousUser'){
-<<<<<<< HEAD
-            console.log('Not logged in')
-=======
             addCookieItem(productId, action)
->>>>>>> back-end
         }
         else{
             updateUserOrder(productId,action)
@@ -54,7 +31,7 @@ function addCookieItem(productId, action){
         if(cart[productId]==undefined){
             cart[productId] = {'quantity':1}
         }else{
-            cart[productId]['quantity']+=1
+            cart[productId]['quantity'] += 1
         }
     }
 
@@ -95,30 +72,4 @@ function updateUserOrder(productId, action){
     })
 
 }
-
-function updateUserOfferOrder(offerId, action){
-    console.log('User is logged in, sending data..')
-
-    var url ='update_offer'
-
-    fetch(url, {
-        method:'POST',
-        headers:{
-            'Content-Type':'application/json',
-            'X-CSRFToken':csrftoken,
-        },
-        body:JSON.stringify({'offerId':offerId, 'action':action})
-    })
-
-    .then((response) =>{
-        return response.json()
-    })
-
-    .then((data) =>{
-        console.log('data',data)
-        location.reload()
-    })
-
-}
-
 

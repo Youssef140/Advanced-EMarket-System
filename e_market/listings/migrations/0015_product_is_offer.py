@@ -5,9 +5,9 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('listings', '0014_offer_brands'),
-    ]
+    # dependencies = [
+    #     ('listings', '0014_offer_brands'),
+    # ]
 
     operations = [
         migrations.AddField(

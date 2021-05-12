@@ -79,11 +79,11 @@
                   <a style="margin-bottom:15px; float:right; width:150px;" class="btn btn-outline-dark" href="{% url 'listing' product.id %}">View</a>
                   <hr>
                   <div class=" row" style="margin-top:0px;">
-                     <a data-product="{{product.id}}" data-action="remove" class="fas fa-minus chg-quantity update-cart btn" style="margin-left:75px;background-color:#333; color:white; width:40px; height:30px;"></a>
+                     <a data-product="{{item.product.id}}" data-action="remove" class="fas fa-minus chg-quantity update-cart btn" style="margin-left:75px;background-color:#333; color:white; width:40px; height:30px;"></a>
                      <p>
                         <input class="input-group-field quantity" type="number" name="quantity"  style="height:30px; margin-top:5px; margin-right:3px; margin-left:3px; width:100px;">
                      </p>
-                     <a data-product= "{{product.id}}" data-action="add" class="fas fa-plus chg-quantity update-cart btn" style="margin-right:75px; background-color:#333; color:white; width:40px; height:30px;"></a>
+                    <a data-product= "{{item.product.id}}" data-action="add" class="fas fa-plus chg-quantity update-cart btn" style="margin-left:5px;background-color:#333; color:white; width:40px; height:30px;"></a>
                   </div>
                </div>
             </div>
@@ -136,5 +136,6 @@
 
    </div>
 </section>
-{% endblock %}
 <script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
+{% endblock %}
+
