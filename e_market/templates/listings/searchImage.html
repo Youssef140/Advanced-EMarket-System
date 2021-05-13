@@ -1,66 +1,77 @@
-
 {% extends 'base.html' %}
-
 {% load humanize %}
-
 {% block content %}
 {% load static %}
-
-
-<html>
-    <head></head>
-
-
-    <body>
-        <H1>Try our new feature and search any image you'd like!</H1>
-
-        {% if user.is_authenticated == True %}
-
-        <form method ="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{form.media}}
-            {{form.as_p}}
-            <input type="submit" value='Save'/>
-        </form>
-
-        {% else %}
-            <H1>Please log in or sign up in order to use this feature</H1>
-        {% endif %}
-
-    </body>
-
-</html>
+<div class="container py-5">
+   <h4 class="text-center">Search products here by uploading an image of the item!</h4>
+</div>
+<div class=" container">
+   {% if user.is_authenticated == True %}
+   <form method ="POST" enctype="multipart/form-data">
+      <div class="form-group">
+         {% csrf_token %}
+         {{form.media}}
+         <div class="form-group">
+             <div class="row mx-auto" style="width:400px; ">
+                 <img id="output" src="{% static 'img/uploadImg.jpg' %}" width="400" height="400"/>
+             </div>
+            <div class="col-md-12 text-center " style=" margin-left:50px;">
+            <input type="file" name="Searched_image" accept="image/*" id="id_searched_image" onchange="readURL(this);" class="py-5">
+         </div>
+            </div>
+         <div class="col-md-12 text-center">
+         <input type="submit" class="btn btn-light" style="background-color: #333; border-color: #333; color : #ffffff; width:400px;" value='Search Product'/>
+            </div>
+         </div>
+   </form>
+   {% else %}
+   <h1>Please log in or sign up in order to use this feature</h1>
+   {% endif %}
+</div>
 <script type="text/javascript">
+   const FileBtn = document.getElementById("real-file");
+   const uploadFileBtn = document.getElementById("custom-button");
+   var path = ""
 
-    const FileBtn = document.getElementById("real-file");
-    const uploadFileBtn = document.getElementById("custom-button");
-    var path = ""
+   uploadFileBtn.addEventListener("click",function(){
+       FileBtn.click()
+   });
 
-    uploadFileBtn.addEventListener("click",function(){
-        FileBtn.click()
-    });
-
-    FileBtn.addEventListener("change",function(){
-        if(FileBtn.value){
-            console.log(FileBtn.value);
-        }else{
-            console.log("no file chosen");
-        }
-    });
+   FileBtn.addEventListener("change",function(){
+       if(FileBtn.value){
+           console.log(FileBtn.value);
+       }else{
+           console.log("no file chosen");
+       }
+   });
 
 
 </script>
 <script src="{% static 'js/jquery-3.6.0.min.js'%}"></script>
 <script>
+   $(function(){
+       $("#real-file").change(function(event){
+           var x = URL.createObjectURL(event.target.files[0]);
 
-    $(function(){
-        $("#real-file").change(function(event){
-            var x = URL.createObjectURL(event.target.files[0]);
-
-            console.log(event)
-        });
-    })
+           console.log(event)
+       });
+   })
 
 </script>
+<script>
+function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
 
+            reader.onload = function (e) {
+                $('#output')
+                    .attr('src', e.target.result)
+                    .width(400)
+                    .height(400);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
 {% endblock %}

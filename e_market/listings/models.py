@@ -24,9 +24,9 @@ class Category(models.Model):
     is_child = models.BooleanField(default=False)
     is_parent = models.BooleanField(default=False)
     description = models.TextField(blank=True,null=True)
-    def _str_(self):
-        return self.name
 
+    def __str__(self):
+        return self.name
 
 
 
@@ -59,7 +59,7 @@ class Product(models.Model):
             url = self.photo_main.url
         except:
             url = ''
-            return url
+        return url
 
 
 
