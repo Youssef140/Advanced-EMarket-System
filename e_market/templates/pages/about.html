@@ -1,107 +1,108 @@
 {% extends 'base.html' %}
 {%load static%}
 {% block content %}
-<section style="background-color : #000000" class="py-5 text-white">
-    <div class="container">
+<section style="background-color : #222222" class="py-5 text-white">
+   <div class="container">
       <div class="row text-center">
-        <div class="col-md-12">
-          <h1 class="display-4">About our Supermarket</h1>
-          <p class="lead">We are located everywhere in Lebanon thanks to our online delivery system! </p>
-        </div>
+         <div class="col-md-12">
+            <h1 class="display-4">About our Supermarket</h1>
+            <p class="lead">We are located everywhere in Lebanon thanks to our online delivery system! </p>
+         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- Breadcrumb -->
-  <section id="bc" class="mt-3">
-    <div class="container">
+   </div>
+</section>
+<!-- Breadcrumb -->
+<section id="bc" class="mt-3">
+   <div class="container">
       <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item">
-<!--            The name index come from where we named it in urls.py-->
-            <a href="{% url 'index' %}" style="color:#000000;">
-              <i class="fas fa-home" style="color:#000000;"></i> Home</a>
-          </li>
-          <li class="breadcrumb-item active"> About</li>
-        </ol>
+         <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+               <!--            The name index come from where we named it in urls.py-->
+               <a href="{% url 'index' %}" style="color:#000000;">
+               <i class="fas fa-home" style="color:#000000;"></i> Home</a>
+            </li>
+            <li class="breadcrumb-item active"> About</li>
+         </ol>
       </nav>
-    </div>
-  </section>
-
-  <section id="about" class="py-4">
-    <div class="container">
+   </div>
+</section>
+<section id="about" class="py-4">
+   <div class="container">
       <div class="row">
-        <div class="col-md-8">
-          <h2>We Search For The Perfect Home</h2>
-          <p class="lead">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, pariatur!</p>
-          <img src="{%static 'img/about.jpg'%}" alt="">
-          <p class="mt-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis esse officia repudiandae ad saepe ex, amet
-            neque quod accusamus rem quia magnam magni dolorum facilis ullam minima perferendis? Exercitationem at quaerat
-            commodi id libero eveniet harum perferendis laborum molestias quia.</p>
-        </div>
-        <div class="col-md-4">
-          <div class="card">
-            <img class="card-img-top" src="{%static 'img/kyle.jpg'%}" alt="Seller of the month">
-            <div class="card-body">
-              <h5 class="card-title" style="color:#000000;">Seller Of The Month</h5>
-              <h6 style="color: #000000;">Kyle Brown</h6>
-              <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis nesciunt amet, illo itaque similique repellat.
-                content.
-              </p>
+         <div class="col-md-8">
+            <h2>We Provide The Best Products</h2>
+            <p class="lead"></p>
+            <img src="{%static 'img/about.jpg'%}" alt="">
+            <p class="mt-4">Initially we were located in Jbeil, but currently we became a national supermarket thanks to our new
+               online e-market system.
+            </p>
+         </div>
+         <div class="col-md-4">
+            <div class="card">
+               <img class="card-img-top" src="{%static 'img/kyle.jpg'%}" alt="Seller of the month">
+               <div class="card-body">
+                  <h5 class="card-title" style="color:#000000;">Seller Of The Month</h5>
+                  <h6 style="color: #000000;">Kyle Brown</h6>
+                  <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis nesciunt amet, illo itaque similique repellat.
+                     content.
+                  </p>
+               </div>
             </div>
-          </div>
-        </div>
+         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- Work -->
-  <section id="work" class="text-white text-center" style="background-color: #000000;">
-    <h2 class="display-4">We Work For You</h2>
-    <h4>Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem velit aperiam, unde aliquid at similique!</h4>
-    <hr>
-    <a href="listings.html" class="btn btn-light btn-lg" style="background-color: #000000; border-color: #ffff00; color : #ffff00;">View Our Featured Listings</a>
-  </section>
-
-  <!-- Team -->
-  <section id="team" class="py-5">
-    <div class="container">
+   </div>
+</section>
+<!-- Work -->
+<section id="work" class="text-white text-center" style="background-color: #2a2a2a;">
+   <h2 class="display-4">We Work For You</h2>
+   <h4></h4>
+   <hr>
+   <a href="{% url 'categories' %}" class="btn btn-light btn-lg" style="font-size: 16px;background-color: grey; border-color: grey; color : #ffffff;">View our Products</a>
+</section>
+<!-- Team -->
+<section id="team" class="py-5">
+   <div class="container">
       <h2 class="text-center">Our Team</h2>
       <div class="row text-center">
-        <div class="col-md-4">
-          <img src="{%static 'img/kyle.jpg'%}" alt="" class="rounded-circle mb-3">
-          <h4>Kyle Brown</h4>
-          <p class="text-success">
-            <i class="fas fa-award text-success mb-3"></i> Realtor</p>
-          <hr>
-          <p>
-            <i class="fas fa-phone"></i> (555)-555-5555</p>
-          <p>
-            <i class="fas fa-envelope-open"></i> kyle@btrealestate.co</p>
-        </div>
-
-        <div class="col-md-4">
-          <img src="{%static 'img/mark.jpg'%}" alt="" class="rounded-circle mb-3">
-          <h4>Mark Hudson</h4>
-          <p class="text-success">Realtor</p>
-          <hr>
-          <p>
-            <i class="fas fa-phone"></i> (444)-444-4444</p>
-          <p>
-            <i class="fas fa-envelope-open"></i> mark@btrealestate.co</p>
-        </div>
-
-        <div class="col-md-4">
-          <img src="{%static 'img/jenny.jpg'%}" alt="" class="rounded-circle mb-3">
-          <h4>Jenny Johnson</h4>
-          <p class="text-success">Realtor</p>
-          <hr>
-          <p>
-            <i class="fas fa-phone"></i> (333)-333-3333</p>
-          <p>
-            <i class="fas fa-envelope-open"></i> jenny@btrealestate.co</p>
-        </div>
+         <div class="col-md-4">
+            <img src="{%static 'img/kyle.jpg'%}" alt="" class="rounded-circle mb-3">
+            <h4>Youssef Abi Aad</h4>
+            <p class="">
+               <i class="fas fa-award  mb-3"></i> Manager
+            </p>
+            <hr>
+            <p>
+               <i class="fas fa-phone"></i> (555)-555-5555
+            </p>
+            <p>
+               <i class="fas fa-envelope-open"></i> youssef.abiaad@lau.edu
+            </p>
+         </div>
+         <div class="col-md-4">
+            <img src="{%static 'img/mark.jpg'%}" alt="" class="rounded-circle mb-3">
+            <h4>Chris Breidy</h4>
+            <p><i class="fas fa-award  mb-3"></i> CEO</p>
+            <hr>
+            <p>
+               <i class="fas fa-phone"></i> (444)-444-4444
+            </p>
+            <p>
+               <i class="fas fa-envelope-open"></i> chrisbreidi1@gmail.com
+            </p>
+         </div>
+         <div class="col-md-4">
+            <img src="{%static 'img/jenny.jpg'%}" alt="" class="rounded-circle mb-3">
+            <h4>Charbel Medlej</h4>
+            <p class="">Janitor</p>
+            <hr>
+            <p>
+               <i class="fas fa-phone"></i> (333)-333-3333
+            </p>
+            <p>
+               <i class="fas fa-envelope-open"></i> charbel.medlej@lau.edu
+            </p>
+         </div>
       </div>
-    </div>
-  </section>
+   </div>
+</section>
 {% endblock %}

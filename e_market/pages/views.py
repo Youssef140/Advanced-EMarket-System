@@ -1,14 +1,15 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from listings.models import Category
+from orders.models import Order, OrderItem
 
 def index(request):
-    return render(request,'pages/index.html')
+    categories = Category.objects.all()
+
+    context = {
+        'categories' : categories
+    }
+    return render(request,'pages/index.html',context)
 
 def about(request):
     return render(request,'pages/about.html')
-
-def register(request):
-    return render(request,'pages/register.html')
-
-def login(request):
-    return render(request,'pages/login.html')
