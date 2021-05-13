@@ -3,10 +3,10 @@ import json
 from django.db.models import Q
 from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
-from .models import Product, Category
+from .models import Product, Category,ProductsReview
 from django.http import JsonResponse
 from orders.models import Order,OrderItem
-from .forms import SearchImageForm
+from .forms import SearchImageForm, SubmitReviewForm
 from .ImageSearch import LogoDetection
 from django.contrib.auth.models import User
 from recombee_api_client.api_client import RecombeeClient
@@ -87,11 +87,13 @@ def category(request, category_id):
     page = request.GET.get('page')
 
     paged_category = paginator.get_page(page)
-
+    current_cat_name = str(current_cat[0])
     context = {
         'categories': paged_category,
-        'current_cat': current_cat
+        'current_cat': current_cat,
+        'current_cat_name':current_cat_name
     }
+    print(current_cat_name)
     print(context.get('current_cat'))
     return render(request,'listings/category.html',context)
 
@@ -199,3 +201,22 @@ def search_img(request,keywords):
 
     return context
 
+def product_review(request):
+    form = SubmitReviewForm(request.POST or None)
+    if(form.is_valid()):
+        form.save()
+    product_id = form.cleaned_data['product']
+    ratings = ProductsReview.objects.filter(product=product_id)
+    counter = 0
+    total_rating = 0
+    for rating in ratings:
+        counter = counter+1
+        total_rating = total_rating+rating.get("rating")
+
+    avg_rating = total_rating/counter
+
+    product = Product.objects.get(id=product_id)
+    product.rating = avg_rating
+    product.save()
+
+    return render(request,'listings/SuccessReviewSubmission.html')
