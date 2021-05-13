@@ -90,6 +90,14 @@ def path_and_rename(path):
     return wrapper
 
 
+class ProductsReview(models.Model):
+    product = models.ForeignKey('Product',default='Porduct',on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+    review = models.CharField(max_length=200)
+    rating = models.IntegerField(null=True,blank=True)
+
+
+
 
 
 currency_choices = (
