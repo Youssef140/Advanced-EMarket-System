@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
+{% load static %}
 <section style="background-color : #222222" class="py-5 text-white">
    <div class="container">
       <div class="row text-center">
@@ -15,41 +16,41 @@
       <h4 class=" mb-3">
          <a href="{% url 'offers' %}">
          Hot Offers
-            </a>
+         </a>
          <hr>
       </h4>
       <div class="slider" >
          <a href="{% url 'offers' %}">
-         <div class="slides" style="margin-top:10px;">
-            <input type="radio" name="radio-btn" id="radio1">
-            <input type="radio" name="radio-btn" id="radio2">
-            <input type="radio" name="radio-btn" id="radio3">
-            <input type="radio" name="radio-btn" id="radio4">
-            <div class="slide first" >
-               <img src="static/img/offers1.jpg" alt="" >
+            <div class="slides" style="margin-top:10px;">
+               <input type="radio" name="radio-btn" id="radio1">
+               <input type="radio" name="radio-btn" id="radio2">
+               <input type="radio" name="radio-btn" id="radio3">
+               <input type="radio" name="radio-btn" id="radio4">
+               <div class="slide first" >
+                  <img src="static/img/offers1.jpg" alt="" >
+               </div>
+               <div class="slide">
+                  <img src="static/img/offer2.jpg" alt="">
+               </div>
+               <div class="slide">
+                  <img src="static/img/offer3.jpg" alt="">
+               </div>
+               <div class="slide">
+                  <img src="static/img/offer4.jpg" alt="">
+               </div>
+               <div class="navigation-auto">
+                  <div class="auto-btn1"></div>
+                  <div class="auto-btn2"></div>
+                  <div class="auto-btn3"></div>
+                  <div class="auto-btn4"></div>
+               </div>
+               <div class="navigation-manual">
+                  <label for="radio1" class="manual-btn"></label>
+                  <label for="radio2" class="manual-btn"></label>
+                  <label for="radio3" class="manual-btn"></label>
+                  <label for="radio4" class="manual-btn"></label>
+               </div>
             </div>
-            <div class="slide">
-               <img src="static/img/offer2.jpg" alt="">
-            </div>
-            <div class="slide">
-               <img src="static/img/offer3.jpg" alt="">
-            </div>
-            <div class="slide">
-               <img src="static/img/offer4.jpg" alt="">
-            </div>
-            <div class="navigation-auto">
-               <div class="auto-btn1"></div>
-               <div class="auto-btn2"></div>
-               <div class="auto-btn3"></div>
-               <div class="auto-btn4"></div>
-            </div>
-            <div class="navigation-manual">
-               <label for="radio1" class="manual-btn"></label>
-               <label for="radio2" class="manual-btn"></label>
-               <label for="radio3" class="manual-btn"></label>
-               <label for="radio4" class="manual-btn"></label>
-            </div>
-         </div>
          </a>
       </div>
    </div>
@@ -102,7 +103,7 @@
          {% endif %}
       </div>
    </div>
- <div class="row">
+   <div class="row">
       <div class="col-sm">
       </div>
       <div class="col-sm" style="margin-top:1.5em;">
@@ -111,17 +112,83 @@
       <div class="col-sm">
       </div>
    </div>
-<div class="container" style="margin-bottom:20px;">
-</div>
+   <div class="container" style="margin-bottom:20px;"></div>
 </section>
-<section class="">
+<section>
+   <div class="container">
+      <h4 class=" mb-3">
+         Suggested Products
+         <hr>
+      </h4>
+         <div class="row">
+         <!-- Listing 1 -->
+         <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card listing-preview">
+               <img class="card-img-top" src="{% static 'img/beverages.png' %}" style="height:300px;">
+               <div class="card-img-overlay" >
+                  <h2>
+                     <!--            <span class="badge badge-secondary text-white">${{ product.price }}</span>-->
+                  </h2>
+               </div>
+               <div class="card-body" >
+                  <div class="listing-heading text-center" >
+                     <a href="">
+                        <h4 style="color:black;">Product Title</h4>
+                     </a>
+                  </div>
+                  <hr>
+                  <div class="row py-2 ">
+                     <div class="col-6" >
+                        <i class="fas fa-list-alt"></i> Product Categ
+                     </div>
+                     <div class="col-6">
+                        <i class="fa fa-money-bill-alt"></i> Price:
+                        $
+                     </div>
+                  </div>
+                  <div class="row py-2" >
+                     <div class="col-6">
+                        <i class="fa fa-sort-amount-asc"></i> Brand name
+                     </div>
+                     <div class="col-6">
+                        <i class="fas fa-store-alt"></i>
+                        In Stock
+                     </div>
+                  </div>
+                  <hr>
+                  <a style="margin-bottom:15px; width:150px;" data-product= "" data-action="add" class="btn btn-outline-dark update-cart" href="#">Add to Cart</a>
+                  <a style="margin-bottom:15px; float:right; width:150px;" class="btn btn-outline-dark" href="">View</a>
+                  <hr>
+                  <div class=" row" style="margin-top:0px;">
+                     <a data-product="" data-action="remove" class="fas fa-minus chg-quantity update-cart btn" style="margin-left:75px;background-color:#333; color:white; width:40px; height:30px;"></a>
+                     <p>
+                        <input class="input-group-field quantity" type="number" name="quantity"  style="height:30px; margin-top:5px; margin-right:3px; margin-left:3px; width:100px;">
+                     </p>
+                     <a data-product= "" data-action="add" class="fas fa-plus chg-quantity update-cart btn" style="margin-left:5px;background-color:#333; color:white; width:40px; height:30px;"></a>
+                  </div>
+               </div>
+            </div>
+         </div>
+         </div>
+   </div>
+   <div class="row">
+      <div class="col-sm">
+      </div>
+      <div class="col-sm" style="margin-top:1.5em;">
+         <a  class="button button1 btn-block " href="{% url 'categories' %}" style="position:relative; color:#ffffff; margin-bottom:25px;">View All</a>
+      </div>
+      <div class="col-sm">
+      </div>
+   </div>
+   <div class="container" style="margin-bottom:20px;"></div>
+</section>
+<section>
    <div class="container">
       <h4 class=" mb-3">
          Best Sellers
          <hr>
       </h4>
       <div class="row" >
-
          <div class="col-md-6 col-lg-4 mb-4" style="margin-top:10px;">
             <div class="card listing-preview">
                <img class="card-img-top" src="static/img/bakery_Categ.jpeg" alt="">
@@ -136,11 +203,6 @@
                </div>
             </div>
          </div>
-
-         <div class="cpl-md-12">
-            <p>No Listings Available </p>
-         </div>
-
       </div>
    </div>
    <div class="row">
@@ -152,28 +214,27 @@
       <div class="col-sm">
       </div>
    </div>
-<div class="container" style="margin-bottom:20px;">
-</div>
+   <div class="container" style="margin-bottom:20px;"></div>
 </section>
 <a href="#slider" onclick="scrollToTop();return false" class="scroll-to-top"><i class="fa fa-arrow-up"></i>Back to top</a>
 <style>
-.button {
-  background-color: #333; /* Green */
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-  -webkit-transition-duration: 0.4s; /* Safari */
-  transition-duration: 0.4s;
-}
-.button1:hover {
-  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
-}
+   .button {
+   background-color: #333; /* Green */
+   border: none;
+   color: white;
+   padding: 15px 32px;
+   text-align: center;
+   text-decoration: none;
+   display: inline-block;
+   font-size: 16px;
+   margin: 4px 2px;
+   cursor: pointer;
+   -webkit-transition-duration: 0.4s; /* Safari */
+   transition-duration: 0.4s;
+   }
+   .button1:hover {
+   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+   }
    .scroll-to-top {
    background-color: #2a2a2a;
    color: #fff !important;

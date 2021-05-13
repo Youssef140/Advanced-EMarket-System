@@ -1,21 +1,19 @@
 {% load static %}
 <!-- Navbar -->
 <nav class="navbar navbar-inverse navbar-expand-lg navbar-dark sticky-top" style= "opacity:0.95; background-color: #333;">
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-    <div class="container">
-
-  <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-    <ul class="navbar-nav" style="size:10px">
+   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+   <span class="navbar-toggler-icon"></span>
+   </button>
+   <div class="container">
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+         <ul class="navbar-nav" style="size:10px">
             <li
             {% if '/' == request.path %}
             class="nav-item active "
             {% else %}
             class="nav-item"
             {% endif %}
-       style="margin-top:10px;"
+            style="margin-top:10px;"
             >
             <a class="nav-link" href="{% url 'index' %}" >Home</a>
             </li>
@@ -28,7 +26,7 @@
             style="margin-top:10px;">
             <a class="nav-link" href="{% url 'categories' %}">Categories</a>
             </li>
-       <li
+            <li
             {% if 'listings' and 'offers' in request.path %}
             class="nav-item active"
             {% else %}
@@ -37,46 +35,45 @@
             style="margin-top:10px;">
             <a class="nav-link" href="{% url 'offers' %}">Offers</a>
             </li>
-
-       <li style="width:500px; margin-left:20px;" class="nav-item">
-       <div class="container" style="padding-right: 0px;padding-left: 0px; margin-right: 0px; margin-left: 0px; ">
-            <div class="row align-items-center">
-               <div class="col-md-9">
-                  <div class="form" >
-                     <form class="form" action="{% url 'search' %}" method = "get" id="search-form">
-                        <i class="fa fa-search" ></i>
-                        <input  name="keywords" id="searchBar" size ="10" type="text" class="form-control form-input mr-sm-2" placeholder="Search anything..." autocomplete="off" aria-label="Search" value="{{ values.keywords }}">
-                        <span class="left-pan" >
-                        <button style="background-color:#ffffff; border:none; " type="button"><i id="mic-logo" class="fas fa-microphone"></i></button>
-                        <a href="{% url 'search_image' %}" style="background-color:#ffffff; border:none; " type="button"><i class="fas fa-camera"></i></a>
-                        </span>
-                     </form>
+            <li style="width:500px; margin-left:20px;" class="nav-item">
+               <div class="container" style="padding-right: 0px;padding-left: 0px; margin-right: 0px; margin-left: 0px; ">
+                  <div class="row align-items-center">
+                     <div class="col-md-9">
+                        <div class="form" >
+                           <form class="form" action="{% url 'search' %}" method = "get" id="search-form">
+                              <i class="fa fa-search" ></i>
+                              <input  name="keywords" id="searchBar" size ="10" type="text" class="form-control form-input mr-sm-2" placeholder="Search anything..." autocomplete="off" aria-label="Search" value="{{ values.keywords }}">
+                              <span class="left-pan" >
+                              <button style="background-color:#ffffff; border:none; " type="button"><i id="mic-logo" class="fas fa-microphone"></i></button>
+                              <a href="{% url 'search_image' %}" style="background-color:#ffffff; border:none; " type="button"><i class="fas fa-camera"></i></a>
+                              </span>
+                           </form>
+                        </div>
+                     </div>
                   </div>
                </div>
-            </div>
-         </div>
-       </li>
-    </ul>
-     <div class="container">
+            </li>
+         </ul>
+         <div class="container">
             <ul class="navbar-nav ">
-                <li class="nav-item" style="color:white; margin-top:8px;">
-                          {% if user.is_authenticated %}
-                          Welcome {{user.username}}
-                          {% endif %}
-                      </li>
-                <li class="nav-item " style="margin-top:10px;">
+               <li class="nav-item" style="color:white; margin-top:8px;">
+                  {% if user.is_authenticated %}
+                  Welcome {{user.username}}
+                  {% endif %}
+               </li>
+               <li class="nav-item " style="margin-top:10px;">
                   <ul class="navbar-nav">
                      <div>
-                     <li class="nav-item ">
-                        <a href="{% url 'cart' %}">
-                        <i class="fa fa-shopping-cart" aria-hidden="true" style="color:white;"></i>
-                        </a>
-                        </div>
+                        <li class="nav-item ">
+                           <a href="{% url 'cart' %}">
+                           <i class="fa fa-shopping-cart" aria-hidden="true" style="color:white;"></i>
+                           </a>
+                     </div>
                      </li>
                      <div>
-                     <li class="nav-item" style="margin-left:5px;">
-                        <p id="cart-total" style="margin-bottom:0em;">{{cart_items}}</p>
-                     </li>
+                        <li class="nav-item" style="margin-left:5px;">
+                           <p id="cart-total" style="margin-bottom:0em;">{{cart_items}}</p>
+                        </li>
                      </div>
                   </ul>
                </li>
@@ -101,7 +98,6 @@
                <a class="nav-link navbar-right"  href="{% url 'register' %}">
                Register </a>
                </li>
-
                <li
                {% if 'login' in request.path %}
                class="nav-item active mr-3"
@@ -113,39 +109,30 @@
                Login</a>
                </li>
                {% endif %}
-
             </ul>
          </div>
-
-
-</div>
-
-  </div>
+      </div>
+   </div>
 </nav>
 <script type="text/javascript">
+   <!--  The `multiple` attribute lets users select multiple files. -->
 
-<!--  The `multiple` attribute lets users select multiple files. -->
 
+     const fileSelector = document.getElementById('real-file');
+     fileSelector.addEventListener('change', (event) => {
+       const fileList = event.target.files;
+       console.log(fileList[0].name);
 
-  const fileSelector = document.getElementById('real-file');
-  fileSelector.addEventListener('change', (event) => {
-    const fileList = event.target.files;
-    console.log(fileList[0].name);
-
-    fetch('/media/about.jpg')
-  .then(response => response.text())
-  .then(data => {
-  	// Do something with your data
-  	console.log(data);
-  });
-  });
+       fetch('/media/about.jpg')
+     .then(response => response.text())
+     .then(data => {
+     	// Do something with your data
+     	console.log(data);
+     });
+     });
 
 
 </script>
-
-
-
-
 <script>
    const searchForm = document.querySelector("#search-form");
    const searchFormInput = searchForm.querySelector("#search-form input");
@@ -206,7 +193,6 @@
      realFileBtn.click();
    });
 </script>
-
 <style>
    .box-element{
    box-shadow:hsl(0, 0%, 80%) 0 0 16px;

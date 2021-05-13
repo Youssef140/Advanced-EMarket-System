@@ -19,7 +19,7 @@ from recombee_api_client.api_requests import *
 def index(request,category_id):
     products = Product.objects.all().filter(category=category_id,in_stock=True)
 
-    paginator = Paginator(products, 6)
+    paginator = Paginator(products, 3)
     page = request.GET.get('page')
 
     paged_products = paginator.get_page(page)
@@ -35,7 +35,8 @@ def listing(request, product_id):
     product = Product.objects.all().filter(id=product_id)
 
     context = {
-        'product': product
+        'product': product,
+
     }
 
     return render(request, 'listings/listing.html', context)
@@ -87,11 +88,13 @@ def category(request, category_id):
     page = request.GET.get('page')
 
     paged_category = paginator.get_page(page)
-
+    current_cat_name = str(current_cat[0])
     context = {
         'categories': paged_category,
-        'current_cat': current_cat
+        'current_cat': current_cat,
+        'current_cat_name':current_cat_name
     }
+    print(current_cat_name)
     print(context.get('current_cat'))
     return render(request,'listings/category.html',context)
 
@@ -99,14 +102,21 @@ def category(request, category_id):
 
 def offers(request):
     offers = Product.objects.all().filter(is_offer = True)
+
+    paginator = Paginator(offers, 3)
+    page = request.GET.get('page')
+
+    paged_offers = paginator.get_page(page)
+
     context = {
-        'offers':offers
+        'offers': paged_offers
     }
     return render(request, 'listings/offers.html',context)
 
 
 def offer(request,offer_id):
     offer = Product.objects.all().filter(id = offer_id,is_offer=True)
+
     context = {
         'offer':offer,
     }

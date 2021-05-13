@@ -2,12 +2,13 @@
 {% load humanize %}
 {% block content %}
 <link href="https://cdn.lineicons.com/2.0/LineIcons.css" rel="stylesheet">
-
+{% if offer %}
+{% for of in offer %}
 <section style="background-color : #222222" class="py-5 text-white">
    <div class="container">
       <div class="row text-center">
          <div class="col-md-12">
-            <h1 class="display-4">Offer Name</h1>
+            <h5 class="display-4">{{of.title}}</h5>
          </div>
       </div>
    </div>
@@ -23,7 +24,7 @@
             <li class="breadcrumb-item">
                <a href="{%url 'offers' %}" style="color:black;">Offers</a>
             </li>
-            <li class="breadcrumb-item active">Offer name here</li>
+            <li class="breadcrumb-item active">{{of.title}}</li>
          </ol>
       </nav>
    </div>
@@ -34,37 +35,38 @@
       <div class="row">
          <div style="width:75%; margin:auto">
             <!-- Home Main Image -->
-            <img src="" alt="" class="img-main img-fluid mb-3">
+            <img src="{{of.photo_main.url}}" alt="" class="img-main img-fluid mb-3">
+
             <!-- Thumbnails -->
             <div class="row mb-5 thumbs">
                <div class="col-md-2">
-                  <a href="" data-lightbox="home-images">
-                  <img src="" alt="" class="img-fluid">
+                  <a href="{{of.photo_2.url}}" data-lightbox="home-images">
+                  <img src="{{of.photo_2.url}}" alt="" class="img-fluid">
                   </a>
                </div>
                <div class="col-md-2">
-                  <a href="" data-lightbox="home-images">
-                  <img src="" alt="" class="img-fluid">
+                  <a href="{{of.photo_3.url}}" data-lightbox="home-images">
+                  <img src="{{of.photo_3.url}}" alt="" class="img-fluid">
                   </a>
                </div>
                <div class="col-md-2">
-                  <a href="" data-lightbox="home-images">
-                  <img src="" alt="" class="img-fluid">
+                  <a href="{{of.photo_main.url}}" data-lightbox="home-images">
+                  <img src="{{of.photo_main.url}}" alt="" class="img-fluid">
                   </a>
                </div>
                <div class="col-md-2">
-                  <a href="" data-lightbox="home-images">
-                  <img src="" alt="" class="img-fluid">
+                  <a href="{{of.photo_main.url}}" data-lightbox="home-images">
+                  <img src="{{of.photo_main.url}}" alt="" class="img-fluid">
                   </a>
                </div>
                <div class="col-md-2">
-                  <a href="" data-lightbox="home-images">
-                  <img src="" alt="" class="img-fluid">
+                  <a href="{{of.photo_main.url}}" data-lightbox="home-images">
+                  <img src="{{of.photo_main.url}}" alt="" class="img-fluid">
                   </a>
                </div>
                <div class="col-md-2">
-                  <a href="" data-lightbox="home-images">
-                  <img src="" alt="" class="img-fluid">
+                  <a href="{{of.photo_main.url}}" data-lightbox="home-images">
+                  <img src="{{of.photo_main.url}}" alt="" class="img-fluid">
                   </a>
                </div>
             </div>
@@ -74,19 +76,30 @@
                   <ul class="list-group list-group-flush">
                      <li class="list-group-item ">
                         <i class="lni lni-text-align-left"></i> Category:
-                        <span class="float-right"></span>
-                     </li>
-                     <li class="list-group-item ">
-                        <i class="lni lni-radio-button"></i> Brand:
-                        <span class="float-right"></span>
+                        <span class="float-right">{{of.category}}</span>
                      </li>
                      <li class="list-group-item">
                         <i class="lni lni-offer"></i> Price:
-                        <span class="float-right"></span>
+                        <span class="float-right">
+                           {% if of.currency == 'usd' %}
+                           ${{ of.price }}
+                           {% else %}
+                           L.L{{ of.price }}
+                           {% endif%}
+                        </span>
                      </li>
                      <li class="list-group-item ">
-                        <i class="far fa-calendar-check"></i> Valid Until:
+                        <i class="lni lni-radio-button"></i> Brand:
+                        <span class="float-right">{{of.brand_name}}</span>
+                     </li>
+                     <li class="list-group-item ">
+                        <i class="fas fa-store-alt"></i> In Stock:
                         <span class="float-right">
+                        {% if of.in_stock %}
+                        Yes
+                        {% else %}
+                        No
+                        {% endif %}
                         </span>
                      </li>
                   </ul>
@@ -94,27 +107,26 @@
             </div>
 
             <div class="row" style="margin-left:3px;">
-                     <a data-product="{{product.id}}" data-action="remove" class="fas fa-minus chg-quantity update-cart btn" style="background-color:#333; color:white; width:40px; height:30px;"></a>
+                     <a data-product="{{offer.id}}" data-action="remove" class="fas fa-minus chg-quantity update-cart btn" style="background-color:#333; color:white; width:40px; height:30px;"></a>
                      <p>
                         <input class="input-group-field quantity" type="number" name="quantity"  style="height:30px; margin-top:5px; margin-right:0px; margin-left:0px; width:50px;">
                      </p>
-                     <a data-product= "{{product.id}}" data-action="add" class="fas fa-plus chg-quantity update-cart btn" style=" background-color:#333; color:white; width:40px; height:30px;"></a>
+                     <a data-product= "{{offer.id}}" data-action="add" class="fas fa-plus chg-quantity update-cart btn" style=" background-color:#333; color:white; width:40px; height:30px;"></a>
                   </div>
 
             <!-- Description -->
             <div class="row mb-5">
                <div class="col-md-12">
                   <h3>Product Description</h3>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia recusandae esse reiciendis officia omnis non rerum dicta
-                  cupiditate nostrum molestias deserunt aut minus inventore animi atque, consequuntur ad fugit. Possimus culpa
-                  blanditiis repellendus ipsa similique ullam, natus error dolor harum.
+                  {{of.description}}
                </div>
             </div>
             <!--Review-->
             <div class="row mb-5">
                <div class="col-md-12">
                   <h3>Review</h3>
-                  <form>
+                  <form method="post">
+                     {% csrf_token %}
                      <textarea style="background-color:white"></textarea>
                      <ul class="rating">
                         <li class="rating-item active" data-rate="1"></li>
@@ -123,14 +135,35 @@
                         <li class="rating-item" data-rate="4"></li>
                         <li class="rating-item" data-rate="5"></li>
                      </ul>
-                     <button class = "btn btn-light " style="background-color: #2a2a2a; color:white; margin-top:5px;" type="button" id="custom-button">Submit</button>
+                     <button class = "btn btn-light " style="background-color: #2a2a2a; color:white; margin-top:5px;" type="submit" id="custom-button">Submit</button>
                   </form>
                </div>
             </div>
+                  <div class="row mb-5">
+                     <div class="col-md-12">
+                        <h3>Reviews</h3>
+                        <div class="row mt-4 fields" style="width:100%">
+                           <div style="width:100%; margin-left:0px;">
+                              <ul class="list-group list-group-flush">
+                                 <li class="list-group-item">
+                                    <h6>Username</h6>
+                                    Hello
+                                 </li>
+                                 <li class="list-group-item ">
+                                    <h6>Username</h6>
+                                    Hello
+                                 </li>
+                              </ul>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
          </div>
       </div>
    </div>
 </section>
+{% endfor %}
+{% endif %}
 <script>
    const container = document.querySelector('.rating');
    const items = container.querySelectorAll('.rating-item')

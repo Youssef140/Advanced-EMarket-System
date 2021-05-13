@@ -15,9 +15,10 @@
              <div class="row mx-auto" style="width:400px; ">
                  <img id="output" src="{% static 'img/uploadImg.jpg' %}" width="400" height="400"/>
              </div>
-            <div class="col-md-12 text-center " style=" margin-left:50px;">
-            <input type="file" name="Searched_image" accept="image/*" id="id_searched_image" onchange="readURL(this);" class="py-5">
-         </div>
+            <div class="col-md-12 text-center ">
+               <input type="file" name="Searched_image" accept="image/*" id="id_searched_image" onchange="readURL(this);" class="py-5 inputfile">
+               <label for="id_searched_image">Upload Image</label>
+            </div>
             </div>
          <div class="col-md-12 text-center">
          <input type="submit" class="btn btn-light" style="background-color: #333; border-color: #333; color : #ffffff; width:400px;" value='Search Product'/>
@@ -74,4 +75,31 @@ function readURL(input) {
         }
     }
 </script>
+<style>
+   .inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+.inputfile + label {
+    width: 400px;
+    height:30px;
+    font-size: 1em;
+    color: white;
+    background-color: #333;
+    display: inline-block;
+}
+
+.inputfile:focus + label,
+.inputfile + label {
+	cursor: pointer; /* "hand" cursor */
+}
+.inputfile:focus + label {
+	outline: 1px dotted #000;
+	outline: -webkit-focus-ring-color auto 5px;
+}
+</style>
 {% endblock %}
