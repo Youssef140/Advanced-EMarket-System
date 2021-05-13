@@ -5,7 +5,6 @@ from django.http import JsonResponse
 import json
 # Create your views here.
 from listings.models import Product
-from orders.models import OrderOffer
 import datetime
 from django.contrib.auth.models import User
 from .utils import cookieCart, cartData,guestOrder

@@ -3,7 +3,7 @@ import json
 from django.db.models import Q
 from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
-from .models import Product, Category, Offer
+from .models import Product, Category
 from django.http import JsonResponse
 from orders.models import Order,OrderItem
 from .forms import SearchImageForm
@@ -105,7 +105,7 @@ def category(request, category_id):
 
 
 def offers(request):
-    offers = Offer.objects.all().filter(is_displayed = True)
+    offers = Product.objects.all().filter(is_offer = True)
     context = {
         'offers':offers
     }

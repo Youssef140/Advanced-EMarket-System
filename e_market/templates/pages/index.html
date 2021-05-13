@@ -102,11 +102,11 @@
          {% endif %}
       </div>
    </div>
- <div class="row" style="background-color:#333;">
+ <div class="row" style="background-color:#ffffff;">
       <div class="col-sm">
       </div>
       <div class="col-sm" style="margin-top:1.5em;">
-         <a class="btn btn-light btn-block" href="{% url 'categories' %}" style="position:relative; border-color: #222222 ;background-color:grey; color:#ffffff; margin-bottom:25px;">View All</a>
+         <a class="btn btn-light btn-block" href="{% url 'categories' %}" style="position:relative; border-color: #222222 ;background-color:#222222; color:#ffffff; margin-bottom:25px;">View All</a>
       </div>
       <div class="col-sm">
       </div>
@@ -114,7 +114,49 @@
 <div class="container" style="margin-bottom:20px;">
 </div>
 </section>
-<section class="">
+<section>
+   <div class="container">
+      <h4 class=" mb-3">
+         Suggested Products
+         <hr>
+      </h4>
+      <div class="row" >
+         <!--Make data dynamic here-->
+         <div class="col-md-6 col-lg-4 mb-4" style="margin-top:10px;">
+            <div class="card listing-preview">
+               <img class="card-img-top" src="static/img/bakery_Categ.jpeg" alt="">
+               <div class="card-img-overlay">
+               </div>
+               <div class="card-body">
+                  <div class="listing-heading text-center">
+                     <h4 style="color: #000000;">Product name here</h4>
+                  </div>
+                  <hr>
+                  <a href="listing.html" class="btn btn-light btn-block" style="background-color: #2a2a2a;  color : #ffffff; border-width: 2px;">View Category</a>
+               </div>
+            </div>
+         </div>
+
+         <!--In case there are no listings available below-->
+         <div class="cpl-md-12">
+            <p></p>
+         </div>
+
+      </div>
+   </div>
+   <div class="row" style="background-color:#ffffff;">
+      <div class="col-sm">
+      </div>
+      <div class="col-sm" style="margin-top:1.5em;">
+         <a class="btn btn-light btn-block" href="{% url 'offers' %}" style="position:relative; border-color: #222222 ;background-color:#222222; color:#ffffff; margin-bottom:25px;">View All</a>
+      </div>
+      <div class="col-sm">
+      </div>
+   </div>
+<div class="container" style="margin-bottom:20px;">
+</div>
+</section>
+<section>
    <div class="container">
       <h4 class=" mb-3">
          Best Sellers
@@ -147,11 +189,11 @@
          {% endif %}
       </div>
    </div>
-   <div class="row" style="background-color:#333;">
+   <div class="row" style="background-color:#ffffff;">
       <div class="col-sm">
       </div>
       <div class="col-sm" style="margin-top:1.5em;">
-         <a class="btn btn-light btn-block" href="{% url 'offers' %}" style="position:relative; border-color: #222222 ;background-color:grey; color:#ffffff; margin-bottom:25px;">View All</a>
+         <a class="btn btn-light btn-block" href="{% url 'offers' %}" style="position:relative; border-color: #222222 ;background-color:#222222; color:#ffffff; margin-bottom:25px;">View All</a>
       </div>
       <div class="col-sm">
       </div>
@@ -159,7 +201,44 @@
 <div class="container" style="margin-bottom:20px;">
 </div>
 </section>
+
 <a href="#slider" onclick="scrollToTop();return false" class="scroll-to-top"><i class="fa fa-arrow-up"></i>Back to top</a>
+
+<section class="py-4 text-white" style= "color:#000000; background-color:#333; font-size:14px;">
+   <div class="container text-white">
+      <div class="row text-center text-white">
+         <div class="col-md-4 text-white">
+            <i class="fas fa-comment fa-3x mr-0"></i>
+            <hr>
+            <h4 class="text-white">Chat with us</h4>
+            <p>Our support team will be happy to help you!</p>
+         </div>
+         <div class="col-md-4 text-white">
+            <i class="fas fa-truck fa-3x mr-0" ></i>
+            <hr>
+            <h4 class="text-white">Delivery</h4>
+            <p >We deliver to your place!</p>
+         </div>
+         <div class="col-md-4">
+            <i class="fas fa-info-circle fa-3x mr-0"></i>
+            <hr>
+            <h4><a href="{% url 'about' %}" class="text-white">About Us</a></h4>
+            <p>We are a young team of engineers developing our first website for a Lebanese Supermarket!</p>
+         </div>
+      </div>
+   </div>
+</section>
+<script>
+   function scrollToTop() {
+     var position =
+         document.body.scrollTop || document.documentElement.scrollTop;
+     if (position) {
+         window.scrollBy(0, -Math.max(1, Math.floor(position / 90)));
+         scrollAnimation = setTimeout("scrollToTop()", 0);
+     } else clearTimeout(scrollAnimation);
+   }
+
+</script>
 <style>
    .scroll-to-top {
    background-color: #2a2a2a;
@@ -198,39 +277,4 @@
    font-size:28px;
    }
 </style>
-<section class="py-4 text-white" style= "color:#000000; background-color:#333; font-size:14px;">
-   <div class="container text-white">
-      <div class="row text-center text-white">
-         <div class="col-md-4 text-white">
-            <i class="fas fa-comment fa-3x mr-0"></i>
-            <hr>
-            <h4 class="text-white">Chat with us</h4>
-            <p>Our support team will be happy to help you!</p>
-         </div>
-         <div class="col-md-4 text-white">
-            <i class="fas fa-truck fa-3x mr-0" ></i>
-            <hr>
-            <h4 class="text-white">Delivery</h4>
-            <p >We deliver to your place!</p>
-         </div>
-         <div class="col-md-4">
-            <i class="fas fa-info-circle fa-3x mr-0"></i>
-            <hr>
-            <h4><a href="{% url 'about' %}" class="text-white">About Us</a></h4>
-            <p>We are a young team of engineers developing our first website for a Lebanese Supermarket!</p>
-         </div>
-      </div>
-   </div>
-</section>
-<script>
-   function scrollToTop() {
-     var position =
-         document.body.scrollTop || document.documentElement.scrollTop;
-     if (position) {
-         window.scrollBy(0, -Math.max(1, Math.floor(position / 90)));
-         scrollAnimation = setTimeout("scrollToTop()", 0);
-     } else clearTimeout(scrollAnimation);
-   }
-
-</script>
 {% endblock %}

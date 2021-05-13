@@ -10,7 +10,7 @@ def cookieCart(request):
     except:
         cart = {}
 
-    cart = json.loads(request.COOKIES['cart'])
+    # cart = json.loads(request.COOKIES['cart'])
     print('cart:', cart)
     items = []
     order = {'get_cart_total': 0, 'get_cart_items': 0}
@@ -48,14 +48,13 @@ def cartData(request):
         order, created = Order.objects.get_or_create(user=current_user, complete=False)
         #geting all order items that have that current item as parent
         items = order.orderitem_set.all()
-        offers_items = order.orderoffer_set.all()
         cart_items = order.get_cart_items
     else:
         cookieData = cookieCart(request)
         order = cookieData['order']
         items = cookieData['items']
         cart_items = cookieData['cart_items']
-    return {'cart_items':cart_items,'order':order,'items':items,'offers':offers_items}
+    return {'cart_items':cart_items,'order':order,'items':items,}
 
 def guestOrder(request,data):
     name = data['form']['name']

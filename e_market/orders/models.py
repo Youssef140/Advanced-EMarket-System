@@ -2,7 +2,7 @@ from django.db import models
 from datetime import datetime
 from django.contrib.auth.models import User
 from listings.models import Product
-from listings.models import Offer
+
 
 
 class Order(models.Model):
@@ -11,7 +11,7 @@ class Order(models.Model):
     complete = models.BooleanField(default=False)
     transaction_id = models.CharField(max_length=100, null=True)
 
-    def __str__(self):
+    def _str_(self):
         return str(self.id)
 
     @property
@@ -23,8 +23,7 @@ class Order(models.Model):
     @property
     def get_cart_items(self):
         orderitems = self.orderitem_set.all()
-        orderoffers = self.orderoffer_set.all()
-        total = sum([item.quantity for item in orderitems]) + sum([item.quantity for item in orderoffers])
+        total = sum([item.quantity for item in orderitems])
         return total
 
 
@@ -40,16 +39,6 @@ class OrderItem(models.Model):
         total = self.product.price * self.quantity
         return total
 
-class OrderOffer(models.Model):
-    offer = models.ForeignKey(Offer, on_delete=models.CASCADE, null=True)
-    order = models.ForeignKey(Order,on_delete=models.CASCADE,null=True)
-    quantity = models.IntegerField(default=0, null=True, blank=True)
-    date_added = models.DateTimeField(auto_now_add=True)
-
-    @property
-    def get_total(self):
-        total = self.offer.price * self.quantity
-        return total
 
 
 
@@ -62,5 +51,5 @@ class ShippingAddress(models.Model):
     zipcode = models.CharField(max_length=200, null=False)
     date_added = models.DateTimeField(auto_now_add=True)
 
-    def __str__(self):
+    def _str_(self):
         return self.address

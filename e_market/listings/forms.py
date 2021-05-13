@@ -5,7 +5,9 @@ class SearchImageForm(forms.ModelForm):
     class Meta:
         model = UserSearchedImage
         fields = [
-            'user',
             'searched_image'
         ]
 
+        # widgets = {
+        #     'searched_image': forms.ImageField(attrs={'class':'form-control'}),
+        # }

@@ -26,9 +26,9 @@
             <li class="breadcrumb-item">
               <a href="{%url 'index' %}" style="color:black;">Home</a>
             </li>
-  <!--          <li class="breadcrumb-item">-->
-  <!--            <a href="" style="color:black;">Products</a>-->
-  <!--          </li>-->
+<!--            <li class="breadcrumb-item">-->
+<!--              <a href="" style="color:black;">Products</a>-->
+<!--            </li>-->
             <li class="breadcrumb-item active">{{p.title}}</li>
           </ol>
         </nav>
@@ -136,7 +136,7 @@
             <div class="container">
             <div class="row mb-5">
               <div class="col-md-12">
-                <h3>Review</h3>
+                <h3>Write a Review</h3>
                 <form>
                   <textarea style="background-color:white"></textarea>
                   <ul class="rating">
@@ -147,14 +147,34 @@
                     <li class="rating-item" data-rate="5"></li>
                   </ul>
                   <button class = "btn btn-light " style="background-color: #2a2a2a; color:white; margin-top:5px;" type="button" id="custom-button">Submit</button>
-
-
                 </form>
-
               </div>
-
             </div>
+            </div>
+
+              <div class="container">
+                <div class="row mb-5">
+                  <div class="col-md-12">
+                    <h3>Reviews</h3>
+                    <div class="row mt-4 fields" style="width:100%">
+                      <div style="width:100%; margin-left:0px;">
+                        <ul class="list-group list-group-flush">
+                          <li class="list-group-item">
+                            <h6>Username</h6>
+                            Hello
+                          </li>
+                          <li class="list-group-item ">
+                            <h6>Username</h6>
+                            Hello
+                          </li>
+                        </ul>
+                     </div>
+                    </div>
+
+                  </div>
+                </div>
               </div>
+
           </div>
         </div>
       </div>
@@ -183,9 +203,27 @@
 
 
 
-
+<style>
+#myList li{ display:none;
+}
+#loadMore {
+    color:green;
+    cursor:pointer;
+}
+#loadMore:hover {
+    color:black;
+}
+#showLess {
+    color:red;
+    cursor:pointer;
+}
+#showLess:hover {
+    color:black;
+}
+</style>
 
 <style>
+
 .checked {
   color: orange;
 }
