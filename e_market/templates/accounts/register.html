@@ -14,8 +14,7 @@
             </div>
             <div class="card-body">
 <!--                Alerts-->
-                {% include 'partials/_alerts.html' %}
-                <form action="{% url 'register' %}" method="POST" id = "form">
+                <form action="{% url 'register' %}" method="POST" id = "myForm">
                     {% csrf_token %}
                   <div class="form-group">
                   <label for="first_name">First Name</label>
@@ -39,12 +38,12 @@
                   <input type="email" name="email" id = "email" class="form-control" required>
                 </div>
                 <div class="form-group">
-                  <label for="password">Password</label>
-                  <input type="password" name="password" id ="password" class="form-control" required>
+                  <label for="pwd">Password</label>
+                  <input type="password" name="pwd" id ="pwd" class="form-control" required>
                 </div>
                 <div class="form-group">
-                  <label for="password2">Confirm Password</label>
-                  <input type="password" name="password2" id = "password2" class="form-control" required>
+                  <label for="pwd2">Confirm Password</label>
+                  <input type="password" name="pwd2" id = "pwd2" class="form-control" required>
                 </div>
                 <input type="submit" value="Register" class="btn  btn-block"style="margin-top:10px; background-color : #2a2a2a; color : #ffffff"  onclick="return Validate()" />
               </form>
@@ -61,13 +60,13 @@
 
 <script>
     function Validate() {
-        var fname = document.forms["form"]["first_name"];
-        var mname = document.forms["form"]["middle_name"];
-        var lname = document.forms["form"]["last_name"];
-        var userName = document.forms["form"]["username"];
-        var email = document.forms["form"]["email"];
-        var password = document.forms["form"]["pwd"];
-        var confPassword = document.forms["form"]["pwd2"];
+        var fname = document.forms["myForm"]["first_name"];
+        var mname = document.forms["myForm"]["middle_name"];
+        var lname = document.forms["myForm"]["last_name"];
+        var userName = document.forms["myForm"]["username"];
+        var email = document.forms["myForm"]["email"];
+        var password = document.forms["myForm"]["pwd"];
+        var confPassword = document.forms["myForm"]["pwd2"];
         //const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
         //password must start with "^"
@@ -96,19 +95,11 @@
         }
 
         if (username.value == "") {
-            window.alert("Please enter your name.");
+            window.alert("Please enter a username.");
             username.focus();
             return false;
         }
 
-
-
-        if (!re.test(email.value)) {
-            window.alert(
-              "Please enter a valid e-mail address.");
-            email.focus();
-            return false;
-        }
 
         if (password.value == "") {
             window.alert("Please enter a password.");
@@ -123,7 +114,6 @@
             return false;
         }
 
-        return true;
     }
 
 
