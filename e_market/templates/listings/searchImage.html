@@ -2,11 +2,11 @@
 {% load humanize %}
 {% block content %}
 {% load static %}
+{% if user.is_authenticated == True %}
 <div class="container py-5">
    <h4 class="text-center">Search products here by uploading an image of the item!</h4>
 </div>
 <div class=" container">
-   {% if user.is_authenticated == True %}
    <form method ="POST" enctype="multipart/form-data">
       <div class="form-group">
          {% csrf_token %}
@@ -25,10 +25,13 @@
             </div>
          </div>
    </form>
+   </div>
    {% else %}
-   <h1>Please log in or sign up in order to use this feature</h1>
-   {% endif %}
+<div class="container py-5" style="display:flex; justify-content: center;">
+      <h5>Please log in or sign up in order to use this feature.</h5>
 </div>
+   {% endif %}
+
 <script type="text/javascript">
    const FileBtn = document.getElementById("real-file");
    const uploadFileBtn = document.getElementById("custom-button");
@@ -86,7 +89,8 @@ function readURL(input) {
 }
 .inputfile + label {
     width: 400px;
-    height:30px;
+    padding:8px;
+    height:40px;
     font-size: 1em;
     color: white;
     background-color: #333;

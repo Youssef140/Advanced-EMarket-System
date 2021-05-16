@@ -80,5 +80,11 @@ def logout(request):
         messages.success(request,'You are now logged out')
         return redirect('index')
 
+def editProfile(request):
+    return render(request,'accounts/editProfile.html')
+
+def editPassword(request):
+    return render(request,'accounts/editPassword.html')
+
 def dashboard(request):
     return render(request,'accounts/dashboard.html')

@@ -27,12 +27,13 @@
    </div>
 </section>
 <!-- Listing -->
-<section id="listing" class="py-4">
+<section class="py-4">
    <div class="container">
-      <div class="row">
-         <div style="width:75%; margin:auto">
+         <div style="margin:auto;">
             <!-- Home Main Image -->
-            <img src="{{p.photo_main.url}}" alt="" class="img-main img-fluid mb-3">
+            <div style="display:flex; justify-content:center;">
+               <img src="{{p.photo_main.url}}" alt="" class="img-main img-fluid mb-3" style="width:500px; height:500px;" >
+           </div>
             <!-- Thumbnails -->
             <div class="row mb-5 thumbs">
                <div class="col-md-2">
@@ -98,21 +99,34 @@
                         {% endif %}
                         </span>
                      </li>
+                     <li class="list-group-item ">
+                     <i class="fas fa-star"></i> Average Rating:
+                     <span class="float-right"> 5
+                     </span>
+                  </li>
                   </ul>
                </div>
-               <div class="row" style="margin-left:15px; margin-top:20px;">
-                  <a data-product="{{product.id}}" data-action="remove" class="fas fa-minus chg-quantity update-cart btn" style="background-color:#333; color:white; width:40px; height:30px;"></a>
-                  <p>
-                     <input class="input-group-field quantity" type="number" name="quantity"  style="height:30px; margin-top:5px; margin-right:0px; margin-left:0px; width:50px;">
-                  </p>
-                  <a data-product= "{{product.id}}" data-action="add" class="fas fa-plus chg-quantity update-cart btn" style=" background-color:#333; color:white; width:40px; height:30px;"></a>
-               </div>
+               <div class="row mb-5 mt-5">
+            <div class="col-md-12">
+               <h3>Add to Cart</h3>
+               <hr>
+            </div>
+               <div class="row mb-5" style="margin-left:15px;">
+            <button onclick="decrement()" class="btn btn-light" style="background-color: #333; color:white; width:40px;">-</button>
+            <input value="0" id=demoInput type=number min=0 max=20 readonly style="width:100px; text-center">
+            <button onclick="increment()" class="btn btn-light" style="background-color: #333; color:white; width:40px;">+</button>
+         </div>
                <!-- Description -->
                <div class="container">
                   <div class="row mb-5">
                      <div class="col-md-12">
                         <h3>Product Description</h3>
-                        {{ p.description }}
+                        <hr>
+                        {% if p.description != "" %}
+               {{p.description}}
+               {% else %}
+               No Description Available
+               {% endif %}
                      </div>
                   </div>
                </div>
@@ -121,7 +135,8 @@
                   <div class="row mb-5">
                      <div class="col-md-12">
                         <h3>Review</h3>
-                        <form>
+                        <form method="post">
+                           {% csrf_token %}
                            <textarea style="background-color:white"></textarea>
                            <ul class="rating">
                               <li class="rating-item active" data-rate="1"></li>
@@ -130,7 +145,7 @@
                               <li class="rating-item" data-rate="4"></li>
                               <li class="rating-item" data-rate="5"></li>
                            </ul>
-                           <button class = "btn btn-light " style="background-color: #2a2a2a; color:white; margin-top:5px;" type="button" id="custom-button">Submit</button>
+                           <button class = "btn btn-light " style="background-color: #2a2a2a; color:white; margin-top:5px;" type="submit" id="custom-button">Submit</button>
                         </form>
                      </div>
                   </div>
@@ -139,6 +154,7 @@
                   <div class="row mb-5">
                      <div class="col-md-12">
                         <h3>Reviews</h3>
+                        <hr>
                         <div class="row mt-4 fields" style="width:100%">
                            <div style="width:100%; margin-left:0px;">
                               <ul class="list-group list-group-flush">
@@ -160,11 +176,78 @@
                </div>
             </div>
          </div>
-      </div>
+   </div>
+   <div class="">
+                  <h4>Related Products</h4>
+                  <hr>
+               </div>
+   <div class="">
+      <div class="row">
+                     <!-- Listing 1 -->
+                     <div class="col-md-6 col-lg-4 mb-4">
+                        <div class="card listing-preview">
+                           <img class="card-img-top" src="" style="height:300px;">
+                           <div class="card-body" >
+                              <div class="listing-heading text-center" style="height:40px;">
+                                 <a href="#">
+                                    <h5 style="color:black;">Title</h5>
+                                 </a>
+                              </div>
+                              <hr>
+                              <div class="row py-2 ">
+                                 <div class="col-6" >
+                                    <i class="fas fa-list-alt"></i> Categ
+                                 </div>
+                                 <div class="col-6">
+                                    <i class="fa fa-money-bill-alt"></i> Price:
+                                 </div>
+                              </div>
+                              <div class="row py-2" >
+                                 <div class="col-6">
+                                    <i class="fa fa-sort-amount-asc"></i> brand name
+                                 </div>
+                                 <div class="col-6">
+                                    <i class="fas fa-store-alt"></i>
+                                    In stock
+                                 </div>
+                              </div>
+                              <hr>
+                              <a style="margin-bottom:15px; width:150px;" data-product= "" data-action="add" class="btn btn-outline-dark update-cart" href="#">Add to Cart</a>
+                              <a style="margin-bottom:15px; float:right; width:150px;" class="btn btn-outline-dark" href="#">View</a>
+                              <hr>
+                              <div class=" row" style="margin-top:0px;">
+                                 <a data-product="" data-action="remove" class="fas fa-minus chg-quantity update-cart btn" style="margin-left:75px;background-color:#333; color:white; width:40px; height:30px;"></a>
+                                 <p>
+                                    <input class="input-group-field quantity" type="number" name="quantity"  style="height:30px; margin-top:5px; margin-right:3px; margin-left:3px; width:100px;">
+                                 </p>
+                                 <a data-product= "" data-action="add" class="fas fa-plus chg-quantity update-cart btn" style="margin-left:5px;background-color:#333; color:white; width:40px; height:30px;"></a>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="container">
+                        <p>No Related Products</p>
+                     </div>
+                  </div>
    </div>
 </section>
 {% endfor %}
 {% endif %}
+<script>
+   function increment() {
+      document.getElementById('demoInput').stepUp();
+   }
+   function decrement() {
+      document.getElementById('demoInput').stepDown();
+   }
+
+    function incrementt() {
+      document.getElementById('demoInput1').stepUp();
+   }
+   function decrementt() {
+      document.getElementById('demoInput1').stepDown();
+   }
+</script>
 <script>
    const container = document.querySelector('.rating');
     const items = container.querySelectorAll('.rating-item')
