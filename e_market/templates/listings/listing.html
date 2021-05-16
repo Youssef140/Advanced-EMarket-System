@@ -142,14 +142,16 @@
                         <div class="row mt-4 fields" style="width:100%">
                            <div style="width:100%; margin-left:0px;">
                               <ul class="list-group list-group-flush">
-                                 <li class="list-group-item">
-                                    <h6>Username</h6>
-                                    Hello
-                                 </li>
-                                 <li class="list-group-item ">
-                                    <h6>Username</h6>
-                                    Hello
-                                 </li>
+                                 {%if reviews%}
+                                    {% for review in reviews %}
+                                       <li class="list-group-item">
+                                          <h6>{{review.user}}</h6>
+                                          {{review.review}}
+                                       </li>
+                                    {% endfor %}
+                                 {%else%}
+                                 <h4>Be the first to review this product!</h4>
+                                 {%endif%}
                               </ul>
                            </div>
                         </div>

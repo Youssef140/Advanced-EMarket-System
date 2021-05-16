@@ -1,6 +1,6 @@
 from django.contrib import admin
 #imporitng the Product model
-from .models import Product,Category,UserSearchedImage
+from .models import Product,Category,UserSearchedImage,ProductsReview
 #Registration and Customization of the admin stuff for the listings app
 from django.contrib import admin
 
@@ -29,7 +29,7 @@ class CategoryAdmin(admin.ModelAdmin):
     list_editable = ('is_child',)
     #searching based on given fields
     #for foreign keys the __name is the name of the field we would like to search with from the FK table
-    search_fields = ('name','id')
+    search_fields = ('name','id','product__title')
     list_per_page = 10
 
 
@@ -38,6 +38,7 @@ class CategoryAdmin(admin.ModelAdmin):
 admin.site.register(Product,ListingAdmin)
 admin.site.register(Category,CategoryAdmin)
 admin.site.register(UserSearchedImage)
+admin.site.register(ProductsReview)
 
 
 

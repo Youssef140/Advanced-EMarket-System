@@ -19,6 +19,7 @@ from recombee_api_client.api_requests import *
 def index(request,category_id):
     products = Product.objects.all().filter(category=category_id,in_stock=True)
 
+
     paginator = Paginator(products, 3)
     page = request.GET.get('page')
 
@@ -33,10 +34,19 @@ def index(request,category_id):
 
 def listing(request, product_id):
     product = Product.objects.all().filter(id=product_id)
+    reviews = ProductsReview.objects.all().filter(product=product_id)
+    client = RecombeeClient('e-market-dev', 'S1HpoVU0JuxtjU9ewtvSnAUQh4qgKHTjr2DFbQ30LoADU2S27OsleTi1C23TNVEm')
+    current_user = request.user
+    if(current_user.is_authenticated):
+        print("auth")
+        r = AddDetailView(current_user.id, product_id, cascade_create=True)
+        client.send(r)
 
+    recommended = client.send(RecommendItemsToItem(product_id,current_user.id,5))
+    print(f"Related products: {recommended}")
     context = {
         'product': product,
-
+        'reviews':reviews,
     }
 
     return render(request, 'listings/listing.html', context)
@@ -116,9 +126,10 @@ def offers(request):
 
 def offer(request,offer_id):
     offer = Product.objects.all().filter(id = offer_id,is_offer=True)
-
+    reviews = ProductsReview.objects.all().filter(product=offer_id)
     context = {
         'offer':offer,
+        'reviews': reviews,
     }
     return render(request, 'listings/offer.html',context)
 
@@ -126,7 +137,7 @@ def offer(request,offer_id):
 def update_item(request):
 
     #data mining setup
-    # client = RecombeeClient('emarket-system-dev','pMFS9IsZDdIbx15eIGRKlGTQbmKsVJ3Ctv6x6vgZ1OsB4kmkkVgtvaOUQK89CT0L')
+    # client = RecombeeClient('e-market-dev','S1HpoVU0JuxtjU9ewtvSnAUQh4qgKHTjr2DFbQ30LoADU2S27OsleTi1C23TNVEm')
 
     data = json.loads(request.body)
     productId = data['productId']
@@ -134,6 +145,8 @@ def update_item(request):
 
     current_user = request.user
     product = Product.objects.get(id=productId)
+    product.sold = product.sold + 1
+    product.save()
     order, created = Order.objects.get_or_create(user=current_user, complete=False)
     orderItem, created = OrderItem.objects.get_or_create(order=order, product=product)
 
@@ -141,10 +154,14 @@ def update_item(request):
         # r = AddPurchase(current_user.id,product.id,cascade_create=True)
         # client.send(r)
         orderItem.quantity = (orderItem.quantity + 1)
-        # product.quantity = (product.quantity -1)
+        product.quantity = (product.quantity -1)
+        if(product.quantity==0):
+            product.in_stock = False
+        product.save()
     elif (action == 'remove'):
         orderItem.quantity = (orderItem.quantity - 1)
-        # product.quantity = (product.quantity + 1)
+        product.quantity = (product.quantity + 1)
+        product.save()
 
     orderItem.save()
 

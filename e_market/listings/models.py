@@ -48,6 +48,7 @@ class Product(models.Model):
     list_date = models.DateTimeField(default=datetime.now,blank=True)
     rating = models.IntegerField(null=True,blank=True)
     is_offer = models.BooleanField(default=False,blank=True,null=True)
+    sold = models.IntegerField(null=True,blank=True, default=0)
     # valid_until = models.DateTimeField(default=datetime.now,blank=True)
     def _str_(self):
         return self.title
