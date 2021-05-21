@@ -30,6 +30,7 @@
       <div class="row">
          {% if products  %}
          {% for product in products %}
+         {% if product.is_offer == False %}
          <!-- Listing 1 -->
          <div class="col-md-6 col-lg-4 mb-4">
             <div class="card listing-preview">
@@ -41,11 +42,11 @@
                      </a>
                   </div>
                   <hr>
-                  <div class="row py-2 ">
+                  <div class="row py-2 " style="height:50px;">
                      <div class="col-6" >
                         <i class="fas fa-list-alt"></i> {{product.category}}
                      </div>
-                     <div class="col-6">
+                     <div class="col-6" style="height:50px;">
                         <i class="fa fa-money-bill-alt"></i> Price:
                         {% if product.currency == 'usd' %}
                         ${{product.price}}
@@ -54,7 +55,7 @@
                         {% endif%}
                      </div>
                   </div>
-                  <div class="row py-2" >
+                  <div class="row py-2">
                      <div class="col-6">
                         <i class="fa fa-sort-amount-asc"></i> {{ product.brand_name }}
                      </div>
@@ -71,16 +72,69 @@
                   <a style="margin-bottom:15px; width:150px;" data-product= "{{product.id}}" data-action="add" class="btn btn-outline-dark update-cart" href="#">Add to Cart</a>
                   <a style="margin-bottom:15px; float:right; width:150px;" class="btn btn-outline-dark" href="{% url 'listing' product.id %}">View</a>
                   <hr>
-                  <div class=" row" style="margin-top:0px;">
-                     <a data-product="{{item.product.id}}" data-action="remove" class="fas fa-minus chg-quantity update-cart btn" style="margin-left:75px;background-color:#333; color:white; width:40px; height:30px;"></a>
-                     <p>
-                        <input class="input-group-field quantity" type="number" name="quantity"  style="height:30px; margin-top:5px; margin-right:3px; margin-left:3px; width:100px;">
-                     </p>
-                     <a data-product= "{{item.product.id}}" data-action="add" class="fas fa-plus chg-quantity update-cart btn" style="margin-left:5px;background-color:#333; color:white; width:40px; height:30px;"></a>
-                  </div>
+                  <div class="row" style="display:flex; justify-content:center;">
+            <a onclick="decrement()" class="btn btn-light" style="background-color: #333; color:white; width:40px;">-</a>
+            <input value="0" id=demoInput type=number min=0 max=20 readonly style="width:100px; ">
+            <a onclick="increment()" class="btn btn-light" style="background-color: #333; color:white; width:40px;">+</a>
+         </div>
                </div>
             </div>
          </div>
+         {% else %}
+         <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card listing-preview">
+               <img class="card-img-top" src="{{product.photo_main.url}}" style="max-height:300px;">
+               <div class="card-img-overlay">
+                  <h2>
+                     <span class="badge" style="background-color: #FFFF00; color:#000000 ;">Offer</span>
+                  </h2>
+               </div>
+               <div class="card-body" >
+                  <div class="listing-heading text-center" style="height:40px;">
+                     <a href="{% url 'listing' product.id %}">
+                        <h5 style="color:black;">{{ product.title }}</h5>
+                     </a>
+                  </div>
+                  <hr>
+                  <div class="row py-2" style="height:50px;">
+                     <div class="col-6" >
+                        <i class="fas fa-list-alt"></i> {{product.category}}
+                     </div>
+                     <div class="col-6">
+                        <i class="fa fa-money-bill-alt"></i> Price:
+                        {% if product.currency == 'usd' %}
+                        ${{product.price}}
+                        {% else %}
+                        L.L{{product.price}}
+                        {% endif%}
+                     </div>
+                  </div>
+                  <div class="row py-2" style="height:50px;">
+                     <div class="col-6">
+                        <i class="fa fa-sort-amount-asc"></i> {{ product.brand_name }}
+                     </div>
+                     <div class="col-6">
+                        <i class="fas fa-store-alt"></i>
+                        {% if product.in_stock %}
+                        In Stock
+                        {% else %}
+                        Out of Stock
+                        {% endif %}
+                     </div>
+                  </div>
+                  <hr>
+                  <a style="margin-bottom:15px; width:150px;" data-product= "{{product.id}}" data-action="add" class="btn btn-outline-dark update-cart" href="#">Add to Cart</a>
+                  <a style="margin-bottom:15px; float:right; width:150px;" class="btn btn-outline-dark" href="{% url 'listing' product.id %}">View</a>
+                  <hr>
+                  <div class="row" style="display:flex; justify-content:center;">
+            <a onclick="decrementt()" class="btn btn-light" style="background-color: #333; color:white; width:40px;">-</a>
+            <input value="0" id=demoInput1 type=number min=0 max=20 readonly style="width:100px; ">
+            <a onclick="incrementt()" class="btn btn-light" style="background-color: #333; color:white; width:40px;">+</a>
+         </div>
+               </div>
+            </div>
+         </div>
+         {% endif %}
          {% endfor %}
          {% else %}
          <div class="container">
@@ -91,4 +145,20 @@
    </div>
 </section>
 </div>
+
+<script>
+   function increment() {
+      document.getElementById('demoInput').stepUp();
+   }
+   function decrement() {
+      document.getElementById('demoInput').stepDown();
+   }
+
+   function incrementt() {
+      document.getElementById('demoInput1').stepUp();
+   }
+   function decrementt() {
+      document.getElementById('demoInput1').stepDown();
+   }
+</script>
 {% endblock %}

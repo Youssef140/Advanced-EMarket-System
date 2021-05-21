@@ -219,13 +219,14 @@
                               <a style="margin-bottom:15px; width:150px;" data-product= "" data-action="add" class="btn btn-outline-dark update-cart" href="#">Add to Cart</a>
                               <a style="margin-bottom:15px; float:right; width:150px;" class="btn btn-outline-dark" href="#">View</a>
                               <hr>
-                              <div class=" row" style="margin-top:0px;">
-                                 <a data-product="" data-action="remove" class="fas fa-minus chg-quantity update-cart btn" style="margin-left:75px;background-color:#333; color:white; width:40px; height:30px;"></a>
-                                 <p>
-                                    <input class="input-group-field quantity" type="number" name="quantity"  style="height:30px; margin-top:5px; margin-right:3px; margin-left:3px; width:100px;">
-                                 </p>
-                                 <a data-product= "" data-action="add" class="fas fa-plus chg-quantity update-cart btn" style="margin-left:5px;background-color:#333; color:white; width:40px; height:30px;"></a>
-                              </div>
+
+                               <div class="row" style="display:flex; justify-content:center;">
+            <a onclick="decrementt()" class="btn btn-light" style="background-color: #333; color:white; width:40px;">-</a>
+            <input value="0" id=demoInput1 type=number min=0 max=20 readonly style="width:100px; ">
+            <a onclick="incrementt()" class="btn btn-light" style="background-color: #333; color:white; width:40px;">+</a>
+         </div>
+
+
                            </div>
                         </div>
                      </div>
