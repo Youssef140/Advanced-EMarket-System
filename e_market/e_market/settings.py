@@ -69,9 +69,9 @@ TEMPLATES = [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-                'listings.context_processors.get_categories',
+                 'listings.context_processors.get_categories',
                 'listings.context_processors.get_order_items',
+                'django.contrib.messages.context_processors.messages'
             ],
         },
     },

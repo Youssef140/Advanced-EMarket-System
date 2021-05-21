@@ -42,7 +42,7 @@
                         <div class="form" >
                            <form class="form" action="{% url 'search' %}" method = "get" id="search-form">
                               <i class="fa fa-search" ></i>
-                              <input  name="keywords" id="searchBar" size ="10" type="text" class="form-control form-input mr-sm-2" placeholder="Search anything..." autocomplete="off" aria-label="Search" value="{{ values.keywords }}">
+                              <input name="keywords" id="searchBar" size ="10" type="text" class="form-control form-input mr-sm-2" placeholder="Search anything..." autocomplete="off" aria-label="Search" value="{{ values.keywords }}">
                               <span class="left-pan" >
                               <button style="background-color:#ffffff; border:none; " type="button"><i id="mic-logo" class="fas fa-microphone"></i></button>
                               <a href="{% url 'search_image' %}" style="background-color:#ffffff; border:none; " type="button"><i class="fas fa-camera"></i></a>
