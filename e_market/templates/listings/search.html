@@ -37,7 +37,7 @@
             <div class="card listing-preview">
                <img class="card-img-top" src="{{product.photo_main.url}}" style="max-height:300px;">
                <div class="card-body" >
-                  <div class="listing-heading text-center" style="height:40px;">
+                  <div class="listing-heading text-center" style="height:50px;">
                      <a href="{% url 'listing' product.id %}">
                         <h5 style="color:black;">{{ product.title }}</h5>
                      </a>
@@ -56,7 +56,7 @@
                         {% endif%}
                      </div>
                   </div>
-                  <div class="row py-2">
+                  <div class="row py-2" style="height:50px;">
                      <div class="col-6">
                         <i class="fa fa-sort-amount-asc"></i> {{ product.brand_name }}
                      </div>
@@ -70,14 +70,14 @@
                      </div>
                   </div>
                   <hr>
-                  <a style="margin-bottom:15px; width:150px;" data-product= "{{product.id}}" data-action="add" class="btn btn-outline-dark update-cart" href="#">Add to Cart</a>
-                  <a style="margin-bottom:15px; float:right; width:150px;" class="btn btn-outline-dark" href="{% url 'listing' product.id %}">View</a>
+                  <a style="margin-bottom:15px; width:150px;" data-product= "{{product.id}}" data-action="add" class="button2 btn update-cart" href="#">Add to Cart</a>
+                  <a style="margin-bottom:15px; float:right; width:150px;" class="btn button2" href="{% url 'listing' product.id %}">View</a>
                   <hr>
                   <div class="row" style="display:flex; justify-content:center;">
-            <a onclick="decrement()" class="btn btn-light" style="background-color: #333; color:white; width:40px;">-</a>
-            <input value="0" id=demoInput type=number min=0 max=20 readonly style="width:100px; ">
-            <a onclick="increment()" class="btn btn-light" style="background-color: #333; color:white; width:40px;">+</a>
-         </div>
+                     <a onclick="decrement()" class="btn btn-light" style="background-color: #333; color:white; width:40px;">-</a>
+                     <input value="0" id=demoInput type=number min=0 max=20 readonly style="width:100px; ">
+                     <a onclick="increment()" class="btn btn-light" style="background-color: #333; color:white; width:40px;">+</a>
+                  </div>
                </div>
             </div>
          </div>
@@ -91,7 +91,7 @@
                   </h2>
                </div>
                <div class="card-body" >
-                  <div class="listing-heading text-center" style="height:40px;">
+                  <div class="listing-heading text-center" style="height:50px;">
                      <a href="{% url 'listing' product.id %}">
                         <h5 style="color:black;">{{ product.title }}</h5>
                      </a>
@@ -124,14 +124,14 @@
                      </div>
                   </div>
                   <hr>
-                  <a style="margin-bottom:15px; width:150px;" data-product= "{{product.id}}" data-action="add" class="btn btn-outline-dark update-cart" href="#">Add to Cart</a>
-                  <a style="margin-bottom:15px; float:right; width:150px;" class="btn btn-outline-dark" href="{% url 'listing' product.id %}">View</a>
+                  <a style="margin-bottom:15px; width:150px;" data-product= "{{product.id}}" data-action="add" class="btn button2 update-cart" href="#">Add to Cart</a>
+                  <a style="margin-bottom:15px; float:right; width:150px;" class="btn button2" href="{% url 'listing' product.id %}">View</a>
                   <hr>
                   <div class="row" style="display:flex; justify-content:center;">
-            <a onclick="decrementt()" class="btn btn-light" style="background-color: #333; color:white; width:40px;">-</a>
-            <input value="0" id=demoInput1 type=number min=0 max=20 readonly style="width:100px; ">
-            <a onclick="incrementt()" class="btn btn-light" style="background-color: #333; color:white; width:40px;">+</a>
-         </div>
+                     <a onclick="decrementt()" class="btn btn-light" style="background-color: #333; color:white; width:40px;">-</a>
+                     <input value="0" id=demoInput1 type=number min=0 max=20 readonly style="width:100px; ">
+                     <a onclick="incrementt()" class="btn btn-light" style="background-color: #333; color:white; width:40px;">+</a>
+                  </div>
                </div>
             </div>
          </div>
@@ -146,7 +146,17 @@
    </div>
 </section>
 </div>
-
+<style>
+   .button2 {
+   background-color: white;
+   color: black;
+   border: 1px solid #555555;
+   }
+   .button2:hover {
+   background-color: #333;
+   color: white;
+   }
+</style>
 <script>
    function increment() {
       document.getElementById('demoInput').stepUp();
