@@ -27,110 +27,120 @@
       </nav>
    </div>
 </section>
-
 <div class="container">
-<div class="row">
-         {% if offers  %}
-         {% for offer in offers %}
-         <!-- Listing 1 -->
-         <div class="col-md-6 col-lg-4 mb-4">
-            <div class="card listing-preview">
-               <img class="card-img-top" src="{{offer.photo_main.url}}" style="height:300px;">
-               <div class="card-img-overlay">
-                  <h2>
-                     <span class="badge" style="background-color: #FFFF00; color:#000000 ;">Offer</span>
-                  </h2>
+   <div class="row">
+      {% if offers  %}
+      {% for offer in offers %}
+      <!-- Listing 1 -->
+      <div class="col-md-6 col-lg-4 mb-4">
+         <div class="card listing-preview">
+            <img class="card-img-top" src="{{offer.photo_main.url}}" style="height:300px;">
+            <div class="card-img-overlay">
+               <h2>
+                  <span class="badge" style="background-color: #FFFF00; color:#000000 ;">Offer</span>
+               </h2>
+            </div>
+            <div class="card-body" >
+               <div class="listing-heading text-center" style="height:80px;">
+                  <a href="">
+                     <h5 style="color:black;">{{ offer.title }}</h5>
+                  </a>
                </div>
-               <div class="card-body" >
-                  <div class="listing-heading text-center" style="height:80px;">
-                     <a href="">
-                        <h5 style="color:black;">{{ offer.title }}</h5>
-                     </a>
+               <hr>
+               <div class="row py-2 " style="height:50px;">
+                  <div class="col-6" >
+                     <i class="fas fa-list-alt"></i> {{offer.category}}
                   </div>
-                  <hr>
-                  <div class="row py-2 " style="height:50px;">
-                     <div class="col-6" >
-                        <i class="fas fa-list-alt"></i> {{offer.category}}
-                     </div>
-                     <div class="col-6" style="height:50px;">
-                        <i class="fa fa-money-bill-alt"></i> Price:
-                        {% if offer.currency == 'usd' %}
-                        ${{offer.price}}
-                        {% else %}
-                        L.L{{offer.price}}
-                        {% endif%}
-                     </div>
+                  <div class="col-6" style="height:50px;">
+                     <i class="fa fa-money-bill-alt"></i> Price:
+                     {% if offer.currency == 'usd' %}
+                     ${{offer.price}}
+                     {% else %}
+                     L.L{{offer.price}}
+                     {% endif%}
                   </div>
-                  <div class="row py-2" >
-                     <div class="col-6">
-                        <i class="fa fa-sort-amount-asc"></i> {{ offer.brand_name }}
-                     </div>
-                     <div class="col-6">
-                        <i class="fas fa-store-alt"></i>
-                        {% if offer.in_stock %}
-                        In Stock
-                        {% else %}
-                        Out of Stock
-                        {% endif %}
-                     </div>
+               </div>
+               <div class="row py-2" >
+                  <div class="col-6">
+                     <i class="fa fa-sort-amount-asc"></i> {{ offer.brand_name }}
                   </div>
-                  <hr>
-                  <a style="margin-bottom:15px; width:150px;" data-product= "{{offer.id}}" data-action="add" class="btn btn-outline-dark update-cart" href="#">Add to Cart</a>
-                  <a style="margin-bottom:15px; float:right; width:150px;" class="btn btn-outline-dark" href="{% url 'offer' offer.id %}">View</a>
-                  <hr>
-                  <div class=" row" style="display:flex; justify-content:center;">
-                      <a onclick="decrement()" data-product="{{item.offer.id}}" data-action="remove" class="btn btn-light chg-quantity update-cart" style="background-color: #333; color:white; width:40px;">-</a>
-                      <input value="0" id=demoInput type=number min=0 max=20 readonly style="width:100px; height:38px;margin-top:5px; outline:none;" class="input-group-field quantity">
-                      <a onclick="increment()" data-product="{{item.offer.id}}" data-action="add" class="btn btn-light chg-quantity update-cart" style="background-color: #333; color:white; width:40px;">+</a>
+                  <div class="col-6">
+                     <i class="fas fa-store-alt"></i>
+                     {% if offer.in_stock %}
+                     In Stock
+                     {% else %}
+                     Out of Stock
+                     {% endif %}
                   </div>
+               </div>
+               <hr>
+               <a style="margin-bottom:15px; width:150px;text-decoration:none;" data-product= "{{offer.id}}" data-action="add" class="btn button2 update-cart" href="#">Add to Cart</a>
+               <a style="margin-bottom:15px; float:right; width:150px; text-decoration:none;" class="button2 btn" href="{% url 'offer' offer.id %}">View</a>
+               <hr>
+               <div class=" row" style="display:flex; justify-content:center;">
+                  <a onclick="decrement()" data-product="{{item.offer.id}}" data-action="remove" class="btn btn-light chg-quantity update-cart" style="background-color: #333; color:white; width:40px;">-</a>
+                  <input value="0" id=demoInput type=number min=0 max=20 readonly style="width:100px; height:38px;margin-top:5px; outline:none;" class="input-group-field quantity">
+                  <a onclick="increment()" data-product="{{item.offer.id}}" data-action="add" class="btn btn-light chg-quantity update-cart" style="background-color: #333; color:white; width:40px;">+</a>
                </div>
             </div>
          </div>
-         {% endfor %}
-         {% else %}
-         <div class="container">
-            <p>No Offers Available </p>
-         </div>
+      </div>
+      {% endfor %}
+      {% else %}
+      <div class="container">
+         <p>No Offers Available </p>
+      </div>
+      {% endif %}
+   </div>
+   <div class="row">
+      <div class="col-md-12">
+         {% if offers.has_other_pages %}
+         <ul class="pagination">
+            {% if offers.has_previous %}
+            <li class="page-item enabled">
+               <a class="page-link " href="?page={{offers.previous_page_number}}" style="color:black;">&laquo;</a>
+            </li>
+            {% else %}
+            <li class="page-item disabled">
+               <a class="btn btn-light btn-block" style="color:black;">&laquo;</a>
+            </li>
+            {% endif %}
+            {% for i in offers.paginator.page_range %}
+            {% if offers.number == i %}
+            <li class="page-item active">
+               <a class="btn btn-light btn-block" style="background-color: #2a2a2a;  color : #ffffff; border-width: 2px;">{{i}}</a>
+            </li>
+            {% else %}
+            <li class="page-item">
+               <a href="?page={{i}}" class="btn btn-light btn-block" >{{i}}</a>
+            </li>
+            {% endif %}
+            {% endfor %}
+            {% if offers.has_next %}
+            <li class="page-item enabled">
+               <a class="btn btn-light btn-block " href="?page={{offers.next_page_number}}" style="color:black;">&raquo;</a>
+            </li>
+            {% else %}
+            <li class="page-item disabled">
+               <a class="page-link" style="color:black;">&raquo;</a>
+            </li>
+            {% endif %}
+         </ul>
          {% endif %}
       </div>
-   <div class="row">
-         <div class="col-md-12">
-            {% if offers.has_other_pages %}
-            <ul class="pagination">
-               {% if offers.has_previous %}
-               <li class="page-item enabled">
-                  <a class="page-link " href="?page={{offers.previous_page_number}}" style="color:black;">&laquo;</a>
-               </li>
-               {% else %}
-               <li class="page-item disabled">
-                  <a class="btn btn-light btn-block" style="color:black;">&laquo;</a>
-               </li>
-               {% endif %}
-               {% for i in offers.paginator.page_range %}
-               {% if offers.number == i %}
-               <li class="page-item active">
-                  <a class="btn btn-light btn-block" style="background-color: #2a2a2a;  color : #ffffff; border-width: 2px;">{{i}}</a>
-               </li>
-               {% else %}
-               <li class="page-item">
-                  <a href="?page={{i}}" class="btn btn-light btn-block" >{{i}}</a>
-               </li>
-               {% endif %}
-               {% endfor %}
-               {% if offers.has_next %}
-               <li class="page-item enabled">
-                  <a class="btn btn-light btn-block " href="?page={{offers.next_page_number}}" style="color:black;">&raquo;</a>
-               </li>
-               {% else %}
-               <li class="page-item disabled">
-                  <a class="page-link" style="color:black;">&raquo;</a>
-               </li>
-               {% endif %}
-            </ul>
-            {% endif %}
-         </div>
-      </div>
+   </div>
 </div>
+<style>
+   .button2 {
+   background-color: white;
+   color: black;
+   border: 1px solid #555555;
+   }
+   .button2:hover {
+   background-color: #333;
+   color: white;
+   }
+</style>
 <script>
    function increment() {
       document.getElementById('demoInput').stepUp();
@@ -139,6 +149,5 @@
       document.getElementById('demoInput').stepDown();
    }
 </script>
-
 {% endblock %}
 <script type="text/javascript" src="{% static 'js/cart.js' %}"></script>

@@ -1,66 +1,84 @@
 {% extends 'base.html' %}
 {% load humanize %}
-
 {% block content %}
 {% load static %}
-
 <div class="container">
-    <div class="col-lg-12">
-        <div class="box-element">
-            <a class="btn btn-outline" style="background-color:#333; color:white;" href="{% url 'categories' %}">&#x2190; Continue Shopping</a>
-
-        <br>
-        <br>
-
-        <table class="table">
+   <div class="col-lg-12">
+      <div class="box-element">
+         <a class="button button1 btn" style="background-color:#333; color:white;" href="{% url 'categories' %}">&#x2190; Continue Shopping</a>
+         <br>
+         <br>
+         <table class="table">
             <tr>
-                <th>
-                    <h5>Items: <strong>{{order.get_cart_items}}</strong></h5>
-                </th>
-                <th><h5>Total: <strong>${{order.get_cart_total}}</strong></h5></th>
-                <th>
-                    <a style="float:right; margin:5px; background-color:#333; color:white;" class="btn"  href="{% url 'checkout' %}">Checkout</a>
-                </th>
+               <th>
+                  <h5>Items: <strong>{{order.get_cart_items}}</strong></h5>
+               </th>
+               <th>
+                  <h5>Total: <strong>${{order.get_cart_total}}</strong></h5>
+               </th>
+               <th>
+                  <a style="float:right; margin:5px; background-color:#333; color:white; width:100px;" class="btn button button1"  href="{% url 'checkout' %}">Checkout</a>
+               </th>
             </tr>
-        </table>
+         </table>
+      </div>
+      <br>
+      <br>
+      <div class="box-element">
+         <div class="cart-row">
+            <div style="flex:2"></div>
+            <div style="flex:2"><strong>Item</strong></div>
+            <div style="flex:1"><strong>Price</strong></div>
+            <div style="flex:1"><strong>Quantity</strong></div>
+            <div style="flex:1"><strong>Total</strong></div>
+         </div>
+         {%if items%}
+         {% for item in items %}
+         <div class="cart-row">
+            <div style="flex:2"><img class="row-image" src="{{item.product.photo_main.url}}"></div>
+            <div style="flex:2; margin-top:30px;">{{item.product.title}}</div>
+            <div style="flex:1;margin-top:30px; ">{{item.product.price|floatformat:2}}</div>
+            <div style="flex:1; margin-top:20px;">
+               <div class=" row" style="margin-top:0px;">
+                  <a data-product="{{item.product.id}}" data-action="remove" class="fas fa-minus chg-quantity update-cart btn" style="margin-right:10px;background-color:#333; color:white; width:40px; height:30px;"></a>
+                  <p style="margin-top:5px; width:20px;">{{item.quantity}}</p>
+                  <a data-product= "{{item.product.id}}" data-action="add" class="fas fa-plus chg-quantity update-cart btn" style="margin-left:5px;background-color:#333; color:white; width:40px; height:30px;"></a>
+               </div>
+            </div>
+            <div style="flex:1; margin-top:30px;">${{item.get_total}}</div>
+         </div>
+         {% endfor %}
+         {% endif %}
+      </div>
+      <br>
+      <br>
+   </div>
 </div>
-        <br>
-        <br>
-
-        <div class="box-element">
-            <div class="cart-row">
-					<div style="flex:2"></div>
-					<div style="flex:2"><strong>Item</strong></div>
-					<div style="flex:1"><strong>Price</strong></div>
-					<div style="flex:1"><strong>Quantity</strong></div>
-					<div style="flex:1"><strong>Total</strong></div>
-				</div>
-            {%if items%}
-            {% for item in items %}
-            <div class="cart-row">
-					<div style="flex:2"><img class="row-image" src="{{item.product.photo_main.url}}"></div>
-					<div style="flex:2; margin-top:30px;">{{item.product.title}}</div>
-					<div style="flex:1;margin-top:30px; ">{{item.product.price|floatformat:2}}</div>
-					<div style="flex:1; margin-top:20px;">
-                        <div class=" row" style="margin-top:0px;">
-                            <a data-product="{{item.product.id}}" data-action="remove" class="fas fa-minus chg-quantity update-cart btn" style="margin-right:10px;background-color:#333; color:white; width:40px; height:30px;"></a>
-                            <p style="margin-top:5px; width:20px;">{{item.quantity}}</p>
-                            <a data-product= "{{item.product.id}}" data-action="add" class="fas fa-plus chg-quantity update-cart btn" style="margin-left:5px;background-color:#333; color:white; width:40px; height:30px;"></a>
-                         </div>
-                    </div>
-					<div style="flex:1; margin-top:30px;">${{item.get_total}}</div>
-				</div>
-
-        {% endfor %}
-
-        {% endif %}
-
-        </div>
-        <br>
-            <br>
-
-    </div>
-</div>
+<style>
+   .button {
+   background-color: #333;
+   text-align: center;
+   padding: 6px;
+   border: none;
+   color: white;
+   height: 40px;
+   text-decoration: none;
+   cursor: pointer;
+   -webkit-transition-duration: 0.4s; /* Safari */
+   transition-duration: 0.4s;
+   }
+   .button1:hover {
+   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+   }
+   .button2 {
+   background-color: white;
+   color: black;
+   border: 1px solid #555555;
+   }
+   .button2:hover {
+   background-color: #333;
+   color: white;
+   }
+</style>
 <script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
 {% endblock %}
-

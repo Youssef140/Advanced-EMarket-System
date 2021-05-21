@@ -1,41 +1,80 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-
 <section id="login" class="py-5">
-    <div class="container">
+   <div class="container">
       <div class="row">
-        <div class="col-md-6 row-md-6 mx-auto">
-          <div class="card">
-            <div class="card-header " style="background-color : #2a2a2a; color : #ffffff">
-              <h4>
-                <i class="fas fa-sign-in-alt"></i> Login</h4>
+         <div class="col-md-6 row-md-6 mx-auto">
+            <div class="card">
+               <div class="card-header " style="background-color : #2a2a2a; color : #ffffff">
+                  <h4>
+                     <i class="fas fa-sign-in-alt"></i> Login
+                  </h4>
+               </div>
+               <div class="card-body">
+                  <!--                Alerts-->
+                  <form name="myForm" action="{% url 'login' %}" method="POST" onsubmit="return validateForm()">
+                     {% csrf_token %}
+                     <div class="form-group">
+                        <label for="username" >Username</label>
+                        <input type="text" id ="username" placeholder="Enter Username.." name="username" class="form-control" >
+                     </div>
+                     <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" name="password" id ="password" placeholder="Enter Password.." class="form-control" >
+                     </div>
+                     <div class="form-group" style="justify-content:center; display:flex;">
+                        Don't have an account? <a style="color:blue;" href="{% url 'register' %}">&nbsp;Register</a>
+                     </div>
+                     <input type="submit" value="Login" class="button button1 btn-block " style="background-color : #2a2a2a; color : #ffffff;">
+                  </form>
+               </div>
             </div>
-            <div class="card-body">
-              <!--                Alerts-->
-              <form action="{% url 'login' %}" method="POST">
-                  {% csrf_token %}
-                <div class="form-group">
-                  <label for="username">Username</label>
-                  <input type="text" id ="username" name="username" class="form-control" required>
-                </div>
-
-                <div class="form-group">
-                  <label for="password">Password</label>
-                  <input type="password" name="password" id ="password" class="form-control" required>
-                </div>
-
-                <div class="form-group" style="justify-content:center; display:flex;">
-                  Don't have an account? <a style="color:blue;" href="{% url 'register' %}">&nbsp;Create</a>
-                </div>
-
-                <input type="submit" value="Login" class="btn btn-block " style="background-color : #2a2a2a; color : #ffffff;">
-              </form>
-            </div>
-          </div>
-        </div>
+         </div>
       </div>
-    </div>
-  </section>
+   </div>
+</section>
+<style>
+   .button {
+   background-color: #333;
+   text-align: center;
+   padding: 6px;
+   border: none;
+   color: white;
+   height: 40px;
+   text-decoration: none;
+   cursor: pointer;
+   -webkit-transition-duration: 0.4s; /* Safari */
+   transition-duration: 0.4s;
+   }
+   .button1:hover {
+   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+   }
+   .button2 {
+   background-color: white;
+   color: black;
+   border: 1px solid #555555;
+   }
+   .button2:hover {
+   background-color: #333;
+   color: white;
+   }
+</style>
+<script>
+   function validateForm() {
+     var x = document.forms["myForm"]["username"].value;
+     var y = document.forms["myForm"]["password"].value;
+     if (x == "" && y == "") {
+       alert("Make sure to fill out all the fields");
+       return false;
+     } else if(y == ""){
+       alert("Password must be filled out");
+       return false;
+     } else if (x == "" ) {
+     alert("Username must be filled out");
+     return false;
+     } else return true;
+   }
 
+</script>
 {% endblock %}

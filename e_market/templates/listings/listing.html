@@ -29,93 +29,93 @@
 <!-- Listing -->
 <section class="py-4">
    <div class="container">
-         <div style="margin:auto;">
-            <!-- Home Main Image -->
-            <div style="display:flex; justify-content:center;">
-               <img src="{{p.photo_main.url}}" alt="" class="img-main img-fluid mb-3" style="width:500px; height:500px;" >
-           </div>
-            <!-- Thumbnails -->
-            <div class="row mb-5 thumbs">
-               <div class="col-md-2">
-                  <a href="{{p.photo_2.url}}" data-lightbox="home-images">
-                  <img src="{{p.photo_2.url}}" alt="" class="img-fluid">
-                  </a>
-               </div>
-               <div class="col-md-2">
-                  <a href="{{p.photo_3.url}}" data-lightbox="home-images">
-                  <img src="{{p.photo_3.url}}" alt="" class="img-fluid">
-                  </a>
-               </div>
-               <div class="col-md-2">
-                  <a href="{{p.photo_3.url}}" data-lightbox="home-images">
-                  <img src="{{p.photo_3.url}}" alt="" class="img-fluid">
-                  </a>
-               </div>
-               <div class="col-md-2">
-                  <a href="{{p.photo_main.url}}" data-lightbox="home-images">
-                  <img src="{{p.photo_main.url}}" alt="" class="img-fluid">
-                  </a>
-               </div>
-               <div class="col-md-2">
-                  <a href="{{p.photo_main.url}}" data-lightbox="home-images">
-                  <img src="{{p.photo_main.url}}" alt="" class="img-fluid">
-                  </a>
-               </div>
-               <div class="col-md-2">
-                  <a href="" data-lightbox="home-images">
-                  <img src="{{p.photo_main.url}}" alt="" class="img-fluid">
-                  </a>
-               </div>
+      <div style="margin:auto;">
+         <!-- Home Main Image -->
+         <div style="display:flex; justify-content:center;">
+            <img src="{{p.photo_main.url}}" alt="" class="img-main img-fluid mb-3" style="width:500px; height:500px;" >
+         </div>
+         <!-- Thumbnails -->
+         <div class="row mb-5 thumbs">
+            <div class="col-md-2">
+               <a href="{{p.photo_2.url}}" data-lightbox="home-images">
+               <img src="{{p.photo_2.url}}" alt="" class="img-fluid">
+               </a>
             </div>
-            <!-- Fields -->
-            <div class="row mb-5 fields" style="width:100%">
-               <div style="width:100%">
-                  <ul class="list-group list-group-flush">
-                     <li class="list-group-item ">
-                        <i class="fas fa-list-alt"></i> Category:
-                        <span class="float-right">{{ p.category }}</span>
-                     </li>
-                     <li class="list-group-item ">
-                        <i class="fa fa-money-bill-alt"></i> Price:
-                        <span class="float-right">
-                        {% if p.currency == 'usd' %}
-                        ${{ p.price }}
-                        {% else %}
-                        L.L{{ p.price }}
-                        {% endif%}
-                        </span>
-                     </li>
-                     <li class="list-group-item">
-                        <i class="fa fa-sort-amount-asc"></i> Brand:
-                        <span class="float-right">{{ p.brand_name }}</span>
-                     </li>
-                     <li class="list-group-item ">
-                        <i class="fas fa-store-alt"></i> In Stock:
-                        <span class="float-right">
-                        {% if p.in_stock %}
-                        Yes
-                        {% else %}
-                        No
-                        {% endif %}
-                        </span>
-                     </li>
-                     <li class="list-group-item ">
+            <div class="col-md-2">
+               <a href="{{p.photo_3.url}}" data-lightbox="home-images">
+               <img src="{{p.photo_3.url}}" alt="" class="img-fluid">
+               </a>
+            </div>
+            <div class="col-md-2">
+               <a href="{{p.photo_3.url}}" data-lightbox="home-images">
+               <img src="{{p.photo_3.url}}" alt="" class="img-fluid">
+               </a>
+            </div>
+            <div class="col-md-2">
+               <a href="{{p.photo_main.url}}" data-lightbox="home-images">
+               <img src="{{p.photo_main.url}}" alt="" class="img-fluid">
+               </a>
+            </div>
+            <div class="col-md-2">
+               <a href="{{p.photo_main.url}}" data-lightbox="home-images">
+               <img src="{{p.photo_main.url}}" alt="" class="img-fluid">
+               </a>
+            </div>
+            <div class="col-md-2">
+               <a href="" data-lightbox="home-images">
+               <img src="{{p.photo_main.url}}" alt="" class="img-fluid">
+               </a>
+            </div>
+         </div>
+         <!-- Fields -->
+         <div class="row mb-5 fields" style="width:100%">
+            <div style="width:100%">
+               <ul class="list-group list-group-flush">
+                  <li class="list-group-item ">
+                     <i class="fas fa-list-alt"></i> Category:
+                     <span class="float-right">{{ p.category }}</span>
+                  </li>
+                  <li class="list-group-item ">
+                     <i class="fa fa-money-bill-alt"></i> Price:
+                     <span class="float-right">
+                     {% if p.currency == 'usd' %}
+                     ${{ p.price }}
+                     {% else %}
+                     L.L{{ p.price }}
+                     {% endif%}
+                     </span>
+                  </li>
+                  <li class="list-group-item">
+                     <i class="fa fa-sort-amount-asc"></i> Brand:
+                     <span class="float-right">{{ p.brand_name }}</span>
+                  </li>
+                  <li class="list-group-item ">
+                     <i class="fas fa-store-alt"></i> In Stock:
+                     <span class="float-right">
+                     {% if p.in_stock %}
+                     Yes
+                     {% else %}
+                     No
+                     {% endif %}
+                     </span>
+                  </li>
+                  <li class="list-group-item ">
                      <i class="fas fa-star"></i> Average Rating:
                      <span class="float-right"> 5
                      </span>
                   </li>
-                  </ul>
-               </div>
-               <div class="row mb-5 mt-5">
-            <div class="col-md-12">
-               <h3>Add to Cart</h3>
-               <hr>
+               </ul>
             </div>
+            <div class="row mb-5 mt-5">
+               <div class="col-md-12">
+                  <h3>Add to Cart</h3>
+                  <hr>
+               </div>
                <div class="row mb-5" style="margin-left:15px;">
-            <button onclick="decrement()" class="btn btn-light" style="background-color: #333; color:white; width:40px;">-</button>
-            <input value="0" id=demoInput type=number min=0 max=20 readonly style="width:100px; text-center">
-            <button onclick="increment()" class="btn btn-light" style="background-color: #333; color:white; width:40px;">+</button>
-         </div>
+                  <button onclick="decrement()" class="btn btn-light" style="background-color: #333; color:white; width:40px;">-</button>
+                  <input value="0" id=demoInput type=number min=0 max=20 readonly style="width:100px; text-center">
+                  <button onclick="increment()" class="btn btn-light" style="background-color: #333; color:white; width:40px;">+</button>
+               </div>
                <!-- Description -->
                <div class="container">
                   <div class="row mb-5">
@@ -123,10 +123,10 @@
                         <h3>Product Description</h3>
                         <hr>
                         {% if p.description != "" %}
-               {{p.description}}
-               {% else %}
-               No Description Available
-               {% endif %}
+                        {{p.description}}
+                        {% else %}
+                        No Description Available
+                        {% endif %}
                      </div>
                   </div>
                </div>
@@ -145,7 +145,7 @@
                               <li class="rating-item" data-rate="4"></li>
                               <li class="rating-item" data-rate="5"></li>
                            </ul>
-                           <button class = "btn btn-light " style="background-color: #2a2a2a; color:white; margin-top:5px;" type="submit" id="custom-button">Submit</button>
+                           <button class = "button button1" style="background-color: #2a2a2a; color:white; margin-top:5px; width:80px;" type="submit" id="custom-button">Submit</button>
                         </form>
                      </div>
                   </div>
@@ -159,7 +159,14 @@
                            <div style="width:100%; margin-left:0px;">
                               <ul class="list-group list-group-flush">
                                  <li class="list-group-item">
-                                    <h6>Username</h6>
+                                    <div style="display:flex;">
+                                       <div style="float:left; margin-top:3px;">
+                                          <h6>Username </h6>
+                                       </div>
+                                       <div style="float:left; margin-left:5px;">
+                                          <i class="fas fa-star"></i>
+                                       </div>
+                                    </div>
                                     Hello
                                  </li>
                                  <li class="list-group-item ">
@@ -174,60 +181,58 @@
                </div>
             </div>
          </div>
-   </div>
-   <div class="">
-                  <h4>Related Products</h4>
-                  <hr>
-               </div>
-   <div class="">
-      <div class="row">
-                     <!-- Listing 1 -->
-                     <div class="col-md-6 col-lg-4 mb-4">
-                        <div class="card listing-preview">
-                           <img class="card-img-top" src="" style="height:300px;">
-                           <div class="card-body" >
-                              <div class="listing-heading text-center" style="height:40px;">
-                                 <a href="#">
-                                    <h5 style="color:black;">Title</h5>
-                                 </a>
-                              </div>
-                              <hr>
-                              <div class="row py-2 ">
-                                 <div class="col-6" >
-                                    <i class="fas fa-list-alt"></i> Categ
-                                 </div>
-                                 <div class="col-6">
-                                    <i class="fa fa-money-bill-alt"></i> Price:
-                                 </div>
-                              </div>
-                              <div class="row py-2" >
-                                 <div class="col-6">
-                                    <i class="fa fa-sort-amount-asc"></i> brand name
-                                 </div>
-                                 <div class="col-6">
-                                    <i class="fas fa-store-alt"></i>
-                                    In stock
-                                 </div>
-                              </div>
-                              <hr>
-                              <a style="margin-bottom:15px; width:150px;" data-product= "" data-action="add" class="btn btn-outline-dark update-cart" href="#">Add to Cart</a>
-                              <a style="margin-bottom:15px; float:right; width:150px;" class="btn btn-outline-dark" href="#">View</a>
-                              <hr>
-
-                               <div class="row" style="display:flex; justify-content:center;">
-            <a onclick="decrementt()" class="btn btn-light" style="background-color: #333; color:white; width:40px;">-</a>
-            <input value="0" id=demoInput1 type=number min=0 max=20 readonly style="width:100px; ">
-            <a onclick="incrementt()" class="btn btn-light" style="background-color: #333; color:white; width:40px;">+</a>
-         </div>
-
-
-                           </div>
+      </div>
+      <div class="">
+         <h4>Related Products</h4>
+         <hr>
+      </div>
+      <div class="">
+         <div class="row">
+            <!-- Listing 1 -->
+            <div class="col-md-6 col-lg-4 mb-4">
+               <div class="card listing-preview">
+                  <img class="card-img-top" src="" style="height:300px;">
+                  <div class="card-body" >
+                     <div class="listing-heading text-center" style="height:40px;">
+                        <a href="#">
+                           <h5 style="color:black;">Title</h5>
+                        </a>
+                     </div>
+                     <hr>
+                     <div class="row py-2 " style="height:50px;" >
+                        <div class="col-6" >
+                           <i class="fas fa-list-alt"></i> Categ
+                        </div>
+                        <div class="col-6">
+                           <i class="fa fa-money-bill-alt"></i> Price:
                         </div>
                      </div>
-                     <div class="container">
-                        <p>No Related Products</p>
+                     <div class="row py-2" style="height:50px;" >
+                        <div class="col-6">
+                           <i class="fa fa-sort-amount-asc"></i> brand name
+                        </div>
+                        <div class="col-6">
+                           <i class="fas fa-store-alt"></i>
+                           In stock
+                        </div>
+                     </div>
+                     <hr>
+                     <a style="margin-bottom:15px; width:150px;" data-product= "" data-action="add" class="button2 btn update-cart" href="#">Add to Cart</a>
+                     <a style="margin-bottom:15px; float:right; width:150px;" class="button2 btn" href="#">View</a>
+                     <hr>
+                     <div class="row" style="display:flex; justify-content:center;">
+                        <a onclick="decrementt()" class="btn btn-light" style="background-color: #333; color:white; width:40px;">-</a>
+                        <input value="0" id=demoInput1 type=number min=0 max=20 readonly style="width:100px; ">
+                        <a onclick="incrementt()" class="btn btn-light" style="background-color: #333; color:white; width:40px;">+</a>
                      </div>
                   </div>
+               </div>
+            </div>
+            <div class="container">
+               <p>No Related Products</p>
+            </div>
+         </div>
+      </div>
    </div>
 </section>
 {% endfor %}
@@ -263,6 +268,30 @@
     };
 </script>
 <style>
+   .button {
+   background-color: #333;
+   text-align: center;
+   padding: 6px;
+   border: none;
+   color: white;
+   height: 40px;
+   text-decoration: none;
+   cursor: pointer;
+   -webkit-transition-duration: 0.4s; /* Safari */
+   transition-duration: 0.4s;
+   }
+   .button1:hover {
+   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+   }
+   .button2 {
+   background-color: white;
+   color: black;
+   border: 1px solid #555555;
+   }
+   .button2:hover {
+   background-color: #333;
+   color: white;
+   }
    .checked {
    color: orange;
    }

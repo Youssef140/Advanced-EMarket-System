@@ -12,26 +12,25 @@
          {% csrf_token %}
          {{form.media}}
          <div class="form-group">
-             <div class="row mx-auto" style="width:400px; ">
-                 <img id="output" src="{% static 'img/uploadImg.jpg' %}" width="400" height="400"/>
-             </div>
+            <div class="row mx-auto" style="width:400px; ">
+               <img id="output" src="{% static 'img/uploadImg.jpg' %}" width="400" height="400"/>
+            </div>
             <div class="col-md-12 text-center ">
                <input type="file" name="Searched_image" accept="image/*" id="id_searched_image" onchange="readURL(this);" class="py-5 inputfile">
                <label for="id_searched_image">Upload Image</label>
             </div>
-            </div>
-         <div class="col-md-12 text-center">
-         <input type="submit" class="btn btn-light" style="background-color: #333; border-color: #333; color : #ffffff; width:400px;" value='Search Product'/>
-            </div>
          </div>
+         <div class="col-md-12 text-center">
+            <input type="submit" class="button button1" style="background-color: #333; border-color: #333; color : #ffffff; width:400px;" value='Search Product'/>
+         </div>
+      </div>
    </form>
-   </div>
-   {% else %}
-<div class="container py-5" style="display:flex; justify-content: center;">
-      <h5>Please log in or sign up in order to use this feature.</h5>
 </div>
-   {% endif %}
-
+{% else %}
+<div class="container py-5" style="display:flex; justify-content: center;">
+   <h5>Please log in or sign up in order to use this feature.</h5>
+</div>
+{% endif %}
 <script type="text/javascript">
    const FileBtn = document.getElementById("real-file");
    const uploadFileBtn = document.getElementById("custom-button");
@@ -63,47 +62,61 @@
 
 </script>
 <script>
-function readURL(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
+   function readURL(input) {
+           if (input.files && input.files[0]) {
+               var reader = new FileReader();
 
-            reader.onload = function (e) {
-                $('#output')
-                    .attr('src', e.target.result)
-                    .width(400)
-                    .height(400);
-            };
+               reader.onload = function (e) {
+                   $('#output')
+                       .attr('src', e.target.result)
+                       .width(400)
+                       .height(400);
+               };
 
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
+               reader.readAsDataURL(input.files[0]);
+           }
+       }
 </script>
 <style>
+   .button {
+   background-color: #333;
+   text-align: center;
+   padding: 6px;
+   border: none;
+   color: white;
+   height: 40px;
+   text-decoration: none;
+   cursor: pointer;
+   -webkit-transition-duration: 0.4s; /* Safari */
+   transition-duration: 0.4s;
+   }
+   .button1:hover {
+   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+   }
    .inputfile {
-	width: 0.1px;
-	height: 0.1px;
-	opacity: 0;
-	overflow: hidden;
-	position: absolute;
-	z-index: -1;
-}
-.inputfile + label {
-    width: 400px;
-    padding:8px;
-    height:40px;
-    font-size: 1em;
-    color: white;
-    background-color: #333;
-    display: inline-block;
-}
-
-.inputfile:focus + label,
-.inputfile + label {
-	cursor: pointer; /* "hand" cursor */
-}
-.inputfile:focus + label {
-	outline: 1px dotted #000;
-	outline: -webkit-focus-ring-color auto 5px;
-}
+   width: 0.1px;
+   height: 0.1px;
+   opacity: 0;
+   overflow: hidden;
+   position: absolute;
+   z-index: -1;
+   }
+   .inputfile + label {
+   width: 400px;
+   padding:8px;
+   height:40px;
+   font-size: 1em;
+   color: white;
+   background-color: #333;
+   display: inline-block;
+   }
+   .inputfile:focus + label,
+   .inputfile + label {
+   cursor: pointer; /* "hand" cursor */
+   }
+   .inputfile:focus + label {
+   outline: 1px dotted #000;
+   outline: -webkit-focus-ring-color auto 5px;
+   }
 </style>
 {% endblock %}
