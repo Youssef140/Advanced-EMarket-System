@@ -50,7 +50,8 @@ class Product(models.Model):
     is_offer = models.BooleanField(default=False,blank=True,null=True)
     sold = models.IntegerField(null=True,blank=True, default=0)
     # valid_until = models.DateTimeField(default=datetime.now,blank=True)
-    def _str_(self):
+
+    def __str__(self):
         return self.title
 
 
@@ -92,7 +93,7 @@ def path_and_rename(path):
 
 
 class ProductsReview(models.Model):
-    product = models.ForeignKey('Product',default='Porduct',on_delete=models.CASCADE)
+    product = models.ForeignKey(Product,on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     review = models.CharField(max_length=200)
     rating = models.IntegerField(null=True,blank=True)

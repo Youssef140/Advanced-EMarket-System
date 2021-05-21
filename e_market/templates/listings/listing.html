@@ -101,7 +101,11 @@
                      </li>
                      <li class="list-group-item ">
                      <i class="fas fa-star"></i> Average Rating:
-                     <span class="float-right"> 5
+                        {%if avg_rating == 0%}
+                           <span class="float-right">Be the first to rate this product!
+                        {%else%}
+                           <span class="float-right"> {{avg_rating}}
+                        {%endif%}
                      </span>
                   </li>
                   </ul>
@@ -135,15 +139,15 @@
                   <div class="row mb-5">
                      <div class="col-md-12">
                         <h3>Review</h3>
-                        <form method="post">
+                        <form method="POST">
                            {% csrf_token %}
-                           <textarea style="background-color:white"></textarea>
+                           <textarea style="background-color:white" name="review"></textarea>
                            <ul class="rating">
-                              <li class="rating-item active" data-rate="1"></li>
-                              <li class="rating-item" data-rate="2"></li>
-                              <li class="rating-item" data-rate="3"></li>
-                              <li class="rating-item" data-rate="4"></li>
-                              <li class="rating-item" data-rate="5"></li>
+                              <li class="rating-item active"  value="1" data-rate="1"><input type="hidden" id="star1" name="star1" value="inactive"></li>
+                              <li class="rating-item" data-rate="2"><input type="hidden" name="star2" id="star2" value="inactive"></li>
+                              <li class="rating-item" data-rate="3"><input type="hidden" name="star3" id="star3" value="inactive"></li>
+                              <li class="rating-item" data-rate="4"><input type="hidden" name="star4" id="star4" value="inactive"></li>
+                              <li class="rating-item" data-rate="5"><input type="hidden" name="star5" id="star5" value="inactive"></li>
                            </ul>
                            <button class = "btn btn-light " style="background-color: #2a2a2a; color:white; margin-top:5px;" type="submit" id="custom-button">Submit</button>
                         </form>
@@ -259,6 +263,21 @@
     item => item.classList.remove('active')
     );
     console.log(e.target.getAttribute("data-rate"));
+    if(e.target.getAttribute("data-rate")==1){
+      document.getElementById("star1").value = "active";
+    }
+    if(e.target.getAttribute("data-rate")==2){
+      document.getElementById("star2").value = "active";
+    }
+    if(e.target.getAttribute("data-rate")==3){
+      document.getElementById("star3").value = "active";
+    }
+    if(e.target.getAttribute("data-rate")==4){
+      document.getElementById("star4").value = "active";
+    }
+    if(e.target.getAttribute("data-rate")==5){
+      document.getElementById("star5").value = "active";
+    }
     elClass.add('active'); // add active class to the clicked star
     }
     };

@@ -81,7 +81,16 @@ def logout(request):
         return redirect('index')
 
 def editProfile(request):
-    return render(request,'accounts/editProfile.html')
+    current_user = request.user
+    user = User.objects.all().get(id=current_user.id)
+    # print(user.get_short_name)
+    print(f"first name: {current_user.get_short_name}")
+    context = {
+        'first_name':current_user.get_short_name,
+    }
+    # if(request.method == 'POST'):
+    #     print(request.POST['first_name'])
+    return render(request,'accounts/editProfile.html',context)
 
 def editPassword(request):
     return render(request,'accounts/editPassword.html')

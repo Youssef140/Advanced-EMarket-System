@@ -33,20 +33,39 @@ def index(request,category_id):
 
 
 def listing(request, product_id):
+    if(request.method == 'POST'):
+        if(request.POST['star1'] == 'active'):
+            stars=1
+        elif(request.POST['star2']=='active'):
+            stars=2
+        elif(request.POST['star3'] =='active'):
+            stars=3
+        elif(request.POST['star4'] =='active'):
+            stars=4
+        elif(request.POST['star5'] =='active'):
+            stars=5
+        review = request.POST['review']
+        # product = Product.objects.all().filter(id=product_id)
+        product_review = ProductsReview.objects.create(product_id=product_id, user_id=request.user.id,review=review,rating=stars)
+        submit_product_review(product_id)
     product = Product.objects.all().filter(id=product_id)
     reviews = ProductsReview.objects.all().filter(product=product_id)
-    client = RecombeeClient('e-market-dev', 'S1HpoVU0JuxtjU9ewtvSnAUQh4qgKHTjr2DFbQ30LoADU2S27OsleTi1C23TNVEm')
+    # client = RecombeeClient('e-market-dev', 'S1HpoVU0JuxtjU9ewtvSnAUQh4qgKHTjr2DFbQ30LoADU2S27OsleTi1C23TNVEm')
     current_user = request.user
     if(current_user.is_authenticated):
         print("auth")
-        r = AddDetailView(current_user.id, product_id, cascade_create=True)
-        client.send(r)
+        # r = AddDetailView(current_user.id, product_id, cascade_create=True)
+        # client.send(r)
 
-    recommended = client.send(RecommendItemsToItem(product_id,current_user.id,5))
-    print(f"Related products: {recommended}")
+    # recommended = client.send(RecommendItemsToItem(product_id,current_user.id,5))
+    # print(f"Related products: {recommended}")
+
+    avg_rating = get_avg_rating(product_id)
+
     context = {
         'product': product,
         'reviews':reviews,
+        'avg_rating':avg_rating,
     }
 
     return render(request, 'listings/listing.html', context)
@@ -226,11 +245,7 @@ def search_img(request,keywords):
 
     return context
 
-def product_review(request):
-    form = SubmitReviewForm(request.POST or None)
-    if(form.is_valid()):
-        form.save()
-    product_id = form.cleaned_data['product']
+def submit_product_review(product_id):
     ratings = ProductsReview.objects.filter(product=product_id)
     counter = 0
     total_rating = 0
@@ -244,4 +259,17 @@ def product_review(request):
     product.rating = avg_rating
     product.save()
 
-    return render(request,'listings/SuccessReviewSubmission.html')
+def get_avg_rating(product_id):
+    ratings = ProductsReview.objects.filter(product=product_id)
+    counter = 0
+    total_rating = 0
+    for rating in ratings:
+        counter = counter+1
+        total_rating = total_rating+getattr(rating, "rating")
+
+    if(counter==0):
+        return counter
+    else:
+        avg_rating = total_rating/counter
+        return avg_rating
+
