@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load humanize %}
+{%load static%}
 {% block content %}
 <section class="py-5 text-white" style="background-color : #222222">
    <div class="container">
@@ -161,4 +162,5 @@
       document.getElementById('demoInput1').stepDown();
    }
 </script>
+<script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
 {% endblock %}

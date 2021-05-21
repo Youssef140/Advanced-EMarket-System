@@ -11,12 +11,13 @@
       <div class="form-group">
          {% csrf_token %}
          {{form.media}}
+         {{form.as_p}}
          <div class="form-group">
              <div class="row mx-auto" style="width:400px; ">
                  <img id="output" src="{% static 'img/uploadImg.jpg' %}" width="400" height="400"/>
              </div>
             <div class="col-md-12 text-center ">
-               <input type="file" name="Searched_image" accept="image/*" id="id_searched_image" onchange="readURL(this);" class="py-5 inputfile">
+               <input type="file" name="searched_image" accept="image/*" id="id_searched_image" onchange="readURL(this);" class="py-5 inputfile">
                <label for="id_searched_image">Upload Image</label>
             </div>
             </div>

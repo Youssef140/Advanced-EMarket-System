@@ -1,5 +1,5 @@
 import json
-
+import time
 from django.db.models import Q
 from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
@@ -18,11 +18,9 @@ from recombee_api_client.api_requests import *
 
 def index(request,category_id):
     products = Product.objects.all().filter(category=category_id,in_stock=True)
-
-
+    print(f"products: {products}")
     paginator = Paginator(products, 3)
     page = request.GET.get('page')
-
     paged_products = paginator.get_page(page)
 
     context = {
@@ -44,21 +42,36 @@ def listing(request, product_id):
             stars=4
         elif(request.POST['star5'] =='active'):
             stars=5
+        #if user didn't make any rating
+        else:
+            stars=0
         review = request.POST['review']
         # product = Product.objects.all().filter(id=product_id)
         product_review = ProductsReview.objects.create(product_id=product_id, user_id=request.user.id,review=review,rating=stars)
         submit_product_review(product_id)
+
     product = Product.objects.all().filter(id=product_id)
     reviews = ProductsReview.objects.all().filter(product=product_id)
-    # client = RecombeeClient('e-market-dev', 'S1HpoVU0JuxtjU9ewtvSnAUQh4qgKHTjr2DFbQ30LoADU2S27OsleTi1C23TNVEm')
+    client = RecombeeClient('e-market-dev', 'S1HpoVU0JuxtjU9ewtvSnAUQh4qgKHTjr2DFbQ30LoADU2S27OsleTi1C23TNVEm')
     current_user = request.user
     if(current_user.is_authenticated):
-        print("auth")
-        # r = AddDetailView(current_user.id, product_id, cascade_create=True)
-        # client.send(r)
+        current_user_id = current_user.id
+    else:
+        current_user_id = 0
+    r = AddDetailView(current_user_id,product_id, cascade_create=True)
+    client.send(r)
+    recommended = client.send(RecommendItemsToItem(product_id,current_user_id,3))
+    related = recommended['recomms']
+    related_products_id=[]
+    for r in related:
+        related_products_id.append(r['id'])
+    related_products = []
+    for id in related_products_id:
+        prod = Product.objects.all().filter(id=id)
+        related_products.append(prod)
 
-    # recommended = client.send(RecommendItemsToItem(product_id,current_user.id,5))
-    # print(f"Related products: {recommended}")
+    # for prod in recommended:
+    #     print(f"prod {prod}")
 
     avg_rating = get_avg_rating(product_id)
 
@@ -66,6 +79,7 @@ def listing(request, product_id):
         'product': product,
         'reviews':reviews,
         'avg_rating':avg_rating,
+        'related_products': related_products,
     }
 
     return render(request, 'listings/listing.html', context)
@@ -140,6 +154,7 @@ def offers(request):
     context = {
         'offers': paged_offers
     }
+
     return render(request, 'listings/offers.html',context)
 
 
@@ -150,13 +165,32 @@ def offer(request,offer_id):
         'offer':offer,
         'reviews': reviews,
     }
+
+    client = RecombeeClient('e-market-dev', 'S1HpoVU0JuxtjU9ewtvSnAUQh4qgKHTjr2DFbQ30LoADU2S27OsleTi1C23TNVEm')
+    current_user = request.user
+
+    r = AddDetailView(current_user.id, offer_id, cascade_create=True)
+    client.send(r)
+
+    recommended = client.send(RecommendItemsToItem(offer_id, current_user.id, 3))
+    related = recommended['recomms']
+    related_products_id = []
+    for r in related:
+        related_products_id.append(r['id'])
+    related_products = []
+    for id in related_products_id:
+        prod = Product.objects.all().filter(id=id)
+        related_products.append(prod)
+
+    context['suggested_offers'] = related_products
+
     return render(request, 'listings/offer.html',context)
 
 
 def update_item(request):
 
     #data mining setup
-    # client = RecombeeClient('e-market-dev','S1HpoVU0JuxtjU9ewtvSnAUQh4qgKHTjr2DFbQ30LoADU2S27OsleTi1C23TNVEm')
+    client = RecombeeClient('e-market-dev','S1HpoVU0JuxtjU9ewtvSnAUQh4qgKHTjr2DFbQ30LoADU2S27OsleTi1C23TNVEm')
 
     data = json.loads(request.body)
     productId = data['productId']
@@ -170,8 +204,9 @@ def update_item(request):
     orderItem, created = OrderItem.objects.get_or_create(order=order, product=product)
 
     if (action == 'add'):
-        # r = AddPurchase(current_user.id,product.id,cascade_create=True)
-        # client.send(r)
+        print(f"usre ID: {current_user.id}, product ID: {product.id}")
+        r = AddPurchase(current_user.id,product.id,timestamp=time.time(),cascade_create=True)
+        client.send(r)
         orderItem.quantity = (orderItem.quantity + 1)
         product.quantity = (product.quantity -1)
         if(product.quantity==0):
@@ -209,13 +244,15 @@ def search_image(request):
         form = SearchImageForm(request.POST, request.FILES)
         if (form.is_valid()):
             form.save()
-
+        img_name = request.FILES['searched_image'].name
+        print(img_name)
         # context = {
         #     'form': form,
         #
         # }
 
-        logo_detec = LogoDetection(r'C:\Users\Youssef\Desktop\LAU\Software_Engineering\EMarket_project\e_market\media\searched_images','per.jpg')
+
+        logo_detec = LogoDetection(r'C:\Users\Youssef\Desktop\LAU\Software_Engineering\EMarket_project\e_market\media\searched_images',img_name)
         logos = logo_detec.get_logos()
         print(logos)
         print('here')
@@ -251,7 +288,9 @@ def submit_product_review(product_id):
     total_rating = 0
     for rating in ratings:
         counter = counter+1
-        total_rating = total_rating+rating.get("rating")
+        ratings_object = rating._meta.get_field("rating")
+        # ratings_object.attname
+        total_rating = total_rating+getattr(rating,"rating")
 
     avg_rating = total_rating/counter
 
@@ -265,7 +304,10 @@ def get_avg_rating(product_id):
     total_rating = 0
     for rating in ratings:
         counter = counter+1
-        total_rating = total_rating+getattr(rating, "rating")
+        print(f"getAttr: {getattr(rating, 'rating')}")
+        total_rating = total_rating+getattr(rating,"rating")
+        # field_object = ProductsReview._meta.get_field("rating")
+        # rating_value = field_object.value_from_object(field_object)
 
     if(counter==0):
         return counter

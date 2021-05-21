@@ -9,22 +9,41 @@ import operator
 def index(request):
     categories = Category.objects.all()
     product = Product.objects.all()
-    client = RecombeeClient('e-market-dev', 'S1HpoVU0JuxtjU9ewtvSnAUQh4qgKHTjr2DFbQ30LoADU2S27OsleTi1C23TNVEm')
     current_user = request.user
-
-    prods = Product.objects.order_by('-sold')[:5]
+    client = RecombeeClient('e-market-dev', 'S1HpoVU0JuxtjU9ewtvSnAUQh4qgKHTjr2DFbQ30LoADU2S27OsleTi1C23TNVEm')
+    prods = Product.objects.order_by('-sold')[:6]
     best_sellers = sorted(prods, key=operator.attrgetter('sold'), reverse=True)
     print(f"best_sellers: {best_sellers}")
 
-    # recomender
-    if (request.user.is_authenticated):
-        print("auth")
-        recommended = client.send(RecommendItemsToUser(current_user.id, 5))
-        print(request.user.id)
-        print(recommended)
     context = {
-        'categories' : categories
+        'categories': categories,
+        'best_sellers':best_sellers,
     }
+
+    # recomender
+    # if (request.user.is_authenticated):
+    # print("auth")
+    if(not request.user.is_authenticated):
+        current_user_id = 0
+    else:
+        current_user_id = current_user.id
+    recommended = client.send(RecommendItemsToUser(current_user_id,5,cascade_create=True))
+    # print(recommended)
+    client = RecombeeClient('e-market-dev', 'S1HpoVU0JuxtjU9ewtvSnAUQh4qgKHTjr2DFbQ30LoADU2S27OsleTi1C23TNVEm')
+    current_user = request.user
+    recommended = client.send(RecommendItemsToUser(current_user_id, 3))
+    print(f"Related products: {recommended}")
+    suggested = recommended['recomms']
+    suggested_products_id = []
+    for r in suggested:
+        suggested_products_id.append(r['id'])
+    suggested_products = []
+    for id in suggested_products_id:
+        prod = Product.objects.all().filter(id=id)
+        suggested_products.append(prod)
+    print(f"related: {suggested_products}")
+    context['suggested_products'] = suggested_products
+
     return render(request,'pages/index.html',context)
 
 def about(request):

@@ -12,8 +12,8 @@ def register(request):
         last_name = request.POST['last_name']
         username = request.POST['username']
         email = request.POST['email']
-        password = request.POST.get('password')
-        password2 = request.POST.get('password2')
+        password = request.POST['password']
+        password2 = request.POST['password2']
 
         if(password == password2):
             if(User.objects.filter(username=username).exists()):
@@ -61,11 +61,11 @@ def login(request):
 
         if(user is not None):
             auth_login(request, user)
-            messages.success(request,'You are now logged in')
+            # messages.success(request,'You are now logged in')
             print('exists')
             return redirect('index')
         else:
-            messages.error(request,'Invalid username or password')
+            # messages.error(request,'Invalid username or password')
             return redirect('login')
 
 
