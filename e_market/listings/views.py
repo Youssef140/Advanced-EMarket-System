@@ -17,7 +17,7 @@ from recombee_api_client.api_requests import *
 
 
 def index(request,category_id):
-    products = Product.objects.all().filter(category=category_id,in_stock=True)
+    products = Product.objects.all().filter(category=category_id)
     print(f"products: {products}")
     paginator = Paginator(products, 3)
     page = request.GET.get('page')
@@ -78,7 +78,7 @@ def listing(request, product_id):
     context = {
         'product': product,
         'reviews':reviews,
-        'avg_rating':avg_rating,
+        'avg_rating':round(avg_rating,1),
         'related_products': related_products,
     }
 
@@ -209,9 +209,12 @@ def update_item(request):
         client.send(r)
         orderItem.quantity = (orderItem.quantity + 1)
         product.quantity = (product.quantity -1)
-        if(product.quantity==0):
+        if (product.quantity <= 0):
             product.in_stock = False
-        product.save()
+            product.save()
+        else:
+            product.quantity = product.quantity - 1
+            product.save()
     elif (action == 'remove'):
         orderItem.quantity = (orderItem.quantity - 1)
         product.quantity = (product.quantity + 1)

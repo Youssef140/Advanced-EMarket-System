@@ -103,7 +103,7 @@
                   <li class="list-group-item ">
                      <i class="fas fa-star"></i> Average Rating:
                         {%if avg_rating == 0%}
-                           <span class="float-right">Be the first to rate this product!
+                     <span class="float-right">Be the first to rate this product!</span>
                         {%else%}
                            <span class="float-right"> {{avg_rating}}
                         {%endif%}
@@ -112,15 +112,16 @@
                </ul>
             </div>
             <div class="row mb-5 mt-5">
+               {% if p.in_stock %}
                <div class="col-md-12">
                   <h3>Add to Cart</h3>
                   <hr>
                </div>
-               <div class="row mb-5" style="margin-left:15px;">
-                  <button onclick="decrement()" class="btn btn-light" style="background-color: #333; color:white; width:40px;">-</button>
-                  <input value="0" id=demoInput type=number min=0 max=20 readonly style="width:100px; text-center">
-                  <button onclick="increment()" class="btn btn-light" style="background-color: #333; color:white; width:40px;">+</button>
+               <div class="container py-3">
+                  <a style="margin-bottom:15px; width:150px; color:white;" data-product= "{{p.id}}" data-action="add" class="btn button button1 update-cart" href="#">Add to Cart</a>
                </div>
+               {%endif%}
+
                <!-- Description -->
                <div class="container">
                   <div class="row mb-5">
@@ -163,34 +164,20 @@
                         <div class="row mt-4 fields" style="width:100%">
                            <div style="width:100%; margin-left:0px;">
                               <ul class="list-group list-group-flush">
-<<<<<<< HEAD
                                  {%if reviews%}
                                     {% for review in reviews %}
                                        <li class="list-group-item">
                                           <h6>{{review.user.first_name}} {{review.user.last_name}}</h6>
                                           {{review.review}}
                                        </li>
+
                                     {% endfor %}
                                  {%else%}
-                                 <h4>Be the first to review this product!</h4>
+                                 <div class="container">
+                                    <h5>Be the first to review this product!</h5>
+                                 </div>
                                  {%endif%}
-=======
-                                 <li class="list-group-item">
-                                    <div style="display:flex;">
-                                       <div style="float:left; margin-top:3px;">
-                                          <h6>Username </h6>
-                                       </div>
-                                       <div style="float:left; margin-left:5px;">
-                                          <i class="fas fa-star"></i>
-                                       </div>
-                                    </div>
-                                    Hello
-                                 </li>
-                                 <li class="list-group-item ">
-                                    <h6>Username</h6>
-                                    Hello
-                                 </li>
->>>>>>> 9f1adfa50b9da022baa9712091e84262da3b6db8
+
                               </ul>
                            </div>
                         </div>
@@ -199,7 +186,6 @@
                </div>
             </div>
          </div>
-<<<<<<< HEAD
    </div>
 
    <div class="">
@@ -216,13 +202,13 @@
                         <div class="card listing-preview">
                            <img class="card-img-top" src="{{rel.photo_main.url}}" style="height:300px;">
                            <div class="card-body" >
-                              <div class="listing-heading text-center" style="height:40px;">
+                              <div class="listing-heading text-center" style="height:50px;">
                                  <a href="#">
                                     <h5 style="color:black;">{{rel.title}}</h5>
                                  </a>
                               </div>
                               <hr>
-                              <div class="row py-2 ">
+                              <div class="row py-2 " style="height:50px;">
                                  <div class="col-6" >
                                     <i class="fas fa-list-alt"></i> {{rel.category}}
                                  </div>
@@ -230,7 +216,7 @@
                                     <i class="fa fa-money-bill-alt"></i> Price: {{rel.price}}$
                                  </div>
                               </div>
-                              <div class="row py-2" >
+                              <div class="row py-2" style="height:50px;">
                                  <div class="col-6">
                                     <i class="fa fa-sort-amount-asc"></i> {{rel.brand_name}}
                                  </div>
@@ -240,15 +226,9 @@
                                  </div>
                               </div>
                               <hr>
-                              <a style="margin-bottom:15px; width:150px;" data-product= "" data-action="add" class="btn btn-outline-dark update-cart" href="#">Add to Cart</a>
+                              <a style="margin-bottom:15px; width:150px;" data-product= "{{rel.id}}" data-action="add" class="btn btn-outline-dark update-cart" href="">Add to Cart</a>
                               <a style="margin-bottom:15px; float:right; width:150px;" class="btn btn-outline-dark" href="#">View</a>
-                              <hr>
 
-                               <div class="row" style="display:flex; justify-content:center;">
-            <a onclick="decrementt()" class="btn btn-light" style="background-color: #333; color:white; width:40px;">-</a>
-            <input value="0" id=demoInput1 type=number min=0 max=20 readonly style="width:100px; ">
-            <a onclick="incrementt()" class="btn btn-light" style="background-color: #333; color:white; width:40px;">+</a>
-         </div>
                                </div>
                         </div>
                      </div>
@@ -257,19 +237,11 @@
          {%endif%}
 
 
-                     <div class="container">
-                        <p>No Related Products</p>
 
-                     </div>
                   </div>
                </div>
             </div>
-            <div class="container">
-               <p>No Related Products</p>
-            </div>
-         </div>
-      </div>
-   </div>
+
 </section>
 {% endfor %}
 {% endif %}
@@ -318,6 +290,7 @@
     }
     };
 </script>
+<script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
 <style>
    .button {
    background-color: #333;

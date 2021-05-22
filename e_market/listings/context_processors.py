@@ -15,6 +15,27 @@ def get_categories(request):
     }
 
 
+def get_item_quantity(request):
+    con=[]
+    # order = Order.objects.all().filter(user=request.user)
+    # print(f"order: {order}")
+    # order_items = OrderItem.objects.all().filter(order=order)
+    # for order_item in order_items:
+    #     con[order_item.product.id] = order_item.quantity
+    # data = cartData(request)
+    # order = data['order']
+    # items = data['items']
+    #
+    # print(items)
+    #
+    # context = {
+    #     'items_q':items,
+    # }
+
+    return {}
+
+
+
 def get_order_items(request):
     data = cartData(request)
     cart_items = data['cart_items']

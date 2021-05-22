@@ -22,7 +22,6 @@ def cart(request):
     context = {
         'items':items,
         'order':order,
-
     }
     return render(request, 'orders/cart.html',context)
 
@@ -58,11 +57,19 @@ def update_item(request):
     order, created = Order.objects.get_or_create(user=current_user, complete=False)
     orderItem, created = OrderItem.objects.get_or_create(order=order, product=product)
 
-    if(action == 'add'):
-        orderItem.quantity = (orderItem.quantity+1)
-    elif(action=='remove'):
-        orderItem.quantity = (orderItem.quantity - 1)
+    if (action == 'add'):
+        orderItem.quantity = (orderItem.quantity + 1)
+        if (product.quantity == 0):
+            product.in_stock = False
+            product.save()
+        else:
+            product.quantity = product.quantity -1
+            product.save()
 
+    elif (action == 'remove'):
+        orderItem.quantity = (orderItem.quantity - 1)
+        product.quantity = product.quantity + 1
+        product.save()
     orderItem.save()
 
     if(orderItem.quantity<=0):

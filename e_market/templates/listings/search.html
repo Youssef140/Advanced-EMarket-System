@@ -72,12 +72,6 @@
                   <hr>
                   <a style="margin-bottom:15px; width:150px;" data-product= "{{product.id}}" data-action="add" class="button2 btn update-cart" href="#">Add to Cart</a>
                   <a style="margin-bottom:15px; float:right; width:150px;" class="btn button2" href="{% url 'listing' product.id %}">View</a>
-                  <hr>
-                  <div class="row" style="display:flex; justify-content:center;">
-                     <a onclick="decrement()" class="btn btn-light" style="background-color: #333; color:white; width:40px;">-</a>
-                     <input value="0" id=demoInput type=number min=0 max=20 readonly style="width:100px; ">
-                     <a onclick="increment()" class="btn btn-light" style="background-color: #333; color:white; width:40px;">+</a>
-                  </div>
                </div>
             </div>
          </div>
@@ -116,7 +110,7 @@
                      </div>
                      <div class="col-6">
                         <i class="fas fa-store-alt"></i>
-                        {% if product.in_stock %}
+                        {% if product.in_stock == True %}
                         In Stock
                         {% else %}
                         Out of Stock
@@ -124,14 +118,13 @@
                      </div>
                   </div>
                   <hr>
-                  <a style="margin-bottom:15px; width:150px;" data-product= "{{product.id}}" data-action="add" class="btn button2 update-cart" href="#">Add to Cart</a>
-                  <a style="margin-bottom:15px; float:right; width:150px;" class="btn button2" href="{% url 'listing' product.id %}">View</a>
-                  <hr>
-                  <div class="row" style="display:flex; justify-content:center;">
-                     <a onclick="decrementt()" class="btn btn-light" style="background-color: #333; color:white; width:40px;">-</a>
-                     <input value="0" id=demoInput1 type=number min=0 max=20 readonly style="width:100px; ">
-                     <a onclick="incrementt()" class="btn btn-light" style="background-color: #333; color:white; width:40px;">+</a>
-                  </div>
+                  {% if product.in_stock %}
+                  <a style="margin-bottom:15px; width:150px;" data-product= "{{product.id}}" data-action="add" class="button2 btn update-cart">Add to Cart</a>
+                  <a style="margin-bottom:15px; float:right; width:150px;" class="button2 btn" href="{% url 'listing' product.id %}">View</a>
+                  {%else%}
+                  <a style="margin-bottom:15px; float:right;" class="button2 btn btn-block" href="{% url 'listing' product.id %}">View</a>
+                  {%endif%}
+
                </div>
             </div>
          </div>

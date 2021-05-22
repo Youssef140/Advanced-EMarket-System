@@ -42,7 +42,7 @@
             </div>
             <div class="card-body" >
                <div class="listing-heading text-center" style="height:80px;">
-                  <a href="">
+                  <a href="{% url 'listing' offer.id %}" style="text-decoration:none;">
                      <h5 style="color:black;">{{ offer.title }}</h5>
                   </a>
                </div>
@@ -74,14 +74,13 @@
                   </div>
                </div>
                <hr>
-               <a style="margin-bottom:15px; width:150px;text-decoration:none;" data-product= "{{offer.id}}" data-action="add" class="btn button2 update-cart" href="#">Add to Cart</a>
-               <a style="margin-bottom:15px; float:right; width:150px; text-decoration:none;" class="button2 btn" href="{% url 'offer' offer.id %}">View</a>
-               <hr>
-               <div class=" row" style="display:flex; justify-content:center;">
-                  <a onclick="decrement()" data-product="{{item.offer.id}}" data-action="remove" class="btn btn-light chg-quantity update-cart" style="background-color: #333; color:white; width:40px;">-</a>
-                  <input value="0" id=demoInput type=number min=0 max=20 readonly style="width:100px; height:38px;margin-top:5px; outline:none;" class="input-group-field quantity">
-                  <a onclick="increment()" data-product="{{item.offer.id}}" data-action="add" class="btn btn-light chg-quantity update-cart" style="background-color: #333; color:white; width:40px;">+</a>
-               </div>
+               {% if offer.in_stock %}
+                  <a style="margin-bottom:15px; width:150px;" data-product= "{{offer.id}}" data-action="add" class="button2 btn update-cart" href="">Add to Cart</a>
+                  <a style="margin-bottom:15px; float:right; width:150px;" class="button2 btn" href="{% url 'offer' offer.id %}">View</a>
+                  {%else%}
+                  <a style="margin-bottom:15px; float:right;" class="button2 btn btn-block" href="{% url 'offer' offer.id %}">View</a>
+                  {%endif%}
+
             </div>
          </div>
       </div>
@@ -138,9 +137,10 @@
    }
    .button2:hover {
    background-color: #333;
-   color: white;
+   color: #fff;
    }
 </style>
+<script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
 <script>
    function increment() {
       document.getElementById('demoInput').stepUp();
@@ -150,7 +150,4 @@
    }
 </script>
 
-<script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
-
 {% endblock %}
-<script type="text/javascript" src="{% static 'js/cart.js' %}"></script>

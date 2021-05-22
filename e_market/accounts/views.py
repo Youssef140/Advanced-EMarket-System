@@ -12,16 +12,16 @@ def register(request):
         last_name = request.POST['last_name']
         username = request.POST['username']
         email = request.POST['email']
-        password = request.POST['password']
-        password2 = request.POST['password2']
+        password = request.POST['pwd']
+        password2 = request.POST['pwd2']
 
         if(password == password2):
             if(User.objects.filter(username=username).exists()):
-                messages.error(request,'This username is already in use')
+                messages.info(request,'This username is already in use')
                 return redirect('register')
             else:
                 if (User.objects.filter(email=email).exists()):
-                    messages.error(request, 'This email is already in use')
+                    messages.info(request, 'This email is already in use')
                     return redirect('register')
                 else:
                     user = User.objects.create_user(username=username, email=email,
@@ -36,7 +36,7 @@ def register(request):
                     messages.success(request,'You are now registered and can log in')
                     return redirect('login')
         else:
-            messages.error(request,'Passwords does not match')
+            # messages.error(request,'Passwords does not match')
             return redirect('register')
 
     #     user = User.objects.create_user(username=username, first_name= first_name, last_name=last_name, email=email, password=password)
@@ -65,7 +65,7 @@ def login(request):
             print('exists')
             return redirect('index')
         else:
-            # messages.error(request,'Invalid username or password')
+            messages.info(request,'Invalid username or password')
             return redirect('login')
 
 
@@ -83,14 +83,19 @@ def logout(request):
 def editProfile(request):
     current_user = request.user
     user = User.objects.all().get(id=current_user.id)
-    # print(user.get_short_name)
-    print(f"first name: {current_user.get_short_name}")
-    context = {
-        'first_name':current_user.get_short_name,
-    }
-    # if(request.method == 'POST'):
-    #     print(request.POST['first_name'])
-    return render(request,'accounts/editProfile.html',context)
+
+    if(request.method == 'POST'):
+        first_name = request.POST['first_name']
+        middle_name = request.POST['middle_name']
+        last_name = request.POST['last_name']
+        user_name = request.POST['username']
+        user.first_name = first_name
+        user.middle_name = middle_name
+        user.last_name = last_name
+        user.user_name = user_name
+        user.save()
+
+    return render(request,'accounts/editProfile.html')
 
 def editPassword(request):
     return render(request,'accounts/editPassword.html')

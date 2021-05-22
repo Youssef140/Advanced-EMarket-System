@@ -13,7 +13,7 @@
                </div>
                <div class="card-body">
                   <!--                Alerts-->
-                  <form action="{% url 'register' %}" method="POST" id = "myForm">
+                  <form action="{% url 'register' %}" method="POST" id ="myForm">
                      {% csrf_token %}
                      <div class="form-group">
                         <label for="first_name">First Name</label>
@@ -43,6 +43,11 @@
                         <label for="pwd2">Confirm Password</label>
                         <input type="password" name="pwd2" id = "pwd2" placeholder="Confirm Password" class="form-control" >
                      </div>
+                     {% for message in messages %}
+                     <div class="alert alert-danger" role="alert">
+                        {{ message }}
+                     </div>
+                     {% endfor %}
                      <div class="py-3">
                         <input type="submit" value="Register" class="button button1 btn-block"style="margin-top:10px; background-color : #2a2a2a; color : #ffffff"  onclick="return Validate()" />
                      </div>

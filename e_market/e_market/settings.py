@@ -71,6 +71,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                  'listings.context_processors.get_categories',
                 'listings.context_processors.get_order_items',
+                'listings.context_processors.get_item_quantity',
                 'django.contrib.messages.context_processors.messages'
             ],
         },
